@@ -1,0 +1,34 @@
+<br><br>
+<button (click)="refreshTime()"> Refresh </button>
+<br><br>
+<p>{{ firstDay | date : 'EEE'}}</p>
+<p>{{ lastDay | date : 'EEE'}}</p>
+<br><br>
+<p>{{today}}<p>
+day : {{day}} month : {{month}} year : {{year}}
+<br><br>
+today | date :'short'
+<h1>{{today | date :'short'}}</h1>
+
+today | date :'medium'
+<h1>{{today | date :'medium'}}</h1>
+
+today | date :'fullDate'
+<h1>{{today | date :'fullDate'}}</h1>
+
+today | date :'longDate'
+<h1>{{today | date :'longDate'}}</h1>
+
+today | date :'shortDate'
+<h1>{{today | date :'shortDate'}}</h1>
+
+today | date :'mediumTime'
+<h1>{{today | date :'mediumTime'}}</h1>
+
+today | date :'shortTime'
+<h1>{{today | date :'shortTime'}}</h1>
+
+today | date :'G - yyyy - MMM - dd - EEE - hh - mm - ss - a'
+<h1>{{today | date :'G - yyyy - MMM - dd - EEE - hh - mm - ss - a'}}</h1>
+
+

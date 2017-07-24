@@ -1,0 +1,88 @@
+h1 {
+  font-size: 1.2em;
+  color: #999;
+  margin-bottom: 0;
+}
+h2 {
+  font-size: 2em;
+  margin-top: 0;
+  padding-top: 0;
+}
+nav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size : 25px;
+  display : block;
+  transition: .3s;
+}
+nav a:visited, a:link {
+  color: #90aDbB;
+}
+nav a:hover {
+  color: #f4ccf6;
+  background-color: #9f879b;
+}
+nav a.active {
+  color: #f4ccf6;
+}
+/* navigation bar의 스타일이다. 숨겨져 있을 때를 나타낸다. */
+.app-navbar{
+  height : 100%;
+  width : 0;
+  position : fixed;
+  z-index : 1;
+  top : 0;
+  left : -230px;
+  background-color: #111;
+  overflow-x : hidden;
+  transition: ease .7s;
+  padding-top : 5px 60px;
+}
+/* navigation bar의 보여졌을 때 변경될 스타일이다.*/
+.app-navshow{
+  width : 230px;
+  left : 0;
+  background-color: rgba(0,0, 0, .6);
+  transition: ease .7s;
+}
+/* navigation을 제외한 부분을 가리킨다. */
+.app-main{
+  transition: ease .7s;
+  padding: 16px;
+}
+/* navigation이 보여져서 오른쪽으로 밀려났을 때 스타일이다. */
+.app-mainleft{
+  margin-left: 250px;
+  transition: ease .7s;
+}
+/* navigation bar 안의 닫기 버튼이다. */
+.app-closebutton{
+  border: none;
+  background-color: rgba(0,0, 0, 0);
+  margin: 20px 0px 0px 180px;
+  font-size:24px;
+  width : 30px;
+  height : 30px;
+}
+/* 닫기 버튼의 hover */
+.app-closebutton:hover{
+  background-color: rgba(255,255,255, .3);
+}
+.app-title{
+  background-color: #e6f9ff;
+  /* top right bottom left */
+  padding : 3px 5px 20px 10px;
+  margin : 10px 0px 0px 0px;
+}
+.app-subtitle{
+  background-color: #ebfafa;
+  padding : 20px 5px 10px 10px;
+  border-radius: 0px;
+}
+.app-navibarbutton{
+  font-size:30px; 
+  cursor:pointer; 
+  padding : 10px; 
+  margin : 5px 5px 5px 0px;
+  background-color: #ebebe0;
+}
