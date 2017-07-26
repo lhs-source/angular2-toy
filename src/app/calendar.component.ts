@@ -52,7 +52,7 @@ export class CalendarComponent implements OnInit{
     today : number;
     firstDay : number;
     lastDay : number;
-    todayDate : Date;
+    thisDate : Date;
 
     // Date Class
     // getDate : day
@@ -74,8 +74,7 @@ export class CalendarComponent implements OnInit{
     thismonthLast : Date;
     endofthismonth : number;
 
-    num1 : number;
-    num2 : number;
+    selectedIndex : number;
 
     cells : CalendarCell[] = [];
     selectedCell : CalendarCell;
@@ -84,35 +83,37 @@ export class CalendarComponent implements OnInit{
     // Methods
     ///////////
     refreshTime() : void{
-        // ¿ä¼Òµé °¡Á®¿À±â
-        this.day = this.todayDate.getDate();
-        this.month = this.todayDate.getMonth();
+        this.today = Date.now();
+        // ìš”ì†Œë“¤ ì„¤ì •
+        this.day = this.thisDate.getDate();
+        this.month = this.thisDate.getMonth();
         this.monthStr = monthStringFull[this.month];
-        this.year = this.todayDate.getFullYear();
-        this.weekofday = this.todayDate.getDay();
+        this.year = this.thisDate.getFullYear();
+        this.weekofday = this.thisDate.getDay();
         this.weekofdayStr = weekofdayStringFull[this.weekofday];
-        this.timezone = this.todayDate.getTime();
-        this.timezoneoffset = this.todayDate.getTimezoneOffset();
+        this.timezone = this.thisDate.getTime();
+        this.timezoneoffset = this.thisDate.getTimezoneOffset();
 
-        // ÀÌ´ŞÀÇ ¸¶Áö¸·ÀÏ 
+        // ì´ë‹¬ì˜ ë§ˆì§€ë§‰ë‚  ìˆ«ì
         this.endofthismonth = EOTD[this.month];
-        // À±³â
+        // ìœ¤ë…„
         if(this.year % 4 === 0 && this.month === 1){
             this.endofthismonth++;
         }
-        // ÀÌ´ŞÀÇ Ã¹³¯ °è»ê
-        this.num1 = this.thismonthFirst.setFullYear(this.year, this.month, 1);
-        // ÀÌ´ŞÀÇ ¸¶Áö¸·³¯  °è»ê
-        this.num2 = this.thismonthLast.setFullYear(this.year, this.month, this.endofthismonth);
+        // ì´ë‹¬ì˜ ì²«ë‚  ì„¤ì •
+        this.thismonthFirst.setFullYear(this.year, this.month, 1);
+        // ì´ë‹¬ì˜ ë§ˆì§€ë§‰ë‚  ì„¤ì •
+        this.thismonthLast.setFullYear(this.year, this.month, this.endofthismonth);
 
-        // Ã¹³¯°ú ¸¶Áö¸·³¯ÀÇ ¿äÀÏ
+        // ì²«ë‚ , ë§ˆì§€ë§‰ë‚ ì˜ ìš”ì¼
         var startDay = this.thismonthFirst.getDay();
         var LastDay = this.thismonthLast.getDay();
         var start;
 
         this.cells = [];
-        // ÀÌÀü´ŞÀÇ ³¯Â¥µé
-        if(startDay === 0){
+        // ì €ë²ˆë‹¬
+        if(startDay === 0){ 
+            // ì‹œì‘ì´ ì¼ìš”ì¼ì´ë¼ë©´ í•œì¤„ ì¶”ê°€
             startDay += 7;
         }
         for(var i = 0; i < startDay; i++){
@@ -120,15 +121,26 @@ export class CalendarComponent implements OnInit{
                 new Date(this.year, this.month, - (startDay - i) + 1).getTime()
             );
         }
-        // ÀÌ´ŞÀÇ ³¯Â¥µé
+        // ì´ë²ˆë‹¬
         for(var i = 0; i < this.endofthismonth; i++){
             start = i + startDay;
             this.cells[start] = new CalendarCell(
                 new Date(this.year, this.month, i + 1).getTime(), true
             );
+            if(this.selectedCell.date.getFullYear() === this.cells[start].date.getFullYear() &&
+               this.selectedCell.date.getMonth() === this.cells[start].date.getMonth() &&
+               this.selectedCell.date.getDate() === this.cells[start].date.getDate() ){
+                this.selectedCell = this.cells[start];
+                this.selectedCell.isClicked = true;
+            }
         }
-        // ´ÙÀ½´ŞÀÇ ³¯Â¥µé
+        // ë‹¤ìŒë‹¬
         if(LastDay === 6){
+            // ë§ˆì§€ë§‰ë‚ ì´ í† ìš”ì¼ì´ë¼ë©´ í•œì¤„ ì¶”ê°€
+            LastDay -= 7;
+        }
+        if(this.endofthismonth + startDay < 35){
+            // ì¤„ì„ 6ì¤„ì„ ë§ì¶”ê¸° ìœ„í•¨ì´ë‹¤.
             LastDay -= 7;
         }
         for(var i = 0; i < 6 - LastDay; i++){
@@ -139,34 +151,39 @@ export class CalendarComponent implements OnInit{
         }
     }
     ngOnInit() : void{
-        // instanceµé »ı¼º
+        // instance í• ë‹¹
         this.today = Date.now();
-        this.todayDate = new Date();
+        this.thisDate = new Date();
         this.thismonthFirst = new Date();
         this.thismonthLast = new Date();
         this.selectedCell = new CalendarCell(Date.now());
 
-        // ³¯Â¥ ¼±ÅÃ
-        this.todayDate.setTime(this.today);
-        this.todayDate.setMonth(6);
-
+        // ë‚ ì§œ ì„ íƒ
+        this.thisDate.setTime(this.today);
+        this.thisDate.setMonth(6);
 
         this.refreshTime();
+        this.selectedCell.isClicked = true;
     }
-    clickCell(index : number) : void {
+    click_Cell(index : number) : void {
         if(this.cells[index].date.getMonth() === this.month){
             this.selectedCell.isClicked = false;
             this.selectedCell = this.cells[index];
             this.selectedCell.isClicked = true;
         }
         else{
-            this.todayDate.setFullYear(this.cells[index].date.getFullYear(), this.cells[index].date.getMonth(), this.cells[index].date.getDate());
-            //this.todayDate.setFullYear(this.year, 
+            this.thisDate.setFullYear(this.cells[index].date.getFullYear(), this.cells[index].date.getMonth(), this.cells[index].date.getDate());
+            //this.thisDate.setFullYear(this.year, 
             //    this.cells[index].date.getMonth() > this.month ? this.month + 1: this.month - 1);
-            this.selectedCell = this.cells[index];
+            //this.selectedCell = this.cells[index];
             this.refreshTime();
         }
-        this.today = this.todayDate.getTime();
+        //this.today = this.thisDate.getTime();
+    }
+    click_Today() : void{
+        this.thisDate.setTime(Date.now());
+        this.selectedCell.date.setTime(this.thisDate.getTime());
+        this.refreshTime();
     }
 }
 export class CalendarCell{
@@ -179,5 +196,6 @@ export class CalendarCell{
             this.date.setTime(datenumber);
         }
         this.isThisMonth = thismonth ? thismonth : false;
+        this.isClicked = false;
     }
 }

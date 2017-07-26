@@ -1,32 +1,49 @@
 <br><br>
-<button (click)="refreshTime()"> Refresh </button>
-<br><br>
-<p>today {{today}}<p>
-<p>timezoneoffset {{timezoneoffset}}<p>
-<p>year : {{year}} - month : {{month}}({{monthStr}}) - day : {{day}} - weekofday : {{weekofday}} {{weekofdayStr}}</p>
+
+<div class="calendar">
+    <div class="calendar-header">
+        <h1>{{ monthStr }} {{ year }}</h1>
+        <h2>select : {{ selectedCell.date | date :'longDate' }}</h2>
+    </div>
+    <div class="calendar-cells">
+        <span class="cell cell-header">Sun</span>
+        <span class="cell cell-header">Mon</span>
+        <span class="cell cell-header">Tue</span>
+        <span class="cell cell-header">Wed</span>
+        <span class="cell cell-header">Thu</span>
+        <span class="cell cell-header">Fri</span>
+        <span class="cell cell-header">Sat</span>
+        <br>
+        <br>
+        <br>
+        <span *ngFor="let cell of cells; let i = index;">
+            <span class="cell" 
+                    [ngClass]="{'cell-this-month' : cell.isThisMonth, 'cell-disabled' : !cell.isThisMonth, 'cell-clicked' : cell.isClicked}" 
+                    (click)="click_Cell(i);">
+                {{ cell.date | date :'longDate' }}
+            </span>
+            <p *ngIf="i != 0 && (i + 1) % 7 === 0"></p>
+        </span>
+    </div>
+    <div class="calendar-footer">
+        <button class="button-today" (click)="click_Today()">Today</button>
+    </div>
+</div>
+<a>test</a>
+<br><br><hr><br>
+
+<p>today {{ today }}<p>
+<p>timezoneoffset {{ timezoneoffset }}<p>
+<p>year : {{ year }} - month : {{ month }}({{ monthStr }}) - day : {{ day }} - weekofday : {{ weekofday }} {{ weekofdayStr }}</p>
 <p>Fisrt ## {{ thismonthFirst }} </p>
 <p>Last ## {{ thismonthLast }}</p>
-<br><br>
-<h1>{{today | date :'longDate'}}</h1>
-<span class="cell-header">Sun</span>
-<span class="cell-header">Mon</span>
-<span class="cell-header">Tue</span>
-<span class="cell-header">Wed</span>
-<span class="cell-header">Thu</span>
-<span class="cell-header">Fri</span>
-<span class="cell-header">Sat</span>
 <br>
-<br>
-<br>
-<span *ngFor="let cell of cells; let i = index;">
-    <span class="cell" [ngClass]="{'cell-this-month' : cell.isThisMonth, 'cell-clicked' : cell.isClicked}" (click)="clickCell(i);">
-        {{cell.date | date :'longDate' }}
-    </span>
-    <p *ngIf="i != 0 && (i + 1) % 7 === 0"></p>
-</span>
-{{selectedCell.date.getDate()}} {{selectedCell.date.getMonth() + 1}}
 
+<button (click)="refreshTime()"> Refresh </button>
 <br><br>
+
+
+
 today | date :'short'
 <h1>{{today | date :'short'}}</h1>
 
