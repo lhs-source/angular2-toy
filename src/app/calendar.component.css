@@ -1,0 +1,27 @@
+
+.cell-header{
+    display: inline-block;
+    width : 75px;
+    height : 25px;
+    padding : 5px 5px;
+    margin : 1px;
+    background-color: #CCC;
+    border-radius: 4px;
+}
+.cell{
+    display: inline-block;
+    width : 75px;
+    height : 50px;
+    padding : 5px 5px;
+    margin : 1px;
+    background-color: #CCC;
+    border-radius: 4px;
+}
+.cell-this-month{
+    background-color: #AAA;
+}
+.cell-clicked{
+    background-color: #DDC;
+}
+
+
