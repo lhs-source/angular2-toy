@@ -1,10 +1,10 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard.component'; 
-import { HeroDetailComponent } from './hero-detail.component';
-import { HeroesComponent } from './heroes.component';
-import { CalendarComponent } from './calendar.component';
+import { DashboardComponent } from './hero/dashboard.component'; 
+import { HeroDetailComponent } from './hero/hero-detail.component';
+import { HeroesComponent } from './hero/heroes.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 const routes : Routes = [
   {

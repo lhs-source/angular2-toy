@@ -1,42 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-const monthStringFull : string[] = [
-    "January", 
-    "Fabruary", 
-    "March", 
-    "April", 
-    "May", 
-    "June", 
-    "July", 
-    "August", 
-    "September", 
-    "October", 
-    "November", 
-    "December"
-];
-const weekofdayStringFull : string[] = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-];
-const EOTD : number[] = [
-    31,
-    30,
-    31,
-    30,
-    31,
-    30,
-    31,
-    31,
-    30,
-    31,
-    30,
-    31
-];
+import { CalendarCell } from './calendar-cell.class';
+import { CalendarService } from './calendar.service';
 
 
 @Component({
@@ -79,54 +44,64 @@ export class CalendarComponent implements OnInit{
     cells : CalendarCell[] = [];
     selectedCell : CalendarCell;
 
+    constructor(private calServ : CalendarService){
+
+    }
     ///////////
     // Methods
     ///////////
     refreshTime() : void{
         this.today = Date.now();
-        // 요소들 설정
+        // 값들 설정
         this.day = this.thisDate.getDate();
         this.month = this.thisDate.getMonth();
-        this.monthStr = monthStringFull[this.month];
+        this.monthStr = this.calServ.getMonthStr(this.month); //monthStringFull[this.month];
         this.year = this.thisDate.getFullYear();
         this.weekofday = this.thisDate.getDay();
-        this.weekofdayStr = weekofdayStringFull[this.weekofday];
+        this.weekofdayStr = this.calServ.getWeekDayStr(this.weekofday);//weekofdayStringFull[this.weekofday];
         this.timezone = this.thisDate.getTime();
         this.timezoneoffset = this.thisDate.getTimezoneOffset();
 
-        // 이달의 마지막날 숫자
-        this.endofthismonth = EOTD[this.month];
+        // 이달의 마지막 날짜의 숫자 30? 31? 28?
+        this.endofthismonth = this.calServ.getEndDayNumStr(this.month);//EOTD[this.month];
         // 윤년
         if(this.year % 4 === 0 && this.month === 1){
             this.endofthismonth++;
         }
-        // 이달의 첫날 설정
+        // 이달의 첫날
         this.thismonthFirst.setFullYear(this.year, this.month, 1);
-        // 이달의 마지막날 설정
+        // 이달의 마지막날
         this.thismonthLast.setFullYear(this.year, this.month, this.endofthismonth);
 
-        // 첫날, 마지막날의 요일
+        // 첫날, 마지막날 요일
         var startDay = this.thismonthFirst.getDay();
         var LastDay = this.thismonthLast.getDay();
+        
+        this.setCalendarCells(this.thisDate, startDay, LastDay);
+    }
+    setCalendarCells(thisMonth : Date, startDay : number, LastDay : number){
         var start;
 
-        this.cells = [];
+        var date = thisMonth.getDate();
+        var month = thisMonth.getMonth();
+        var year = thisMonth.getFullYear();
+
         // 저번달
         if(startDay === 0){ 
-            // 시작이 일요일이라면 한줄 추가
+            // 시작이 일요일이면 한줄 추가
             startDay += 7;
         }
         for(var i = 0; i < startDay; i++){
-            this.cells[i] = new CalendarCell(
-                new Date(this.year, this.month, - (startDay - i) + 1).getTime()
-            );
+            this.cells[i].date.setFullYear(year, month, - (startDay - i) + 1);
         }
         // 이번달
         for(var i = 0; i < this.endofthismonth; i++){
             start = i + startDay;
-            this.cells[start] = new CalendarCell(
-                new Date(this.year, this.month, i + 1).getTime(), true
-            );
+
+            this.cells[start].date.setFullYear(year, month, i + 1);
+            this.cells[start].isThisMonth = true;
+            this.cells[start].isClicked = false;
+
             if(this.selectedCell.date.getFullYear() === this.cells[start].date.getFullYear() &&
                this.selectedCell.date.getMonth() === this.cells[start].date.getMonth() &&
                this.selectedCell.date.getDate() === this.cells[start].date.getDate() ){
@@ -136,34 +111,34 @@ export class CalendarComponent implements OnInit{
         }
         // 다음달
         if(LastDay === 6){
-            // 마지막날이 토요일이라면 한줄 추가
+            // 마지막날이 토요일이면 막줄 추가
             LastDay -= 7;
         }
         if(this.endofthismonth + startDay < 35){
-            // 줄을 6줄을 맞추기 위함이다.
+            // 6줄을 맞추자
             LastDay -= 7;
         }
         for(var i = 0; i < 6 - LastDay; i++){
             start = i + this.endofthismonth + startDay;
-            this.cells[start] = new CalendarCell(
-                new Date(this.year, this.month + 1, i + 1).getTime()
-            );
+            this.cells[start].date.setFullYear(year, month + 1, i + 1);
         }
     }
     ngOnInit() : void{
-        // instance 할당
+        // instance 초기화
         this.today = Date.now();
         this.thisDate = new Date();
         this.thismonthFirst = new Date();
         this.thismonthLast = new Date();
         this.selectedCell = new CalendarCell(Date.now());
 
-        // 날짜 선택
+        // 날짜 설정
         this.thisDate.setTime(this.today);
         this.thisDate.setMonth(6);
 
+        for(var i = 0; i < 42; i++){
+            this.cells[i] = new CalendarCell(0, false);
+        }
         this.refreshTime();
-        this.selectedCell.isClicked = true;
     }
     click_Cell(index : number) : void {
         if(this.cells[index].date.getMonth() === this.month){
@@ -185,17 +160,12 @@ export class CalendarComponent implements OnInit{
         this.selectedCell.date.setTime(this.thisDate.getTime());
         this.refreshTime();
     }
-}
-export class CalendarCell{
-    date : Date;
-    isThisMonth : boolean;
-    isClicked : boolean;
-    constructor(datenumber? : number, thismonth? : boolean){
-        this.date = new Date();
-        if(datenumber){
-            this.date.setTime(datenumber);
-        }
-        this.isThisMonth = thismonth ? thismonth : false;
-        this.isClicked = false;
+    click_Prev() : void{
+        this.thisDate.setMonth(this.month - 1);
+        this.refreshTime();
+    }
+    click_Next() : void{
+        this.thisDate.setMonth(this.month + 1);
+        this.refreshTime();
     }
 }

@@ -7,6 +7,7 @@ import { Component } from '@angular/core'
 })
 export class AppComponent{
     title = ":: New App Page ::";
+    version : number = 0.103;
     isNavActive : boolean = false;
     toggleNav():void{
         this.isNavActive = !this.isNavActive;
