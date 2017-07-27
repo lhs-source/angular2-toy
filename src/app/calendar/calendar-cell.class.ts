@@ -13,4 +13,8 @@ export class CalendarCell{
         this.isThisMonth = thismonth ? thismonth : false;
         this.isClicked = false;
     }
+    public unsetVars(){
+        this.isThisMonth = false;
+        this.isClicked = false;
+    }
 }

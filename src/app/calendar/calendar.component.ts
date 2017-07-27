@@ -86,6 +86,10 @@ export class CalendarComponent implements OnInit{
         var month = thisMonth.getMonth();
         var year = thisMonth.getFullYear();
 
+        // var selDate = this.selectedCell.date.getDate();
+        // var selMonth = this.selectedCell.date.getMonth();
+        // var selYear = this.selectedCell.date.getFullYear();
+
         // 저번달
         if(startDay === 0){ 
             // 시작이 일요일이면 한줄 추가
@@ -93,6 +97,8 @@ export class CalendarComponent implements OnInit{
         }
         for(var i = 0; i < startDay; i++){
             this.cells[i].date.setFullYear(year, month, - (startDay - i) + 1);
+            this.cells[i].isThisMonth = false;
+            this.cells[i].isClicked = false;
         }
         // 이번달
         for(var i = 0; i < this.endofthismonth; i++){
@@ -105,6 +111,7 @@ export class CalendarComponent implements OnInit{
             if(this.selectedCell.date.getFullYear() === this.cells[start].date.getFullYear() &&
                this.selectedCell.date.getMonth() === this.cells[start].date.getMonth() &&
                this.selectedCell.date.getDate() === this.cells[start].date.getDate() ){
+                   // selectedCell과 cells[start]가 같은 곳을 가리키고 있기 때문에
                 this.selectedCell = this.cells[start];
                 this.selectedCell.isClicked = true;
             }
@@ -121,6 +128,8 @@ export class CalendarComponent implements OnInit{
         for(var i = 0; i < 6 - LastDay; i++){
             start = i + this.endofthismonth + startDay;
             this.cells[start].date.setFullYear(year, month + 1, i + 1);
+            this.cells[start].isThisMonth = false;
+            this.cells[start].isClicked = false;
         }
     }
     ngOnInit() : void{
@@ -148,24 +157,27 @@ export class CalendarComponent implements OnInit{
         }
         else{
             this.thisDate.setFullYear(this.cells[index].date.getFullYear(), this.cells[index].date.getMonth(), this.cells[index].date.getDate());
-            //this.thisDate.setFullYear(this.year, 
-            //    this.cells[index].date.getMonth() > this.month ? this.month + 1: this.month - 1);
-            //this.selectedCell = this.cells[index];
+            // selectedCell이 this.cells[index]를 가리키고 있어서, 
+            // this.cells를 바꾸면 따라 바뀌니 새로운 인스턴스로 분리
+            this.selectedCell = new CalendarCell(this.selectedCell.date.getTime());
             this.refreshTime();
         }
         //this.today = this.thisDate.getTime();
     }
     click_Today() : void{
         this.thisDate.setTime(Date.now());
-        this.selectedCell.date.setTime(this.thisDate.getTime());
+        //this.selectedCell.date.setTime(this.thisDate.getTime());
+        this.selectedCell = new CalendarCell(this.today);
         this.refreshTime();
     }
     click_Prev() : void{
         this.thisDate.setMonth(this.month - 1);
+        this.selectedCell = new CalendarCell(this.selectedCell.date.getTime());
         this.refreshTime();
     }
     click_Next() : void{
         this.thisDate.setMonth(this.month + 1);
+        this.selectedCell = new CalendarCell(this.selectedCell.date.getTime());
         this.refreshTime();
     }
 }

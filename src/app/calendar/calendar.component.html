@@ -1,6 +1,6 @@
 <br><br>
 
-<div class="calendar center">
+<div class="calendar">
     <div class="calendar-header">
         <h1>{{ monthStr }} {{ year }}</h1>
     </div>
@@ -19,7 +19,8 @@
             <span class="cell" 
                     [ngClass]="{'cell-this-month' : cell.isThisMonth, 'cell-disabled' : !cell.isThisMonth, 'cell-clicked' : cell.isClicked}" 
                     (click)="click_Cell(i);">
-                {{ cell.date.getTime() | date :'longDate' }}
+                
+                {{ cell.date.getTime() | date : 'MMMM dd, yyyy' }}
             </span>
             <p *ngIf="i != 0 && (i + 1) % 7 === 0"></p>
         </span>
