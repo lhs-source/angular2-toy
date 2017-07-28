@@ -249,4 +249,22 @@ export class CalendarComponent implements OnInit{
         //console.log(this.calendarEvents.length + " last : " );
         this.markEvents();
     }
+    click_Debug(){
+        this.selectedCell.calendarEvents.forEach(
+            event => {
+                var len = event.note.length;
+                var chararray = new Array();
+                var count = 0;
+                for(var i = 0; i < len; i++){
+                    chararray[i] = event.note.charAt(i);
+                    count += chararray[i] === "\n" ? 1 : 0;
+                }                
+                console.log(count);
+                console.log(event.note.includes("\n"));
+            }
+        )
+    }
+    // textareaAutoGrow() : void {
+    //     var textArae
+    // }
 }

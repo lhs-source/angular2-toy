@@ -36,11 +36,20 @@
 <br>
 <a> Events </a>
 <div *ngFor="let event of selectedCell.calendarEvents">
-    <textarea cols=80 [(ngModel)]="event.note"></textarea>
+    <div class="overTextarea"><textarea class="eventNote" 
+                onkeydown='this.style.height = "1px"; this.style.height = (this.scrollHeight)+"px";' 
+                onfocusout='this.style.height = "30px"'
+                onfocus='this.style.height = "1px"; this.style.height = (this.scrollHeight)+"px";'
+                
+                [(ngModel)]="event.note"></textarea>
+    </div>
 </div>
-<input type="text" [(ngModel)]="addEventDate" placeholder="YYYY-MM-DD"/>
-<input type="text" [(ngModel)]="addEventNote" placeholder="Note"/>
-<button (click)="click_AddEvent()">ADD</button>
+<div>
+    <input class="eventAddTextForm" type="text" [(ngModel)]="addEventDate" placeholder="YYYY-MM-DD"/>
+    <input class="eventAddTextForm" type="text" [(ngModel)]="addEventNote" placeholder="Note"/>
+    <button class="eventAddButton" (click)="click_AddEvent()">ADD</button>
+    <button class="eventAddButton" (click)="click_Debug()">DEBUG</button>
+</div>
 <br><br><hr><br>
 
 <p>today {{ today }}<p>
