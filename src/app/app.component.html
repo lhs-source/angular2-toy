@@ -2,18 +2,17 @@
 <div class="app-navbar" [ngClass] = "{'app-navshow' : isNavActive}">
     <button type="button" class="app-closebutton" (click) = "toggleNav()">x</button>
     <nav>
-    <p><a routerLink="/dashboard" routerLinkActive="active" (click) = "toggleNav()">Dashboard</a></p>
-    <p><a routerLink="/heroes" routerLinkActive="active" (click) = "toggleNav()">Heroes</a></p>
-    <p><a routerLink="/calendar" routerLinkActive="active" (click) = "toggleNav()">calendar</a></p>
+        <br><br><br>
+        <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+        <a routerLink="/calendar" routerLinkActive="active">calendar</a>
     </nav>
 </div>
 <div class="app-main" [ngClass] = "{'app-mainleft' : isNavActive}">
-    <span class="app-navibarbutton" (click) = "toggleNav()"> = Navigation Bar </span>
+    <span class="app-navibarbutton" (click) = "toggleNav()"> <b>=</b> Navigation Bar </span>
+    <br><br>
     <div class="app-title">
-    <h1>{{title}}</h1> {{version}}
-    </div>
-    <div class="app-subtitle">
-    <h2>Side Navigation</h2>
+        <h1>{{title}}</h1> {{version}}
     </div>
     <router-outlet></router-outlet>
 </div>

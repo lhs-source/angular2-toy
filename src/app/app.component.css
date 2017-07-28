@@ -1,6 +1,6 @@
 h1 {
-  font-size: 1.2em;
-  color: #999;
+  font-size: 24px;
+  color: #04406b;
   margin-bottom: 0;
 }
 h2 {
@@ -18,10 +18,12 @@ nav a {
 nav a:visited, a:link {
   color: #90aDbB;
 }
+/* 메뉴에 마우스 */
 nav a:hover {
   color: #f4ccf6;
   background-color: #9f879b;
 }
+/* 메뉴 중 눌린 메뉴 */
 nav a.active {
   color: #f4ccf6;
 }
@@ -33,7 +35,7 @@ nav a.active {
   z-index : 1;
   top : 0;
   left : -230px;
-  background-color: #111;
+  background-color: #063d47;
   overflow-x : hidden;
   transition: ease .7s;
   padding-top : 5px 60px;
@@ -42,7 +44,7 @@ nav a.active {
 .app-navshow{
   width : 230px;
   left : 0;
-  background-color: rgba(0,0, 0, .6);
+  background-color: rgba(063d47, .6);
   transition: ease .7s;
 }
 /* navigation을 제외한 부분을 가리킨다. */
@@ -68,21 +70,20 @@ nav a.active {
 .app-closebutton:hover{
   background-color: rgba(255,255,255, .3);
 }
+/* 제목부분 */
 .app-title{
-  background-color: #e6f9ff;
+  background-color: #acd9f9;
   /* top right bottom left */
   padding : 3px 5px 20px 10px;
   margin : 10px 0px 0px 0px;
+  border-left: 12px solid #24507c;
 }
-.app-subtitle{
-  background-color: #ebfafa;
-  padding : 20px 5px 10px 10px;
-  border-radius: 0px;
-}
+/* navigation bar 여닫는 버튼*/
 .app-navibarbutton{
   font-size:30px; 
   cursor:pointer; 
-  padding : 10px; 
+  padding : 10px 10px 13px 10px; 
   margin : 5px 5px 5px 0px;
-  background-color: #ebebe0;
+  background-color: #97c4b6;
+  border-radius: 10px;
 }

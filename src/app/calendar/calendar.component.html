@@ -21,6 +21,7 @@
                     (click)="click_Cell(i);">
                 
                 {{ cell.date.getTime() | date : 'MMMM dd, yyyy' }}
+            <span class="eventBadge" *ngIf="cell.calendarEvents.length > 0">{{cell.calendarEvents.length}}</span>
             </span>
             <p *ngIf="i != 0 && (i + 1) % 7 === 0"></p>
         </span>
@@ -32,7 +33,14 @@
         <button class="button-today" (click)="click_Next()">Next</button>
     </div>
 </div>
-<a>test</a>
+<br>
+<a> Events </a>
+<div *ngFor="let event of selectedCell.calendarEvents">
+    <textarea cols=80 [(ngModel)]="event.note"></textarea>
+</div>
+<input type="text" [(ngModel)]="addEventDate" placeholder="YYYY-MM-DD"/>
+<input type="text" [(ngModel)]="addEventNote" placeholder="Note"/>
+<button (click)="click_AddEvent()">ADD</button>
 <br><br><hr><br>
 
 <p>today {{ today }}<p>
