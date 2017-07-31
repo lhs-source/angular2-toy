@@ -32,13 +32,5 @@ export default function setRoutes(app){
   router.route('/cat/:id').put(catCtrl.update);
   router.route('/cat/:id').delete(catCtrl.delete);
 
-  // Heros
-  router.route('/heroes').get(heroCtrl.getAll);
-  router.route('/heroes/count').get(heroCtrl.count);
-  router.route('/hero').post(heroCtrl.insert);
-  router.route('/hero/:id').get(heroCtrl.get);
-  router.route('/hero/:id').put(heroCtrl.update);
-  router.route('/hero/:id').delete(heroCtrl.delete);
-
   app.use('/api', router);
 }

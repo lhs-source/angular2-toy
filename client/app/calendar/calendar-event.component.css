@@ -1,0 +1,79 @@
+
+/*///////////////////////////////////////////*/
+/* 이벤트 개수 표시 */
+.eventBadge{
+    background-color: #991703;
+    border-radius: 8px;
+    padding : 0px 4px 2px 4px;
+
+    color : #f7d0ca;
+    font-size : 14px;
+}
+/* 이벤트 관리 */
+.overTextarea{
+    width : 770px;
+    max-width: 770px;
+    height: auto;
+
+    padding : 6px 6px 20px 6px;
+    margin : 8px 8px 12px 8px;
+    border : 2px solid #75a3a3;
+    border-radius: 5px;
+    vertical-align: top;
+}
+/* note를 입력하고 출력하는 textarea이다. */
+.eventNote{
+    width : 75%;
+    resize : none;
+    overflow: hidden;
+
+    padding : 10px 12px 20px 12px;
+    border : none;
+    font-family:"Malgun Gothic", Times, serif; 
+}
+/* 이벤트 추가용 input text이다. */
+.eventAddTextForm{
+    width : 200px;
+
+    border-radius: 3px;
+    border : 2px solid #aebfb5;
+    padding : 10px 15px 10px 15px;
+    margin : 5px 8px;
+}
+/* 이벤트 추가용 button이다. */
+.eventAddButton{
+    width : 80px;
+    height : 30px;
+    background-color : #ededed;
+    font-size: 14px;
+    color: #3f3f3f; 
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    margin : 0px 3px;
+    cursor: pointer;
+}
+/* 이벤트 변경, 삭제용 button이다. */
+.eventEditDeleteButton{
+    width : 60px;
+    height : 80%;
+    background-color : #555;
+    font-size: 14px;
+    color: #fff; 
+    border: none;
+    border-radius: 2px;
+    margin : 0px 2px;
+    /* to-right to-bottomn blur color*/
+    box-shadow: 0px 0px 4px #AAA;
+    cursor: pointer;
+
+    vertical-align: top;
+}
+/* 이벤트 변경, 삭제용 button의 hover이다. */
+.eventEditDeleteButton:hover{
+    background-color : #ffe8f6;
+    color: #4c243c; 
+    /* to-right to-bottomn blur color*/
+    box-shadow: 0px 0px 4px #AAA;
+    border: 1px solid #999;
+    transition: 0.2s;
+}

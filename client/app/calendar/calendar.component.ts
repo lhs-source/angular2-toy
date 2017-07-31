@@ -5,6 +5,8 @@ import { CalendarCell } from './calendar-cell.class';
 import { CalendarService } from './calendar.service';
 import { CalendarEvent } from './calendar-event.class';
 
+import 'rxjs/add/operator/map';
+
 @Component({
     selector : "calendar-comp",
     templateUrl : "./calendar.component.html",
@@ -20,12 +22,13 @@ export class CalendarComponent implements OnInit{
     lastDay : number;
     thisDate : Date;
 
-    // Date Class
-    // getDate : day
-    // getDay : week of day
-    // getMonth : month
-    // getFullYear : year
-    // 
+    /**
+     * Date Class
+     * getDate : day
+     * getDay : week of day
+     * getMonth : month
+     * getFullYear : year
+     */
 
     day : number;
     month : number;
@@ -40,23 +43,32 @@ export class CalendarComponent implements OnInit{
     thismonthLast : Date;
     endofthismonth : number;
 
+    // 선택된 셀의 인덱스
     selectedIndex : number;
 
+    // 달력의 모든 셀
     cells : CalendarCell[] = [];
+    // 선택된 셀
     selectedCell : CalendarCell;
-
+    // 모든 이벤트
     calendarEvents : CalendarEvent[];
 
-    // 이벤트 추가
+    // 이벤트 추가용 변수
     addEventDate : string;
     addEventNote : string;
 
+    // calendar 서비스
     constructor(private calServ : CalendarService){
 
     }
     // db 테스트
     eventsFromDB : any = [];
+    // 디비로부터 데이터 로드가 됐는지
     isLoaded : boolean = false;
+
+    // 그냥 테스트용
+    num1 : number;
+
 
     ///////////
     // Methods
@@ -152,7 +164,7 @@ export class CalendarComponent implements OnInit{
         var thisMonthEvents = this.calendarEvents.filter(
             event => event.getTimeCode(true, true, false) === this.cells[20].getTimeCode(true, true, false) );
         var eventsLen = thisMonthEvents.length;
-            console.log(thisMonthEvents);
+            //console.log(thisMonthEvents);
         this.unsetCellsProperties(true);
 
         if(42 < eventsLen){
@@ -211,22 +223,14 @@ export class CalendarComponent implements OnInit{
         this.calendarEvents[1].date.setDate(this.calendarEvents[1].date.getDate() + 1);
         this.addEventDate = this.thisDate.getFullYear() + "-" + (this.thisDate.getMonth() + 1) + "-" + this.thisDate.getDate();
 
-        // db 테스트
-        // this.calServ.getAllPosts().subscribe(posts => {
-        //     this.posts = posts;
-        //     });
-        // this.calServ.addEvent({date : "20170730", note : "test"}).subscribe(
-        //     res => {
-        //         const calendarEvent = res.json();
-        //         console.log('item added successfully.' + calendarEvent);
-        //     },
-        //     error => console.log(error)
-        // );
+        this.timer();
+
         this.db_getEvents();
-        console.log("This is first!!");
     }
+    // 셀을 클릭했을 때
     click_Cell(index : number) : void {
         if(this.cells[index].date.getMonth() === this.month){
+            // 이번달이다.
             this.selectedCell.isClicked = false;
             this.selectedCell = this.cells[index];
             this.selectedCell.isClicked = true;
@@ -234,6 +238,7 @@ export class CalendarComponent implements OnInit{
             this.addEventDate = this.selectedCell.date.getFullYear() + "-" + (this.selectedCell.date.getMonth() + 1) + "-" + this.selectedCell.date.getDate();
         }
         else{
+            // 저번달이나, 다음달이다.
             this.thisDate.setFullYear(this.cells[index].date.getFullYear(), this.cells[index].date.getMonth(), this.cells[index].date.getDate());
             // selectedCell이 this.cells[index]를 가리키고 있어서, 
             // this.cells를 바꾸면 따라 바뀌니 새로운 인스턴스로 분리
@@ -242,57 +247,32 @@ export class CalendarComponent implements OnInit{
         }
         //this.today = this.thisDate.getTime();
     }
+    // 오늘로 이동한다.
     click_Today() : void{
         this.thisDate.setTime(Date.now());
         //this.selectedCell.date.setTime(this.thisDate.getTime());
         this.selectedCell = new CalendarCell(this.today);
         this.refreshTime();
     }
+    // 이전달로 이동한다.
     click_Prev() : void{
         this.thisDate.setMonth(this.month - 1);
         this.selectedCell = new CalendarCell(this.selectedCell.date.getTime());
         this.refreshTime();
     }
+    // 다음달로 이동한다.
     click_Next() : void{
         this.thisDate.setMonth(this.month + 1);
         this.selectedCell = new CalendarCell(this.selectedCell.date.getTime());
         this.refreshTime();
     }
-    click_AddEvent() : void{
-        //console.log(this.calendarEvents.length + " last : " );
-        this.db_addEvents();
-    }
-    click_Debug(){
-        // this.selectedCell.calendarEvents.forEach(
-        //     event => {
-        //         var len = event.note.length;
-        //         var chararray = new Array();
-        //         var count = 0;
-        //         for(var i = 0; i < len; i++){
-        //             chararray[i] = event.note.charAt(i);
-        //             count += chararray[i] === "\n" ? 1 : 0;
-        //         }                
-        //         console.log(count);
-        //         console.log(event.note.includes("\n"));
-        //     }
-        // )
-        console.log(this.selectedCell.calendarEvents);
-        console.log(this.calendarEvents);
-    }
-    click_Edit(event : CalendarEvent){
-        console.log("edit");
-        this.db_updateEvents(event);
-    }
-    click_Del(event : CalendarEvent){
-        console.log("del");
-        this.db_deleteEvents(event);
-    }
-    // textareaAutoGrow() : void {
-    //     var textArae
-    // }
+    // db로부터 이벤트를 가져온다.
+    // 가져와서 calendarEvents에 push한다.
+    // 로드가 됐으니 isLoaded는 true로 바꾼다.
+    // 그리고 시간을 갱신한다.
     db_getEvents(){
         this.calServ.getEvents().subscribe(
-            data => { this.eventsFromDB = data; console.log(data);},
+            data => { this.eventsFromDB = data;},
             error => console.log(error),
             () => {
                 var len = this.eventsFromDB.length;
@@ -301,44 +281,41 @@ export class CalendarComponent implements OnInit{
                     this.calendarEvents[len2 + i] = new CalendarEvent(this.eventsFromDB[i].date, this.eventsFromDB[i].note, this.eventsFromDB[i]._id);
                 }
                 this.isLoaded = true;
-                console.log("Get Events from mongoDB " + this.calendarEvents.length);
+                //console.log("Get Events from mongoDB " + this.calendarEvents.length);
                 this.refreshTime();
             }
         );
     }
-    db_addEvents(){
-        this.calServ.addEvent({date : this.addEventDate, note : this.addEventNote}).subscribe(
-            res => {
-                const calendarEvent = res.json();
-                this.calendarEvents.push(
-                    new CalendarEvent(new Date(calendarEvent.date).getTime(), calendarEvent.note, calendarEvent._id)
-                );
-                console.log('item added successfully.' + calendarEvent);
-                this.markEvents();
-            },
-            error => console.log(error)
-        );
+    // event component에서 이벤트를 추가했을 때 호출되는 콜백이다.
+    // 이벤트 목록에 push한다.
+    addEventCallback(addedEvent : CalendarEvent) : void{
+        console.log(addedEvent);
+        console.log(this.calendarEvents);
+        this.calendarEvents.push(addedEvent);
+        this.markEvents();
     }
-    db_updateEvents(event : CalendarEvent){
-        this.calServ.editEvent(event).subscribe(
-            res => {
-                console.log("maybe Success?");
-                //this.toast.setMessage('item edited successfully.', 'success');
-            },
-            error => console.log(error)
-        )
+    // 이벤트를 수정했을 때 콜백이다.
+    // 별다른 행동은 없다.
+    editEventCallback(){
+        console.log(this.calendarEvents);
+        
     }
-    db_deleteEvents(event : CalendarEvent){
-        this.calServ.deleteEvent(event).subscribe(
-            res => {
-                const pos = this.calendarEvents.map(elem => elem._id).indexOf(event._id);
-                console.log(event._id + " " + pos);
-                this.calendarEvents.splice(pos, 1);
-                console.log("delete maybe Success? " + this.calendarEvents.length);
-                this.markEvents();
-                //this.toast.setMessage('item edited successfully.', 'success');
-            },
-            error => console.log(error)
-        )
+    // 삭제했을 때 콜백이다.
+    // id를 비교해 .map함수로 위치를 얻어온 다음, splice로 해당 멤버만 빼낸다.
+    deleteEventCallback(deletedEvent : CalendarEvent){
+        console.log(deletedEvent);
+        console.log(this.calendarEvents);
+        const pos = this.calendarEvents.map(elem => elem._id).indexOf(deletedEvent._id);
+        console.log(pos);
+        this.calendarEvents.splice(pos, 1);
+        this.markEvents();
+    }
+    // setTimeout을 이용한 간단한 시계
+    timer() : void{
+        for(var i = 0; i < 3600; i++){
+            setTimeout(() => {
+                this.today = Date.now();
+            }, 1000 * (i + 1));
+        }
     }
 }

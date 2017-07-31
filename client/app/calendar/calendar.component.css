@@ -10,7 +10,7 @@
     border: 2px;
     border-color: darkslategray;
     border-radius: 8px;
-    max-width: 810px;
+    max-width: 880px;
 }
 .calendar-header{
     background-color: #a3c2c2;
@@ -31,7 +31,7 @@
 /*///////////////////////////////////////////*/
 .cell{
     display: inline-block;
-    width : 85px;
+    width : 95px;
     height : 50px;
     /* top-bottom  left-right*/
     padding : 10px 6px 6px 6px;
@@ -62,6 +62,18 @@
     color : #344c4c;
     cursor: pointer;
 }
+
+.cell-this-month.cell-weekend{
+    /*background-color: #e2eded;*/
+    color : #0280cc;
+    cursor: pointer;
+}
+.cell-disabled.cell-weekend{
+    /*background-color: #5c8a8a;*/
+    color : #b3e0ff;
+    cursor: pointer;
+}
+
 .cell-clicked{
     background-color: #006666;
     color : #e0ebeb;
@@ -94,6 +106,7 @@
     cursor: pointer;
     transition : 0.4s;
 }
+/*///////////////////////////////////////////*/
 /* 이벤트 개수 표시 */
 .eventBadge{
     background-color: #991703;
@@ -103,6 +116,7 @@
     color : #f7d0ca;
     font-size : 14px;
 }
+/* 이벤트 관리 */
 .overTextarea{
     width : 770px;
     max-width: 770px;
@@ -114,6 +128,7 @@
     border-radius: 5px;
     vertical-align: top;
 }
+/* note를 입력하고 출력하는 textarea이다. */
 .eventNote{
     width : 75%;
     resize : none;
@@ -123,6 +138,7 @@
     border : none;
     font-family:"Malgun Gothic", Times, serif; 
 }
+/* 이벤트 추가용 input text이다. */
 .eventAddTextForm{
     width : 200px;
 
@@ -131,6 +147,7 @@
     padding : 10px 15px 10px 15px;
     margin : 5px 8px;
 }
+/* 이벤트 추가용 button이다. */
 .eventAddButton{
     width : 80px;
     height : 30px;
@@ -142,6 +159,7 @@
     margin : 0px 3px;
     cursor: pointer;
 }
+/* 이벤트 변경, 삭제용 button이다. */
 .eventEditDeleteButton{
     width : 60px;
     height : 80%;
@@ -157,6 +175,7 @@
 
     vertical-align: top;
 }
+/* 이벤트 변경, 삭제용 button의 hover이다. */
 .eventEditDeleteButton:hover{
     background-color : #ffe8f6;
     color: #4c243c; 

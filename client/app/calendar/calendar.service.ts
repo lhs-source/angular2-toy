@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CalendarCell } from './calendar-cell.class';
-import { monthStringFull, weekofdayStringFull, EndOfThisMonth } from './mock-calendar';
+import { monthStringFull, weekofdayStringFull_Kor, EndOfThisMonth } from './mock-calendar';
 
 import { Headers, Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -12,15 +12,22 @@ export class CalendarService{
     private options = new RequestOptions({ headers: this.headers });
     constructor(private http : Http) { }
 
+    //////////////////////////
+    // mock 에서 상수 가져오기
+    //////////////////////////
     getMonthStr(index : number) : string {
         return monthStringFull[index];
     }
     getWeekDayStr(index : number) : string {
-        return weekofdayStringFull[index];
+        return weekofdayStringFull_Kor[index];
     }
     getEndDayNumStr(index : number) : number {
         return EndOfThisMonth[index];
     }
+
+    /////////////////////////
+    // REST API로 데이터 제어
+    /////////////////////////
     getEvents(): Observable<any> {
         return this.http.get('/api/events').map(res => res.json());
     }

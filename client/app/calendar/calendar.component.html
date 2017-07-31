@@ -1,8 +1,9 @@
-<br><br>
-
+<br>
+<h1>{{today | date :'medium'}}</h1>
+<br>
 <div class="calendar" *ngIf="isLoaded">
     <div class="calendar-header">
-        <h1>{{ monthStr }} {{ year }}</h1>
+        <h1>{{ year }}, {{ monthStr }} </h1>
     </div>
     <div class="calendar-cells">
         <span class="cell cell-header">Sun</span>
@@ -17,10 +18,11 @@
         <br>
         <span *ngFor="let cell of cells; let i = index;">
             <span class="cell" 
-                    [ngClass]="{'cell-this-month' : cell.isThisMonth, 'cell-disabled' : !cell.isThisMonth, 'cell-clicked' : cell.isClicked}" 
+                    [ngClass]="{'cell-this-month' : cell.isThisMonth, 'cell-disabled' : !cell.isThisMonth, 'cell-clicked' : cell.isClicked, 'cell-weekend': cell.date.getDay() === 0 || cell.date.getDay() === 6}" 
                     (click)="click_Cell(i);">
-                
-                {{ cell.date.getTime() | date : 'MMMM dd, yyyy' }}
+            <!--{{ cell.date.getTime() | date : 'yyyy년 MM월 dd일' }}-->
+            {{ cell.date.getFullYear() }} <br>{{ cell.date.getMonth() + 1 }}월 {{ cell.date.getDate() }}일
+                 
             <span class="eventBadge" *ngIf="cell.calendarEvents.length > 0">{{cell.calendarEvents.length}}</span>
             </span>
             <p *ngIf="i != 0 && (i + 1) % 7 === 0"></p>
@@ -33,63 +35,18 @@
         <button class="button-today" (click)="click_Next()">Next</button>
     </div>
 </div>
-<br>
-<a> Notes </a>
-<div *ngFor="let event of selectedCell.calendarEvents">
-    <div class="overTextarea">
-        <textarea spellcheck="false" class="eventNote" 
-                onkeydown='this.style.height = "1px"; this.style.height = (this.scrollHeight)+"px";' 
-                onfocusout='this.style.height = "30px"'
-                onfocus='this.style.height = "1px"; this.style.height = (this.scrollHeight)+"px";'
-                
-                [(ngModel)]="event.note">
-        </textarea>
-        <button class="eventEditDeleteButton" (click)="click_Edit(event)">Edit</button>
-        <button class="eventEditDeleteButton" (click)="click_Del(event)">Delete</button>
-    </div>
+<div *ngIf="!isLoaded">
+    <h1>Loading...</h1>
 </div>
-<div>
-    <input class="eventAddTextForm" type="text" [(ngModel)]="addEventDate" placeholder="YYYY-MM-DD"/>
-    <input class="eventAddTextForm" type="text" [(ngModel)]="addEventNote" placeholder="Note"/>
-    <button class="eventAddButton" (click)="click_AddEvent()">ADD</button>
-    <button class="eventAddButton" (click)="click_Debug()">DEBUG</button>
-</div>
-<br><br><hr><br>
-
-<p>today {{ today }}<p>
-<p>timezoneoffset {{ timezoneoffset }}<p>
-<p>year : {{ year }} - month : {{ month }}({{ monthStr }}) - day : {{ day }} - weekofday : {{ weekofday }} {{ weekofdayStr }}</p>
-<p>Fisrt ## {{ thismonthFirst }} </p>
-<p>Last ## {{ thismonthLast }}</p>
 <br>
+<event-control  *ngIf="isLoaded"
+                [addEventDate]="addEventDate"
+                [addCallback]="addEventCallback.bind(this)"
+                [updateCallback]="editEventCallback.bind(this)"
+                [deleteCallback]="deleteEventCallback.bind(this)"
+                [selectedCell]="selectedCell.calendarEvents"></event-control>
 
+                <!--
 <button (click)="refreshTime()"> Refresh </button>
 <br><br>
-
-
-
-today | date :'short'
-<h1>{{today | date :'short'}}</h1>
-
-today | date :'medium'
-<h1>{{today | date :'medium'}}</h1>
-
-today | date :'fullDate'
-<h1>{{today | date :'fullDate'}}</h1>
-
-today | date :'longDate'
-<h1>{{today | date :'longDate'}}</h1>
-
-today | date :'shortDate'
-<h1>{{today | date :'shortDate'}}</h1>
-
-today | date :'mediumTime'
-<h1>{{today | date :'mediumTime'}}</h1>
-
-today | date :'shortTime'
-<h1>{{today | date :'shortTime'}}</h1>
-
-today | date :'G - yyyy - MMM - dd - EEE - hh - mm - ss - a'
-<h1>{{today | date :'G - yyyy - MMM - dd - EEE - hh - mm - ss - a'}}</h1>
-
-
+-->

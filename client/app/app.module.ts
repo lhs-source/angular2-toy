@@ -8,12 +8,12 @@ import { HttpModule } from '@angular/http';
 //import { InMemoryDataService } from './http/in-memory-data.service';
 
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './hero/dashboard.component'; 
-import { HeroDetailComponent } from './hero/hero-detail.component';
-import { HeroesComponent } from './hero/heroes.component';
-import { HeroService } from './hero/hero.service';
+//import { DashboardComponent } from './hero/dashboard.component'; 
+//import { HeroDetailComponent } from './hero/hero-detail.component';
+//import { HeroesComponent } from './hero/heroes.component';
+//import { HeroService } from './hero/hero.service';
 import { AppRoutingModule } from './app-routing.module';
-import { HeroSearchComponent }  from './hero/hero-search.component';
+//import { HeroSearchComponent }  from './hero/hero-search.component';
 
 import { CatsComponent } from './cat/cats.component';
 import { CatService } from './cat/cats.service';
@@ -25,10 +25,6 @@ import { CalendarModule } from './calendar/calendar.module';
 @NgModule({
   declarations: [
     AppComponent,
-    HeroDetailComponent,
-    HeroesComponent,
-    DashboardComponent,
-    HeroSearchComponent,
     CatsComponent,
   ],
   imports: [
@@ -38,9 +34,8 @@ import { CalendarModule } from './calendar/calendar.module';
     AppRoutingModule,
     HttpModule,
     CalendarModule,
-    //InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
-  providers: [ HeroService,
+  providers: [ //HeroService,
               CatService, ],
   bootstrap: [ AppComponent ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

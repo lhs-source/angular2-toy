@@ -39,7 +39,7 @@ export class CatsComponent implements OnInit {
     this.catService.getCats().subscribe(
       data => this.cats = data,
       error => console.log(error),
-      () => {this.isLoading = false; console.log(this.cats);}
+      () => {this.isLoading = false;}
     );
   }
 

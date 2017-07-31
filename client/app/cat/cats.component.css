@@ -2,3 +2,52 @@
    text-align: center;
    width: 25%;  
 }
+.cat-table{
+    width : 70%;
+    background-color: #CCC;
+    margin : auto;
+    padding : 4px;
+}
+.cat-thead{
+    background-color: #BBB;
+    padding : 8px 8px;
+}
+.cat-tbody{
+    background-color: #AAA;
+    padding : 8px 8px;
+}
+.cat-tbodyEdit{
+    background-color: #AAA;
+    padding : 8px 8px;
+}
+.cat-tr{
+    padding : 8px 0px;
+}
+.cat-td{
+    padding : 8px 0px;
+}
+.cat-th{
+    padding : 8px 0px;
+}
+.cat-input{
+    width : 360px;
+    height : 30px;
+    margin : 4px;
+    border-radius: 2px;
+    border : 1px solid #999;
+    padding : 4px 4px 4px 8px;
+}
+.button{
+    width : 100px;
+    height : 28px;
+    margin : 1px;
+    border-radius: 2px;
+    border : 1px solid #999;
+}
+h1, h2, h3, h4{
+    text-align: center;
+}
+.form{
+    margin : auto;
+    width : 70%;
+}

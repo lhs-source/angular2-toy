@@ -1,0 +1,23 @@
+<div>
+    <h1>event control component</h1>
+</div>
+<div *ngFor="let event of selectedCell">
+    <div class="overTextarea">
+        <textarea spellcheck="false" class="eventNote" 
+                onkeydown='this.style.height = "1px"; this.style.height = (this.scrollHeight)+"px";' 
+                onfocusout='this.style.height = "30px"'
+                onfocus='this.style.height = "1px"; this.style.height = (this.scrollHeight)+"px";'
+                
+                [(ngModel)]="event.note">
+        </textarea>
+        <button class="eventEditDeleteButton" (click)="click_Edit(event)">Edit</button>
+        <button class="eventEditDeleteButton" (click)="click_Del(event)">Delete</button>
+    </div>
+</div>
+<div>
+    <input class="eventAddTextForm" type="text" [(ngModel)]="addEventDate" placeholder="YYYY-MM-DD"/>
+    <input class="eventAddTextForm" type="text" [(ngModel)]="addEventNote" placeholder="Note"/>
+    <button class="eventAddButton" (click)="click_AddEvent()">ADD</button>
+    <button class="eventAddButton" (click)="click_Debug()">DEBUG</button>
+</div>
+<br><br><hr><br>
