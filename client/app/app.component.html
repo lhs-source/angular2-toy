@@ -1,0 +1,19 @@
+
+<div class="app-navbar" [ngClass] = "{'app-navshow' : isNavActive}">
+    <button type="button" class="app-closebutton" (click) = "toggleNav()">x</button>
+    <nav>
+        <br><br><br>
+        <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+        <a routerLink="/calendar" routerLinkActive="active">Calendar</a>
+        <a routerLink="/cats" routerLinkActive="active">Cats</a>
+    </nav>
+</div>
+<div class="app-main" [ngClass] = "{'app-mainleft' : isNavActive}">
+    <span class="app-navibarbutton" (click) = "toggleNav()"> <b>=</b> Navigation Bar </span>
+    <br><br>
+    <div class="app-title">
+        <h1>{{title}}</h1> {{version}}
+    </div>
+    <router-outlet></router-outlet>
+</div>

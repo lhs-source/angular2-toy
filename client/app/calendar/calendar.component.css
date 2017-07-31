@@ -1,0 +1,167 @@
+/*common*/
+.center{
+    margin: auto;
+}
+/*///////////////////////////////////////////*/
+
+/*components*/
+.calendar{
+    background-color: #d1e0e0;
+    border: 2px;
+    border-color: darkslategray;
+    border-radius: 8px;
+    max-width: 810px;
+}
+.calendar-header{
+    background-color: #a3c2c2;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding : 1px 30px 1px 40px;
+    color : #293d3d;
+}
+.calendar-cells{
+    padding : 40px 30px 10px 40px;
+}
+.calendar-footer{
+    background-color: #aababa;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding : 30px 30px 30px 40px;
+}
+/*///////////////////////////////////////////*/
+.cell{
+    display: inline-block;
+    width : 85px;
+    height : 50px;
+    /* top-bottom  left-right*/
+    padding : 10px 6px 6px 6px;
+    margin : 1px;
+    border-radius: 4px;
+    text-align: center;
+    background-color: #f0f5f5;
+    color : #344c4c;
+    cursor : default;
+    transition : box-shadow 0.5s;
+    user-select: none; /* text selection disable*/
+}
+.cell-header{
+    height : 30px;
+    background-color: #476b6b;
+    font-weight: bold;
+    font-size: 18px;
+    color : #d1e0e0;
+}
+.cell-disabled{
+    background-color: #75a3a3;
+    text-align: center;
+    color : #d1e0e0;
+    cursor: pointer;
+}
+.cell-this-month{
+    background-color: #f0f5f5;
+    color : #344c4c;
+    cursor: pointer;
+}
+.cell-clicked{
+    background-color: #006666;
+    color : #e0ebeb;
+    cursor: pointer;
+    transition : 0.2s;
+}
+.cell:hover{
+    box-shadow: 0px 0px 8px #888;
+    transition : box-shadow 0.4s;
+}
+/*///////////////////////////////////////////*/
+/* 오늘 버튼 */
+.button-today{
+    width : 100px;
+    height : 35px;
+    background-color : #555;
+    font-size: 16px;
+    color: #FFF; 
+    border: none;
+    border-radius: 2px;
+    margin : 0px 3px;
+    /* to-right to-bottomn blur color*/
+    box-shadow: 0px 0px 10px #AAA;
+    cursor: pointer;
+    transition : 0.4s;
+}
+.button-today:hover{
+    /* to-right to-bottomn blur color*/
+    box-shadow: 0px 0px 15px #888;
+    cursor: pointer;
+    transition : 0.4s;
+}
+/* 이벤트 개수 표시 */
+.eventBadge{
+    background-color: #991703;
+    border-radius: 8px;
+    padding : 0px 4px 2px 4px;
+
+    color : #f7d0ca;
+    font-size : 14px;
+}
+.overTextarea{
+    width : 770px;
+    max-width: 770px;
+    height: auto;
+
+    padding : 6px 6px 20px 6px;
+    margin : 8px 8px 12px 8px;
+    border : 2px solid #75a3a3;
+    border-radius: 5px;
+    vertical-align: top;
+}
+.eventNote{
+    width : 75%;
+    resize : none;
+    overflow: hidden;
+
+    padding : 10px 12px 20px 12px;
+    border : none;
+    font-family:"Malgun Gothic", Times, serif; 
+}
+.eventAddTextForm{
+    width : 200px;
+
+    border-radius: 3px;
+    border : 2px solid #aebfb5;
+    padding : 10px 15px 10px 15px;
+    margin : 5px 8px;
+}
+.eventAddButton{
+    width : 80px;
+    height : 30px;
+    background-color : #ededed;
+    font-size: 14px;
+    color: #3f3f3f; 
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    margin : 0px 3px;
+    cursor: pointer;
+}
+.eventEditDeleteButton{
+    width : 60px;
+    height : 80%;
+    background-color : #555;
+    font-size: 14px;
+    color: #fff; 
+    border: none;
+    border-radius: 2px;
+    margin : 0px 2px;
+    /* to-right to-bottomn blur color*/
+    box-shadow: 0px 0px 4px #AAA;
+    cursor: pointer;
+
+    vertical-align: top;
+}
+.eventEditDeleteButton:hover{
+    background-color : #ffe8f6;
+    color: #4c243c; 
+    /* to-right to-bottomn blur color*/
+    box-shadow: 0px 0px 4px #AAA;
+    border: 1px solid #999;
+    transition: 0.2s;
+}
