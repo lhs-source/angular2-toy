@@ -210,7 +210,7 @@ export class CalendarComponent implements OnInit{
 
         // 날짜 설정
         this.thisDate.setTime(this.today);
-        this.thisDate.setMonth(6);
+        //this.thisDate.setMonth(6);
 
         // 이벤트 테스트
         for(var i = 0; i < 42; i++){

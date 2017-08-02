@@ -1,0 +1,19 @@
+<app-toast [message]="toast.message"></app-toast>
+
+<div>
+  <h4>Login</h4>
+  <div>
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+      <div [ngClass]="setClassEmail()">
+        <span><i class="fa fa-envelope"></i></span>
+        <input class="login-input" type="email" name="email" formControlName="email" placeholder="Email" autofocus>
+      </div>
+      <div [ngClass]="setClassPassword()">
+        <span><i class="fa fa-key"></i></span>
+        <input class="login-input" type="password" name="password" formControlName="password" placeholder="Password">
+      </div>
+      <br>
+      <button class="button" type="submit" [disabled]="!loginForm.valid"><i class="fa fa-sign-in"></i> Login</button>
+    </form>
+  </div>
+</div>

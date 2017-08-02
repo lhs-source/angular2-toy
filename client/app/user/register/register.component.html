@@ -1,0 +1,31 @@
+<app-toast [message]="toast.message"></app-toast>
+
+<div>
+  <h4>Register</h4>
+  <div>
+    <form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
+      <div [ngClass]="setClassUsername()">
+        <span><i class="fa fa-user"></i></span>
+        <input class="register-input" type="text" name="username" formControlName="username" placeholder="Username" autofocus>
+      </div>
+      <div [ngClass]="setClassEmail()">
+        <span><i class="fa fa-envelope"></i></span>
+        <input class="register-input" type="email" name="email" formControlName="email" placeholder="Email">
+      </div>
+      <div [ngClass]="setClassPassword()">
+        <span><i class="fa fa-key"></i></span>
+        <input class="register-input" type="password" name="password" formControlName="password" placeholder="Password">
+      </div>
+      <div>
+        <span><i class="fa fa-black-tie"></i></span>
+        <select class="register-input" name="role" formControlName="role">
+          <option value="" selected disabled>Role</option>
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <br>
+      <button class="button" type="submit" [disabled]="!registerForm.valid"><i class="fa fa-user-plus"></i> Register</button>
+    </form>
+  </div>
+</div>

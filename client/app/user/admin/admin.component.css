@@ -1,0 +1,53 @@
+.table td, .table th {
+   text-align: center;
+   width: 25%;  
+}
+.admin-table{
+    width : 70%;
+    background-color: #CCC;
+    margin : auto;
+    padding : 4px;
+}
+.admin-thead{
+    background-color: #DDD;
+    padding : 8px 8px;
+}
+.admin-tbody{
+    background-color: #FFF;
+    padding : 8px 8px;
+}
+.admin-tbodyEdit{
+    background-color: #FFF;
+    padding : 8px 8px;
+}
+.admin-tr{
+    padding : 8px 0px;
+}
+.admin-td{
+    padding : 8px 0px;
+}
+.admin-th{
+    padding : 8px 0px;
+}
+.admin-input{
+    width : 360px;
+    height : 30px;
+    margin : 4px;
+    border-radius: 2px;
+    border : 1px solid #999;
+    padding : 4px 4px 4px 8px;
+}
+.button{
+    width : 100px;
+    height : 28px;
+    margin : 1px;
+    border-radius: 2px;
+    border : 1px solid #999;
+}
+h1, h2, h3, h4{
+    text-align: center;
+}
+.form{
+    margin : auto;
+    width : 70%;
+}
