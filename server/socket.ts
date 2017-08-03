@@ -15,5 +15,10 @@ export default function runsocket(io) {
 
             io.emit('login', data.name);
       });
+      socket.on('chat', (data) =>{
+            console.log('client : ' + data.from);
+            
+            io.emit('chat', {from : data.from, msg : data.msg, when : data.date});
+      });
     });
 }

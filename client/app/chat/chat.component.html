@@ -1,25 +1,28 @@
 <div class="users">
+    <div *ngFor="let user of users">
+
+    </div>
 </div>
-<div>
+<div class="chats">
     <div class="chat-container">
         <div *ngFor="let message of messages">
-            <img md-list-avatar src="{{message.from.avatar}}">
-            <h2 md-line> <b>{{message.from.name}} </b> </h2>
-            <p md-line>
-                <span> {{message.content}} </span>
+            <!--<img md-list-avatar src="{{message.from.avatar}}">-->
+            <h3 class="chat-from"> <b>{{message.from}} </b> </h3>
+            <p>
+                <span class="chat-msg"> {{message.msg}} </span>
+                <span class="chat-date"> {{message.date | date : 'yyyy년 MM월 dd일 hh시 mm분'}} </span>
             </p>
         </div>
     </div>
-    <div class="chat-input">
-        message
+    <div class="chat-inputcontainer">
         <div>
-                <input mdInput #inputMessage placeholder="Type your message"
-                    [(ngModel)]="messageContent"
-                    maxlength="140"
-                    style="width: 60%">
+            <input class="chat-input" #inputMessage placeholder="Type your message"
+                [(ngModel)]="messageContent"
+                maxlength="140"
+                (keydown.enter)="enter($event)">
             <span align="end">{{inputMessage.characterCount}}/140</span>
         </div>
-        <button md-icon-button (click)="sendMessage()">
+        <button class="button" (click)="sendMessage()">
             send
         </button>
     </div>

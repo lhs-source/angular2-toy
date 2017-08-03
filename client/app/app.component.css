@@ -74,16 +74,16 @@ nav a.active {
 .app-title{
   background-color: #acd9f9;
   /* top right bottom left */
-  padding : 3px 5px 20px 10px;
-  margin : 10px 0px 0px 0px;
+  padding : 0px 5px 10px 10px;
+  margin : 4px 0px 0px 0px;
   border-left: 12px solid #24507c;
 }
 /* navigation bar 여닫는 버튼*/
 .app-navibarbutton{
   font-size:30px; 
   cursor:pointer; 
-  padding : 10px 10px 13px 10px; 
-  margin : 5px 5px 5px 0px;
+  padding : 8px 10px 10px 10px; 
+  margin : 4px 5px 4px 0px;
   background-color: #97c4b6;
   border-radius: 10px;
 }

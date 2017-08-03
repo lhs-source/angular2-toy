@@ -14,24 +14,39 @@ export class SocketService{
     }
     private initSocket() : void {
         this.socket = socketio(SERVER_URL);
-        this.socket.emit("login", {
-            name : "asdf",
-            userid : "qwer@gmail.com"
-        });
+        // this.socket.emit("login", {
+        //     name : "newbie",
+        //     userid : "qwer@gmail.com"
+        // });
     }
-    public send(msg : Message) : void{
-        this.socket.emit('message', msg);
+    public send(msg : any) : void{
+        console.log(msg);
+        this.socket.emit('chat', msg);
     }
     public get(){
         let observable = new Observable(observer => {
-            this.socket.on('login', (data) => {
+            // this.socket.on('login', (data) => {
+            //     console.log('login ' + data);
+            //     observer.next(data);
+            // });
+            this.socket.on('chat', (data) => {
+                console.log('chat ' + data);
                 observer.next(data);
-            })
-            return () => {
-                this.socket.disconnect();
-            }
+            });
+            return () => this.socket.disconnect();
         });
         return observable;
     }
-
+    public getmsg(){
+        let observable = new Observable(observer =>{
+            this.socket.on('chat', (data) => {
+                console.log('chat ' + data);
+                observer.next(data);
+            });
+        });
+        return observable;
+    }
+    public disconnect(){
+        this.socket.disconnect();
+    }
 }

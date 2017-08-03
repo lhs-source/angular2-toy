@@ -1,5 +1,5 @@
 export class User {
-    constructor(public name : string, public avatar: string){
+    constructor(public username : string, public avatar: string){
         
     }
 }
