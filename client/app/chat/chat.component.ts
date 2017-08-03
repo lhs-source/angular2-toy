@@ -30,8 +30,9 @@ export class ChatComponent{
     }
 
     private initIoConnection() : void{
-        this.ioConnection = this.socketServ.get().subscribe((msg : Message) => {
-            this.messages.push(msg);
+        this.ioConnection = this.socketServ.get().subscribe((msg : string) => {
+
+            this.messages.push(new Message(this.user, "login!!", new Date()));
         });
     }
 

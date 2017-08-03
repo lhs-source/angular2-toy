@@ -9,6 +9,7 @@ import * as http from "http";
 import * as socketio from "socket.io";
 
 import setRoutes from './routes/routes';
+import runsocket from './socket';
 
 class Server{
   public static readonly PORT = 3000;
@@ -30,7 +31,7 @@ class Server{
   private step1(){
     this.app = express();
     dotenv.load({ path: '.env' });
-    this.app.set('port', (process.env.PORT || 3000));
+    this.app.set('port', (process.env.PORT || 8080));
 
     this.app.use('/', express.static(path.join(__dirname, '../public')));
     this.app.use(bodyParser.json());
@@ -40,6 +41,11 @@ class Server{
   private step11(){
     this.server = http.createServer(this.app);
     this.io = socketio().listen(this.server);
+    if(this.io){
+      console.log("get io maybe..");
+    }
+    this.server.listen(this.app.get('port'));
+    this.app.set('port', (process.env.PORT || 3000));
   }
   private step2(){
     mongoose.connect("mongodb://127.0.0.1:27017/calendar_events", function(err){
@@ -58,23 +64,22 @@ class Server{
     this.db.once('open', () => {
       console.log('Connected to MongoDB');
 
+      // api route 설정
       setRoutes(this.app);
 
+      // localhost:3000으로 접속하면 클라이언트로 index.html을 전송
       this.app.get('/*', function(req, res) {
         res.sendFile(path.join(__dirname, '../public/index.html'));
       });
 
+      // listen
       this.app.listen(this.app.get('port'), () => {
         console.log('Angular Full Stack listening on port ' + this.app.get('port'));
-        this.io.on('connect', (socket : any) => {
-          console.log('connected client on port %s.', this.port);
-          socket.on('disconnect', () => {
-            console.log('client disconnected');
-          })
-        });
+        
       });
 
     });
+    runsocket(this.io);
   }
 }
 

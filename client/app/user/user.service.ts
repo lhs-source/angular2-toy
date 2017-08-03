@@ -4,11 +4,15 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+import { User } from './user.model';
+
 @Injectable()
 export class UserService {
 
   private headers = new Headers({ 'Content-Type': 'application/json', 'charset': 'UTF-8' });
   private options = new RequestOptions({ headers: this.headers });
+
+  user : User;
 
   constructor(private http: Http) { }
 
@@ -18,6 +22,7 @@ export class UserService {
 
   login(credentials): Observable<any> {
     return this.http.post('/api/login', JSON.stringify(credentials), this.options);
+    
   }
 
   getUsers(): Observable<any> {
