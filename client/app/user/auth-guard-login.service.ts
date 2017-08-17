@@ -8,6 +8,7 @@ export class AuthGuardLogin implements CanActivate {
   constructor(public auth: AuthService, private router: Router) {}
 
   canActivate() {
+    console.log("auth guard login " + this.auth.loggedIn);
     return this.auth.loggedIn;
   }
 }
