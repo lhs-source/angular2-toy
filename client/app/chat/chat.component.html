@@ -4,22 +4,20 @@
     </div>
 </div>
 <div class="chats">
-    <div class="chat-container">
+    <div #chatbox class="chat-container">
         <div *ngFor="let message of messages">
             <!--<img md-list-avatar src="{{message.from.avatar}}">-->
             <h3 class="chat-from"> <b>{{message.from}} </b> </h3>
             <p>
-                <span class="chat-msg"> {{message.msg}} </span>
+                <span class="chat-msg" [innerHtml]="message.msg"></span>
                 <span class="chat-date"> {{message.date | date : 'yyyy년 MM월 dd일 hh시 mm분'}} </span>
             </p>
         </div>
     </div>
     <div class="chat-inputcontainer">
         <div>
-            <input class="chat-input" #inputMessage placeholder="Type your message"
-                [(ngModel)]="messageContent"
-                maxlength="140"
-                (keydown.enter)="enter($event)">
+            <div #chatinput contenteditable="true" class="chat-input" #inputMessage placeholder="Type your message"
+                (keydown.enter)="enter($event)"></div>
             <span align="end">{{inputMessage.characterCount}}/140</span>
         </div>
         <button class="button" (click)="sendMessage()">

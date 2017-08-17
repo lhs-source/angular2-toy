@@ -29,8 +29,10 @@
 .chat-msg{
     background-color: #f7f9a7;
     border-radius: 10px;
-    margin : 10px;
-    padding : 4px 12px 6px 14px;
+    margin : 4px;
+    padding : 6px 16px 8px 16px;
+    display: inline-block;
+    width : auto;
 }
 .chat-date{
     background-color: #ccce8a;
@@ -38,7 +40,10 @@
     margin : 5px;
     padding : 2px 6px 3px 7px;
     font-size : 14px;
+    display: inline-block;
+    width : auto;
 }
+/* 채팅치는 곳 */
 .chat-input{
     width : 480px;
     height : 30px;
