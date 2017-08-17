@@ -33,7 +33,7 @@ nav a.active {
   width : 0;
   position : fixed;
   z-index : 1;
-  top : 0;
+  top : 50px;
   left : -230px;
   background-color: #063d47;
   overflow-x : hidden;
@@ -78,12 +78,15 @@ nav a.active {
   margin : 4px 0px 0px 0px;
   border-left: 12px solid #24507c;
 }
-/* navigation bar 여닫는 버튼*/
-.app-navibarbutton{
-  font-size:30px; 
-  cursor:pointer; 
-  padding : 8px 10px 10px 10px; 
-  margin : 4px 5px 4px 0px;
-  background-color: #97c4b6;
-  border-radius: 10px;
+
+.bgimage {
+    height : 100%;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("http://www.visiontech4u.net/wp-content/uploads/2017/07/hd-wallpapers-for-android-mobile-full-screen.jpg");
+    background-blend-mode: saturation;
+    background-attachment: fixed;
+
+    z-index: -1;
 }

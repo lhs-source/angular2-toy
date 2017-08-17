@@ -1,0 +1,17 @@
+<div>
+    <button data-command='strong' (click)="bold()">bold</button>
+    <button data-command='backColor' (click)="backColor()">backgroundColor</button>
+</div>
+<div #editor contenteditable="true" spellcheck="false"
+    (change)="event_change('change')"
+    (keydown)="event_change('keydown')"
+    (selectChange)="event_change('keydown')"
+    (mousedown)="event_change('mousedown')"
+    (mouseup)="event_change('mouseup')">
+    <h1>hi</h1>
+    <b>here will be editor</b>
+    thank you.
+</div>
+<button (click)="display()">view content</button>
+<div><pre>{{htmlContent}}</pre></div>
+    <div [innerHTML]="htmlContent"></div>

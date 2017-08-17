@@ -3,13 +3,17 @@
 </div>
 <div *ngFor="let event of selectedCell">
     <div class="overTextarea">
-        <textarea spellcheck="false" class="eventNote" 
+        <!--<textarea spellcheck="false" class="eventNote" 
                 onkeydown='this.style.height = "1px"; this.style.height = (this.scrollHeight)+"px";' 
                 onfocusout='this.style.height = "30px"'
                 onfocus='this.style.height = "1px"; this.style.height = (this.scrollHeight)+"px";'
                 
                 [(ngModel)]="event.note">
         </textarea>
+            -->
+        <div>
+            <div contenteditable="true" spellcheck="false" class="eventNote">{{event.note}}</div>
+        </div>
         <button class="eventEditDeleteButton" (click)="click_Edit(event)">Edit</button>
         <button class="eventEditDeleteButton" (click)="click_Del(event)">Delete</button>
     </div>

@@ -7,6 +7,8 @@ import { CatsComponent } from './cat/cats.component';
 
 import { ChatComponent } from './chat/chat.component';
 
+import { WwComponent } from './wysiwyg/ww.component';
+
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
 import { LogoutComponent } from './user/login/logout.component';
@@ -55,6 +57,11 @@ const routes : Routes = [
     path: 'admin', 
     component: AdminComponent, 
     canActivate: [AuthGuardAdmin] 
+  },
+  {
+    path: 'editor', 
+    component: WwComponent, 
+    canActivate: [AuthGuardLogin] 
   },
 ];
 

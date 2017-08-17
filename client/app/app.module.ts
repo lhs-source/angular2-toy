@@ -16,10 +16,17 @@ import { ChatModule } from './chat/chat.module';
 
 import { UserModule } from './user/user.module';
 
+import { WwModule } from './wysiwyg/wwtemp.module';
+
+import { AppHeaderComponent } from './headerfooter/appheader.component';
+import { AppFooterComponent } from './headerfooter/appfooter.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     CatsComponent,
+    AppHeaderComponent,
+    AppFooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +37,7 @@ import { UserModule } from './user/user.module';
     CalendarModule,
     ChatModule,
     UserModule,
+    WwModule,
   ],
   providers: [ //HeroService,
               CatService, ],

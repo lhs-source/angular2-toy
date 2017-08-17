@@ -11,6 +11,7 @@
     border-color: darkslategray;
     border-radius: 8px;
     max-width: 880px;
+    min-width: 880px;
 }
 .calendar-header{
     background-color: #a3c2c2;
