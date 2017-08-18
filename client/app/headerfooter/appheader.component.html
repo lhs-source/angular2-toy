@@ -1,12 +1,22 @@
 
-
+<!-- 헤더 컴포넌트 -->
 <div class="header">
+    <!-- account 관련 메뉴들 -->
     <nav>
-    <span class="app-navibarbutton" (click) = "toggleNav()"> <b>=</b> Navigation Bar </span>
-    <a routerLink="/login" routerLinkActive="active">login</a>
-    <a routerLink="/register" routerLinkActive="active">register</a>
-    <a routerLink="/account" routerLinkActive="active">account</a>
-    <a routerLink="/admin" routerLinkActive="active">admin</a>
-    <a routerLink="/logout" routerLinkActive="active">logout</a>
+        <!-- nav bar 여닫는 버튼이다.  -->
+        <span class="app-navibarbutton" (click) = "toggleNav()"> <b>=</b> Navigation Bar </span>
+        <!-- 로그인하면 보여지는 메뉴 -->
+        <span *ngIf="auth.loggedIn">
+            <a routerLink="/account" routerLinkActive="active">account</a>
+            <span *ngIf="auth.isAdmin">
+            <a routerLink="/admin" routerLinkActive="active">admin</a>
+            </span>
+            <a routerLink="/logout" routerLinkActive="active">logout</a>
+        </span>
+        <!-- 로그인되지 않았을 때 보여지는 메뉴 -->
+        <span *ngIf="!auth.loggedIn">
+            <a routerLink="/login" routerLinkActive="active">login</a>
+            <a routerLink="/register" routerLinkActive="active">register</a>
+        </span>
     </nav>
 </div>

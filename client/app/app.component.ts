@@ -6,8 +6,7 @@ import { Component } from '@angular/core'
     styleUrls: ['./app.component.css'],
 })
 export class AppComponent{
-    title = ":: New App Page ::";
-    version : number = 0.103;
+    version : number = 0.104;
     isNavActive : boolean = false;
     toggleNav() : void{
         this.isNavActive = !this.isNavActive;

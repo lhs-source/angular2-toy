@@ -70,21 +70,18 @@ nav a.active {
 .app-closebutton:hover{
   background-color: rgba(255,255,255, .3);
 }
-/* 제목부분 */
-.app-title{
-  background-color: #acd9f9;
-  /* top right bottom left */
-  padding : 0px 5px 10px 10px;
-  margin : 4px 0px 0px 0px;
-  border-left: 12px solid #24507c;
-}
 
 .bgimage {
+   /* full size */
+    position : fixed;
+    width : 100%;
     height : 100%;
 
     background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
-    background-image: url("http://www.visiontech4u.net/wp-content/uploads/2017/07/hd-wallpapers-for-android-mobile-full-screen.jpg");
+    /*background-image: url("http://www.visiontech4u.net/wp-content/uploads/2017/07/hd-wallpapers-for-android-mobile-full-screen.jpg");*/
+    background-color : gainsboro;
     background-blend-mode: saturation;
     background-attachment: fixed;
 

@@ -1,9 +1,13 @@
 <app-toast [message]="toast.message"></app-toast>
 
-<div>
-  <h4>Register</h4>
-  <div>
-    <form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
+
+<div class="pen-title">
+  <h1>Register</h1>
+</div>
+<div class="form-module">
+  <div class="form">
+    <h2>Create an account</h2><button *ngIf="this.closeFunction" (click)="close()"><i class='fa fa-arrow-left'> Back</i></button>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
       <div [ngClass]="setClassUsername()">
         <span><i class="fa fa-user"></i></span>
         <input class="register-input" type="text" name="username" formControlName="username" placeholder="Username" autofocus>

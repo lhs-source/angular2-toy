@@ -4,6 +4,8 @@ import { JwtHelper } from 'angular2-jwt';
 
 import { UserService } from './user.service';
 
+import { Subject } from 'rxjs/Subject';
+
 @Injectable()
 export class AuthService {
   loggedIn = false;
@@ -12,6 +14,7 @@ export class AuthService {
   jwtHelper: JwtHelper = new JwtHelper();
 
   currentUser = { _id: '', username: '', role: '' };
+
 
   constructor(private userService: UserService,
               private router: Router) {
@@ -54,5 +57,4 @@ export class AuthService {
     decodedUser.role === 'admin' ? this.isAdmin = true : this.isAdmin = false;
     delete decodedUser.role;
   }
-
 }

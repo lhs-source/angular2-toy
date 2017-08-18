@@ -24,9 +24,11 @@ export class LoginComponent implements OnInit {
               private formBuilder: FormBuilder,
               private router: Router) { }
 
+    registerPopup : boolean = false;
+
   ngOnInit() {
     if (this.auth.loggedIn) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/chats']);
     }
     this.loginForm = this.formBuilder.group({
       email: this.email,
@@ -43,9 +45,16 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth.login(this.loginForm.value).subscribe(
-      res => this.router.navigate(['/']),
+      res => {
+        this.router.navigate(['/chats']);
+      },
       error => this.toast.setMessage('invalid email or password!', 'danger')
     );
+  }
+
+  register(){
+    this.registerPopup = !this.registerPopup;
+    console.log(this.registerPopup);
   }
 
 }

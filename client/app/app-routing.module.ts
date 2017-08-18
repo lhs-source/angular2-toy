@@ -21,20 +21,23 @@ import { AuthGuardAdmin } from './user/auth-guard-admin.service';
 const routes : Routes = [
   { // default
     path : '',
-    redirectTo : '/calendar',
+    redirectTo : '/login',
     pathMatch : 'full'
   },
   {
     path: 'calendar',
     component : CalendarComponent,
+    canActivate: [AuthGuardLogin] 
   },
   { 
     path: 'cats', 
-    component: CatsComponent 
+    component: CatsComponent ,
+    canActivate: [AuthGuardLogin] 
   },
   { 
     path: 'chats', 
-    component: ChatComponent 
+    component: ChatComponent,
+    canActivate: [AuthGuardLogin] 
   },
   { 
     path: 'register', 

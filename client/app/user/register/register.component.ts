@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UserService } from '../user.service';
@@ -23,6 +23,8 @@ export class RegisterComponent implements OnInit {
                                   Validators.minLength(6)]);
 
   role = new FormControl('', [Validators.required]);
+
+  @Output() closeFunction = new EventEmitter();
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -54,9 +56,14 @@ export class RegisterComponent implements OnInit {
         console.log('you successfully registered!');
         this.toast.setMessage('you successfully registered!', 'success');
         this.router.navigate(['/login']);
+        this.close();
       },
       error => {this.toast.setMessage('email already exists', 'danger');
         console.log('email already exists');}
     );
+  }
+  close() {
+    console.log(this.closeFunction);
+    this.closeFunction.emit();
   }
 }
