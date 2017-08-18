@@ -15,6 +15,7 @@ nav a {
   font-weight: 400;
   display : block;
   transition: .3s;
+  overflow-x: hidden;
 }
 nav a:visited, a:link {
   color: #90aDbB;
@@ -31,14 +32,14 @@ nav a.active {
 /* navigation bar의 스타일이다. 숨겨져 있을 때를 나타낸다. */
 .app-navbar{
   height : 100%;
-  width : 0;
+  width : 150px;
   position : fixed;
   z-index : 1;
   top : 52px;
-  left : -200px;
+  left : -300px;
   background-color: #354147;
   overflow-x : hidden;
-  transition: ease .7s;
+  transition: all ease .7s;
   padding-top : 5px 60px;
 }
 /* navigation bar의 보여졌을 때 변경될 스타일이다.*/
@@ -82,10 +83,10 @@ nav a.active {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    /*background-image: url("http://www.visiontech4u.net/wp-content/uploads/2017/07/hd-wallpapers-for-android-mobile-full-screen.jpg");*/
-    background-color : gainsboro;
-    background-blend-mode: saturation;
+    background-image: url("http://i.imgur.com/4eBdLCU.jpg");
+    background-blend-mode : darken;
     background-attachment: fixed;
 
+    filter: blur(2px);
     z-index: -1;
 }

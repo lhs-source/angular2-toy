@@ -6,10 +6,10 @@
     <table class="cat-table">
       <thead class="cat-thead" *ngIf="!isEditing">
         <tr>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Weight</th>
-          <th>Actions</th>
+          <th class="cat-th">Name</th>
+          <th class="cat-th">Age</th>
+          <th class="cat-th">Weight</th>
+          <th class="cat-th">Actions</th>
         </tr>
       </thead>
       <tbody class="cat-tbody" *ngIf="cats.length === 0">
@@ -19,17 +19,17 @@
       </tbody>
       <tbody class="cat-tbody" *ngIf="!isEditing">
         <tr *ngFor="let cat of cats">
-          <td>{{cat.name}}</td>
-          <td>{{cat.age}}</td>
-          <td>{{cat.weight}}</td>
-          <td>
+          <td class="cat-td">{{cat.name}}</td>
+          <td class="cat-td">{{cat.age}}</td>
+          <td class="cat-td">{{cat.weight}}</td>
+          <td class="cat-td">
             <button class="button" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button> <button class="button" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Delete</button>
           </td>
         </tr>  
       </tbody>
       <tbody class="cat-tbodyEdit" *ngIf="isEditing">
         <tr>
-          <td colspan="4">
+          <td class="cat-td" colspan="4">
             <div class="form">
               <form #form="ngForm" (ngSubmit)="editCat(cat)" style="display:inline">
                 <div>

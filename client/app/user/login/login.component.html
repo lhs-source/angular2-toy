@@ -12,11 +12,11 @@
     <h2>Login to your accounttt</h2>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div [ngClass]="setClassEmail()">
-        <span><i class="fa fa-envelope"></i></span>
+        <span><i class="fa fa-envelope"></i> Email</span>
         <input class="login-input" type="email" name="email" formControlName="email" placeholder="Email" autofocus>
       </div>
       <div [ngClass]="setClassPassword()">
-        <span><i class="fa fa-key"></i></span>
+        <span><i class="fa fa-key"></i> Password</span>
         <input class="login-input" type="password" name="password" formControlName="password" placeholder="Password">
       </div>
       <br>
@@ -27,9 +27,11 @@
 <div class="modal" [ngClass]="{'modal-show' : registerPopup}" >
   <div class="modal-layout" (click)="register()">
   </div>
-  <div class="modal-box">
+  <div class="modal-box" [ngClass]="{'modal-box-show' : registerPopup}">
     <div class="modal-content">
       <app-register (closeFunction)="register()"></app-register>
     </div>
   </div>
+</div>
+<div class="blur">
 </div>

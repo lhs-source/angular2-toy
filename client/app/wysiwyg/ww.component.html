@@ -1,6 +1,8 @@
 <div>
-    <button data-command='strong' (click)="bold()">bold</button>
-    <button data-command='backColor' (click)="backColor()">backgroundColor</button>
+    <button data-command='strong' (click)="command('strong')">bold</button>
+    <button data-command='backColor' (click)="command('backColor')">backgroundColor</button>
+    <button data-command='italic' (click)="command('italic')">italic</button>
+    <button data-command='InsertInputCheckbox' (click)="command('InsertInputCheckbox')">InsertInputCheckbox</button>
 </div>
 <div #editor contenteditable="true" spellcheck="false"
     (change)="event_change('change')"

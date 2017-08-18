@@ -16,14 +16,21 @@ export class WwComponent{
     event_change(msg : string) : void {
         console.log("event : " + msg);
     }
-
-    // toolbars
-    bold() : void{
-        document.execCommand('bold', false, null);
-    }
-
-    
-    backColor() : void{
-        document.execCommand('backColor', false, "#CCC");
+    command(cmd : string, value : any){
+        switch(cmd){
+        case "bold":
+            document.execCommand('bold', false, null);
+            break;
+        case "backColor" :
+            document.execCommand('backColor', false, "#CCC");
+            break;
+        case "italic" :
+            document.execCommand('italic', false, null);
+            break;
+        case 'InsertInputCheckbox':
+            document.execCommand('InsertInputCheckbox', false, null);
+        default :
+            break;
+        }
     }
 }

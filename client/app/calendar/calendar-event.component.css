@@ -43,7 +43,7 @@
 }
 /* 이벤트 추가용 button이다. */
 .eventAddButton{
-    width : 80px;
+    width : 100px;
     height : 30px;
     background-color : #ededed;
     font-size: 14px;
@@ -55,8 +55,8 @@
 }
 /* 이벤트 변경, 삭제용 button이다. */
 .eventEditDeleteButton{
-    width : 60px;
-    height : 80%;
+    width : 100px;
+    height : 30px;
     background-color : #555;
     font-size: 14px;
     color: #fff; 

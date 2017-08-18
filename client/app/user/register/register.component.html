@@ -9,15 +9,15 @@
     <h2>Create an account</h2>
     <form [formGroup]="registerForm" (ngSubmit)="register()">
       <div [ngClass]="setClassUsername()">
-        <span><i class="fa fa-user"></i></span>
+        <span><i class="fa fa-user"></i> Username</span>
         <input class="register-input" type="text" name="username" formControlName="username" placeholder="Username" autofocus>
       </div>
       <div [ngClass]="setClassEmail()">
-        <span><i class="fa fa-envelope"></i></span>
+        <span><i class="fa fa-envelope"></i> Email</span>
         <input class="register-input" type="email" name="email" formControlName="email" placeholder="Email">
       </div>
       <div [ngClass]="setClassPassword()">
-        <span><i class="fa fa-key"></i></span>
+        <span><i class="fa fa-key"></i> Password</span>
         <input class="register-input" type="password" name="password" formControlName="password" placeholder="Password">
       </div>
       <div>
@@ -30,7 +30,7 @@
       </div>
       <br>
       <button class="button" type="submit" [disabled]="!registerForm.valid"><i class="fa fa-user-plus"></i> Register</button>
-      <button *ngIf="this.closeFunction" (click)="close()"><i class='fa fa-arrow-left'></i> Back</button>
+      <button type="button" *ngIf="this.closeFunction" (click)="close()"><i class='fa fa-arrow-left'></i> Back</button>
     </form>
   </div>
 </div>

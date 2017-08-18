@@ -72,7 +72,7 @@
   display: block;
   width: 100%;
   border: 1px solid #d9d9d9;
-  margin: 0 0 20px;
+  margin: 5px 0 20px;
   padding: 10px 15px;
   box-sizing: border-box;
   font-wieght: 400;
@@ -82,6 +82,17 @@
 .form-module input:focus {
   border: 1px solid #33b5e5;
   color: #333333;
+}
+.form-module select {
+  outline: none;
+  display: block;
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  margin: 5px 0 20px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  font-wieght: 400;
+  appearance: none;
 }
 .form-module button {
   cursor: pointer;

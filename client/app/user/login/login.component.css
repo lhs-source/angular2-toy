@@ -72,7 +72,7 @@
   display: block;
   width: 100%;
   border: 1px solid #d9d9d9;
-  margin: 0 0 20px;
+  margin: 5px 0 20px;
   padding: 10px 15px;
   box-sizing: border-box;
   font-wieght: 400;
@@ -114,15 +114,25 @@
 }
 /* modal */
 .modal{
-  display: none;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+  transition: all 0.4s ease;
+
+	opacity: 0;
+	visibility: hidden;
 }
 .modal-show{
   position : fixed;
   top : 0;
   left : 0;
-  display: block;
   width : 100%;
   height : 100%;
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+
+	opacity: 1;
+	visibility: visible;
 }
 .modal-layout{
   position : fixed;
@@ -134,7 +144,9 @@
   height : 100%;
   background-color : rgba(0, 0, 0, 0.5);
   background-attachment: fixed;
-  transition: 0.4s;
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
 
   z-index: 1;
 }
@@ -154,10 +166,36 @@
   
   background : rgba(217, 217, 217, 0.9);
   z-index: 2;
-  transition: 0.4s;
+  
+	transform: scale(0.7);
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.modal-box-show{
+	transform: scale(1);
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+
 }
 .modal-content {
   padding : 20px;
   transition: 0.4s;
   z-index: 2;
+}
+
+.blur{
+  position : fixed;
+  width : 440px;
+  height : 560px;
+  top : 0px;
+  left : 0;
+  right : 0;
+  margin : 100px auto;
+  
+  border : 2px solid #33b5e5;
+  background-color: rgba(255, 255, 255, 0.8);
+  filter: blur(1px);
+  z-index: -1;
 }

@@ -1,53 +1,140 @@
-.table td, .table th {
-   text-align: center;
-   width: 25%;  
+
+.pen-title {
+  padding: 50px 0;
+  text-align: center;
+  letter-spacing: 2px;
 }
-.account-table{
-    width : 70%;
-    background-color: #CCC;
-    margin : auto;
-    padding : 4px;
+.pen-title h1 {
+  margin: 0 0 20px;
+  font-size: 48px;
+  font-weight: 300;
 }
-.account-thead{
-    background-color: #BBB;
-    padding : 8px 8px;
+.pen-title span {
+  font-size: 12px;
 }
-.account-tbody{
-    background-color: #AAA;
-    padding : 8px 8px;
+
+
+.form-module {
+  position: relative;
+  background: #ffffff;
+  max-width: 320px;
+  width: 100%;
+  border-top: 5px solid #33b5e5;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
 }
-.account-tbodyEdit{
-    background-color: #AAA;
-    padding : 8px 8px;
+.form-module .toggle {
+  cursor: pointer;
+  position: absolute;
+  top: -0;
+  right: -0;
+  background: #33b5e5;
+  width: 30px;
+  height: 30px;
+  margin: -5px 0 0;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 30px;
+  text-align: center;
+  border-bottom-left-radius: 10px;
 }
-.account-tr{
-    padding : 8px 0px;
+.form-module .toggle .tooltip {
+  position: absolute;
+  top: 5px;
+  right: -65px;
+  display: block;
+  background: rgba(0, 0, 0, 0.6);
+  width: auto;
+  padding: 5px;
+  font-size: 10px;
+  line-height: 1;
+  text-transform: uppercase;
 }
-.account-td{
-    padding : 8px 0px;
+.form-module .toggle .tooltip:before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: -5px;
+  display: block;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid rgba(0, 0, 0, 0.6);
 }
-.account-th{
-    padding : 8px 0px;
+.form-module h2 {
+  margin: 0 0 20px;
+  color: #33b5e5;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
 }
-.account-input{
-    width : 360px;
-    height : 30px;
-    margin : 4px;
-    border-radius: 2px;
-    border : 1px solid #999;
-    padding : 4px 4px 4px 8px;
+.form-module input {
+  outline: none;
+  display: block;
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  margin: 5px 0 20px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  font-wieght: 400;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
 }
-.button{
-    width : 100px;
-    height : 28px;
-    margin : 1px;
-    border-radius: 2px;
-    border : 1px solid #999;
+.form-module input:focus {
+  border: 1px solid #33b5e5;
+  color: #333333;
 }
-h1, h2, h3, h4{
-    text-align: center;
+.form-module select {
+  outline: none;
+  display: block;
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  margin: 5px 0 20px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  font-wieght: 400;
+  appearance: none;
 }
-.form{
-    margin : auto;
-    width : 70%;
+.form-module button {
+  cursor: pointer;
+  background: #33b5e5;
+  width: 100%;
+  border: 0;
+  padding: 10px 15px;
+  color: #ffffff;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.form-module button:hover {
+  background: #178ab4;
+}
+.form-module .cta {
+  background: #f2f2f2;
+  width: 100%;
+  padding: 15px 40px;
+  box-sizing: border-box;
+  color: #666666;
+  font-size: 12px;
+  text-align: center;
+}
+.form-module .cta a {
+  color: #333333;
+  text-decoration: none;
+}
+.form-module .form {
+  padding: 40px;
+}
+
+.blur{
+  position : fixed;
+  width : 440px;
+  height : 760px;
+  top : 0px;
+  left : 0;
+  right : 0;
+  margin : 100px auto;
+  
+  border : 2px solid #33b5e5;
+  background-color: rgba(255, 255, 255, 0.8);
+  filter: blur(1px);
+  z-index: -1;
 }

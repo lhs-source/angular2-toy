@@ -2,29 +2,35 @@
 
 <app-toast [message]="toast.message"></app-toast>
 
+<div class="pen-title">
+  <h1>Your Account</h1><span> <i class='fa fa-paint-brush'></i> this is + <i class='fa fa-code'></i> account info </span>
+</div>
 <div *ngIf="!isLoading">
-  <h4>Account settings</h4>
-  <div>
+  <div class="form-module">
     <form class="form" #accountForm="ngForm" (ngSubmit)="save(user)">
+      <h2>Account settings</h2>
       <div>
-        <span><i class="fa fa-user"></i></span>
+        <span><i class="fa fa-user"></i> Username</span>
         <input class="account-input" type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required>
       </div>
       <div>
-        <span><i class="fa fa-envelope"></i></span>
+        <span><i class="fa fa-envelope"></i> Email</span>
         <input class="account-input" type="email" name="email" [(ngModel)]="user.email" placeholder="Email" required>
       </div>
       <div>
-        <span><i class="fa fa-black-tie"></i></span>
+        <span><i class="fa fa-black-tie"></i> Role</span>
         <select class="account-input" name="role" [(ngModel)]="user.role">
           <option value="" disabled>Role</option>
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
       </div>
+      <br>
       <button class="button" type="submit" [disabled]="!accountForm.form.valid">
         <i class="fa fa-save"></i> Save
       </button>
     </form>
+  </div>
+  <div class="blur">
   </div>
 </div>
