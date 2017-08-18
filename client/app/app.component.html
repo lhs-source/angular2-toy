@@ -7,13 +7,13 @@
 </div>
 <!-- navigation bar 부분 -->
 <div class="app-navbar" [ngClass] = "{'app-navshow' : isNavActive}">
-    <button type="button" class="app-closebutton" (click) = "toggleNav()">x</button>
+    <button type="button" class="app-closebutton" (click) = "toggleNav()"><i class="fa fa-times"></i></button>
     <nav>
         <br><br><br>
-        <a routerLink="/calendar" routerLinkActive="active">Calendar</a>
-        <a routerLink="/cats" routerLinkActive="active">Cats</a>
-        <a routerLink="/chats" routerLinkActive="active">Chats</a>
-        <a routerLink="/editor" routerLinkActive="active">editor</a>
+        <a routerLink="/calendar" routerLinkActive="active"><i class="fa fa-calendar" aria-hidden="true"></i> Calendar</a>
+        <a routerLink="/cats" routerLinkActive="active"><i class="fa fa-table" aria-hidden="true"></i> Cats</a>
+        <a routerLink="/chats" routerLinkActive="active"><i class="fa fa-comments-o" aria-hidden="true"></i> Chats</a>
+        <a routerLink="/editor" routerLinkActive="active"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editor</a>
     </nav>
 </div>
 <!-- main 부분 

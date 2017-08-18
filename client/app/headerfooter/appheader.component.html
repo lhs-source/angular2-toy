@@ -4,19 +4,19 @@
     <!-- account 관련 메뉴들 -->
     <nav>
         <!-- nav bar 여닫는 버튼이다.  -->
-        <span class="app-navibarbutton" (click) = "toggleNav()"> <b>=</b> Navigation Bar </span>
+        <span class="app-navibarbutton" (click) = "toggleNav()"><i class="fa fa-bars" aria-hidden="true"></i> Navigation Bar </span>
         <!-- 로그인하면 보여지는 메뉴 -->
         <span *ngIf="auth.loggedIn">
-            <a routerLink="/account" routerLinkActive="active">account</a>
+            <a routerLink="/account" routerLinkActive="active"><i class="fa fa-user-circle" aria-hidden="true"></i> YOU</a>
             <span *ngIf="auth.isAdmin">
-            <a routerLink="/admin" routerLinkActive="active">admin</a>
+            <a routerLink="/admin" routerLinkActive="active"><i class="fa fa-lock" aria-hidden="true"></i> Admin</a>
             </span>
-            <a routerLink="/logout" routerLinkActive="active">logout</a>
+            <a routerLink="/logout" routerLinkActive="active"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
         </span>
         <!-- 로그인되지 않았을 때 보여지는 메뉴 -->
         <span *ngIf="!auth.loggedIn">
-            <a routerLink="/login" routerLinkActive="active">login</a>
-            <a routerLink="/register" routerLinkActive="active">register</a>
+            <a routerLink="/login" routerLinkActive="active"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+            <!-- <a routerLink="/register" routerLinkActive="active">register</a> -->
         </span>
     </nav>
 </div>

@@ -2,7 +2,7 @@
 
 
 <div class="pen-title">
-  <h1>Login</h1><span> <i class='fa fa-paint-brush'></i> + <i class='fa fa-code'></i></span>
+  <h1>Login</h1><span> <i class='fa fa-paint-brush'></i> this is + <i class='fa fa-code'></i> login page </span>
 </div>
 <div class="form-module">
   <div class="toggle" (click)="register()"> <i class="fa fa-times fa-pencil"></i>
@@ -24,7 +24,9 @@
     </form>
   </div>
 </div>
-<div class="modal-layout" [ngClass]="{'modal-layout-show' : registerPopup}">
+<div class="modal" [ngClass]="{'modal-show' : registerPopup}" >
+  <div class="modal-layout" (click)="register()">
+  </div>
   <div class="modal-box">
     <div class="modal-content">
       <app-register (closeFunction)="register()"></app-register>

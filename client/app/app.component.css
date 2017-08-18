@@ -11,7 +11,8 @@ h2 {
 nav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
-  font-size : 25px;
+  font-size : 24px;
+  font-weight: 400;
   display : block;
   transition: .3s;
 }
@@ -33,16 +34,16 @@ nav a.active {
   width : 0;
   position : fixed;
   z-index : 1;
-  top : 50px;
-  left : -230px;
-  background-color: #063d47;
+  top : 52px;
+  left : -200px;
+  background-color: #354147;
   overflow-x : hidden;
   transition: ease .7s;
   padding-top : 5px 60px;
 }
 /* navigation bar의 보여졌을 때 변경될 스타일이다.*/
 .app-navshow{
-  width : 230px;
+  width : 200px;
   left : 0;
   background-color: rgba(063d47, .6);
   transition: ease .7s;
@@ -61,8 +62,9 @@ nav a.active {
 .app-closebutton{
   border: none;
   background-color: rgba(0,0, 0, 0);
-  margin: 20px 0px 0px 180px;
-  font-size:24px;
+  color : rgba(255,255,255, .5);
+  margin: 20px 0px 0px 150px;
+  font-size:20px;
   width : 30px;
   height : 30px;
 }

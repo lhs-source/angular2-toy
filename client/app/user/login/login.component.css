@@ -112,33 +112,40 @@
 .form-module .form {
   padding: 40px;
 }
-
-.modal-layout{
+/* modal */
+.modal{
   display: none;
-
+}
+.modal-show{
   position : fixed;
   top : 0;
   left : 0;
-  width : 50%;
-  height : 50%;
-  overflow : auto;
-  background-color : rgba(0, 0, 0, 0.5);
-  transition: 0.4s;
-
-  z-index: 0;
-}
-.modal-layout-show{
   display: block;
-  z-index: 1;
-  user-select: none;
-  cursor: default;
   width : 100%;
   height : 100%;
+}
+.modal-layout{
+  position : fixed;
+  top : 0;
+  left : 0;
+  user-select: none;
+  cursor: pointer;
+  width : 100%;
+  height : 100%;
+  background-color : rgba(0, 0, 0, 0.5);
+  background-attachment: fixed;
   transition: 0.4s;
+
+  z-index: 1;
 }
 .modal-box{
-  margin: 100px auto;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  position : fixed;
+  top : 0;
+  left : 0;
+  right : 0;
+  bottom: 0;
+  margin : 100px auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   color: black;
   font-size: 15px;
 
@@ -152,4 +159,5 @@
 .modal-content {
   padding : 20px;
   transition: 0.4s;
+  z-index: 2;
 }
