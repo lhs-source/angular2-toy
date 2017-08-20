@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
@@ -10,7 +10,7 @@ import { ToastComponent } from '../../uis/toast/toast.component';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm: FormGroup;
   email = new FormControl('', [Validators.required,
@@ -27,6 +27,8 @@ export class LoginComponent implements OnInit {
     registerPopup : boolean = false;
 
   ngOnInit() {
+
+        console.log("Component : login(onInit)");
     if (this.auth.loggedIn) {
       this.router.navigate(['/chats']);
     }
@@ -35,7 +37,9 @@ export class LoginComponent implements OnInit {
       password: this.password
     });
   }
-
+    ngOnDestroy(){
+        console.log("Component : login(onDestroy)");
+    }
   setClassEmail() {
     return { 'has-danger': !this.email.pristine && !this.email.valid };
   }

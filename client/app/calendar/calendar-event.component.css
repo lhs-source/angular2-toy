@@ -16,10 +16,11 @@
     height: auto;
 
     padding : 6px 6px 20px 6px;
-    margin : 8px 8px 12px 8px;
     border : 2px solid #75a3a3;
     border-radius: 5px;
     vertical-align: top;
+
+    margin : 0 auto;
 }
 /* note를 입력하고 출력하는 textarea이다. */
 .eventNote{
@@ -31,6 +32,12 @@
     border : none;
     font-family:"Malgun Gothic", Times, serif; 
     display: inline-block;
+}
+/* 추가부분 가운데 정렬 */
+.eventForm{
+    margin: 20px auto;
+    display: block;
+    width : 80%;
 }
 /* 이벤트 추가용 input text이다. */
 .eventAddTextForm{

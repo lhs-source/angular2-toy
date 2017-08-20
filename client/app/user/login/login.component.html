@@ -8,12 +8,19 @@
   <div class="toggle" (click)="register()"> <i class="fa fa-times fa-pencil"></i>
     <div class="tooltip">Click Me</div>
   </div>
+  <div class="passport">
+    <button class="passapi google">Google</button>
+    <button class="passapi facebook">Facebook</button>
+    <button class="passapi twitter">Twitter</button>
+  </div>
   <div class="form">
     <h2>Login to your accounttt</h2>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div [ngClass]="setClassEmail()">
-        <span><i class="fa fa-envelope"></i> Email</span>
-        <input class="login-input" type="email" name="email" formControlName="email" placeholder="Email" autofocus>
+        <div class="inputtext">
+          <span class="inputlabel"><i class="fa fa-envelope"></i> Email</span>
+          <input class="login-input" type="email" name="email" formControlName="email" placeholder="Email" autofocus>
+        </div>
       </div>
       <div [ngClass]="setClassPassword()">
         <span><i class="fa fa-key"></i> Password</span>
@@ -33,5 +40,7 @@
     </div>
   </div>
 </div>
+<!--
 <div class="blur">
 </div>
+-->

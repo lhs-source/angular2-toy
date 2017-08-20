@@ -1,52 +1,54 @@
-<br>
-<h1>{{today | date :'medium'}}</h1>
-<br>
-<div class="calendar" *ngIf="isLoaded">
-    <div class="calendar-header">
-        <h1>{{ year }}, {{ monthStr }} </h1>
-    </div>
-    <div class="calendar-cells">
-        <span class="cell cell-header">Sun</span>
-        <span class="cell cell-header">Mon</span>
-        <span class="cell cell-header">Tue</span>
-        <span class="cell cell-header">Wed</span>
-        <span class="cell cell-header">Thu</span>
-        <span class="cell cell-header">Fri</span>
-        <span class="cell cell-header">Sat</span>
-        <br>
-        <br>
-        <br>
-        <span *ngFor="let cell of cells; let i = index;">
-            <span class="cell" 
-                    [ngClass]="{'cell-this-month' : cell.isThisMonth, 'cell-disabled' : !cell.isThisMonth, 'cell-clicked' : cell.isClicked, 'cell-weekend': cell.date.getDay() === 0 || cell.date.getDay() === 6}" 
-                    (click)="click_Cell(i);">
-            <!--{{ cell.date.getTime() | date : 'yyyy년 MM월 dd일' }}-->
-            {{ cell.date.getFullYear() }} <br>{{ cell.date.getMonth() + 1 }}월 {{ cell.date.getDate() }}일
-                 
-            <span class="eventBadge" *ngIf="cell.calendarEvents.length > 0">{{cell.calendarEvents.length}}</span>
+<div class="whole">
+    <br>
+    <h1>{{today | date :'medium'}}</h1>
+    <br>
+    <div class="calendar" *ngIf="isLoaded">
+        <div class="calendar-header">
+            <h1>{{ year }}, {{ monthStr }} </h1>
+        </div>
+        <div class="calendar-cells">
+            <span class="cell cell-header">Sun</span>
+            <span class="cell cell-header">Mon</span>
+            <span class="cell cell-header">Tue</span>
+            <span class="cell cell-header">Wed</span>
+            <span class="cell cell-header">Thu</span>
+            <span class="cell cell-header">Fri</span>
+            <span class="cell cell-header">Sat</span>
+            <br>
+            <br>
+            <br>
+            <span *ngFor="let cell of cells; let i = index;">
+                <span class="cell" 
+                        [ngClass]="{'cell-this-month' : cell.isThisMonth, 'cell-disabled' : !cell.isThisMonth, 'cell-clicked' : cell.isClicked, 'cell-weekend': cell.date.getDay() === 0 || cell.date.getDay() === 6}" 
+                        (click)="click_Cell(i);">
+                <!--{{ cell.date.getTime() | date : 'yyyy년 MM월 dd일' }}-->
+                {{ cell.date.getFullYear() }} <br>{{ cell.date.getMonth() + 1 }}월 {{ cell.date.getDate() }}일
+                    
+                <span class="eventBadge" *ngIf="cell.calendarEvents.length > 0">{{cell.calendarEvents.length}}</span>
+                </span>
+                <p *ngIf="i != 0 && (i + 1) % 7 === 0"></p>
             </span>
-            <p *ngIf="i != 0 && (i + 1) % 7 === 0"></p>
-        </span>
-        <h2>select : {{ selectedCell.date | date :'longDate' }}</h2>
+            <h2>select : {{ selectedCell.date | date :'longDate' }}</h2>
+        </div>
+        <div class="calendar-footer">
+            <button class="button-today" (click)="click_Prev()">Prev</button>
+            <button class="button-today" (click)="click_Today()">Today</button>
+            <button class="button-today" (click)="click_Next()">Next</button>
+        </div>
     </div>
-    <div class="calendar-footer">
-        <button class="button-today" (click)="click_Prev()">Prev</button>
-        <button class="button-today" (click)="click_Today()">Today</button>
-        <button class="button-today" (click)="click_Next()">Next</button>
+    <div *ngIf="!isLoaded">
+        <h1>Loading...</h1>
     </div>
-</div>
-<div *ngIf="!isLoaded">
-    <h1>Loading...</h1>
-</div>
-<br>
-<event-control  *ngIf="isLoaded"
-                [addEventDate]="addEventDate"
-                [addCallback]="addEventCallback.bind(this)"
-                [updateCallback]="editEventCallback.bind(this)"
-                [deleteCallback]="deleteEventCallback.bind(this)"
-                [selectedCell]="selectedCell.calendarEvents"></event-control>
+    <br>
+    <event-control  *ngIf="isLoaded"
+                    [addEventDate]="addEventDate"
+                    [addCallback]="addEventCallback.bind(this)"
+                    [updateCallback]="editEventCallback.bind(this)"
+                    [deleteCallback]="deleteEventCallback.bind(this)"
+                    [selectedCell]="selectedCell.calendarEvents"></event-control>
 
-                <!--
-<button (click)="refreshTime()"> Refresh </button>
-<br><br>
--->
+                    <!--
+    <button (click)="refreshTime()"> Refresh </button>
+    <br><br>
+    -->
+</div>

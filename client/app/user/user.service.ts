@@ -14,7 +14,9 @@ export class UserService {
 
   user : User;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    console.log("Service : user(Constructor)");
+   }
 
   register(user): Observable<any> {
     return this.http.post('/api/user', JSON.stringify(user), this.options);
