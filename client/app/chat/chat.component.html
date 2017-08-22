@@ -1,5 +1,6 @@
 
 <div class="whole">
+    <h1 style="border-bottom : 2px solid #AAA">Anything</h1>
     <div class="users">
         <div *ngFor="let user of users">
 
@@ -14,9 +15,10 @@
             <i class="fa fa-share-square-o" aria-hidden="true"></i> Send
         </button>
     </div>
+    <hr>
     <div class="chats">
         <div #chatbox class="chat-container">
-            <div *ngFor="let message of messages">
+            <div *ngFor="let message of messages" class="chat-message">
                 <!--<img md-list-avatar src="{{message.from.avatar}}">-->
                 <h3 class="chat-from"> <b>{{message.from}} </b> </h3>
                 <p>
