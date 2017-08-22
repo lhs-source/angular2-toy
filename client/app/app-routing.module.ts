@@ -14,6 +14,7 @@ import { LoginComponent } from './user/login/login.component';
 import { LogoutComponent } from './user/login/logout.component';
 import { AccountComponent } from './user/account/account.component';
 import { AdminComponent } from './user/admin/admin.component';
+import { CssComponent } from './css-practice/css.component';
 
 import { AuthGuardLogin } from './user/auth-guard-login.service';
 import { AuthGuardAdmin } from './user/auth-guard-admin.service';
@@ -64,6 +65,11 @@ const routes : Routes = [
   {
     path: 'editor', 
     component: WwComponent, 
+    canActivate: [AuthGuardLogin] 
+  },
+  {
+    path: 'css', 
+    component: CssComponent,
     canActivate: [AuthGuardLogin] 
   },
 ];

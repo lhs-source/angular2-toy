@@ -1,0 +1,18 @@
+
+
+.mold{
+    /*width : 80%;*/
+    margin : 0 120px;
+}
+
+
+div{
+    margin : 5px 0px;
+    padding : 8px 4px;
+}
+div#backgroundimage{
+    background-image : url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSj9fikrE4-kmsjLqFmu57ZcKc6tWE2rctQzTjzbnKP2ENWhA1i3g');
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    padding : 10px;
+}

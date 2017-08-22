@@ -1,0 +1,183 @@
+
+
+.mold{
+    /*width : 80%;*/
+    margin : 0 120px;
+}
+
+/* list */
+ul{
+    background-color: #DDD;
+}
+ul li{
+    background-color: #BBB;
+}
+/* table */
+table{
+    width : 480px;
+    border: 1px solid #AAA;
+}
+th{
+    padding : 5px;
+    /*border: 1px solid #444;*/
+}
+td{
+    padding : 5px;
+    border-top: 1px solid #777;
+}
+tr:hover{
+    background-color: #BBB;
+}
+/* even : 짝수, odd : 홀수 */
+tr:nth-child(odd) {
+    background-color: #DDD;
+}
+/* pseudo clss */
+div#hover:hover{
+    background-color: #C0C1C8;
+}
+div#alert{
+    display : none;
+}
+div#hover:hover div{
+    display: block;
+}
+div#hover div:first-child {
+    background-color: #DC8C8C;
+}
+/* pseudo element */
+div#pseudo-el1::first-line{
+    color : #DC8C8C;
+}
+div#pseudo-el2::first-letter{
+    font-size : 2em;
+}
+div#pseudo-el3::before{
+    content: url("http://findicons.com/files/icons/2141/web_design_creatives/128/small_smile.png");
+}
+div#pseudo-el4::after{
+    content: url("http://findicons.com/files/icons/2141/web_design_creatives/128/small_smile.png");
+}
+div#pseudo-el5::selection{
+    color : red;
+    outline : 1px solid #DC8C8C;
+}
+/* opacity */
+img:hover{
+    opacity: 0.6;
+}
+
+/* dropdown */
+.dropdown{
+    margin : 12px 0px; 
+    padding : 4px; 
+    border : 2px solid #BBB; 
+    display : inline-block;
+}
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+/* tooltip */
+.tooltip{
+    position : relative;
+    margin : 12px 0px; 
+    padding : 4px; 
+    border : 2px solid #BBB; 
+    display : inline-block;
+}
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    opacity: 0;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.3s;
+}
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;  /* At the top of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+/* attribute */
+/* 
+    = : 일치
+    ~= : space구분 포함
+    != : 하이푼 구분 포함
+    ^= : 이거로 시작하지 않는 것들
+    $= : 이거로 끝나지 않는 것들
+    *= : 포함
+*/
+div[selected~="true"]{
+    background-color: #A3DB85;
+}
+/* form */
+input {
+    display: block;
+    margin : 5px 0;
+    width: 80%;
+    border : 1px solid #777;
+    border-radius: 4px;
+    padding : 12px 4px;
+}
+input[type="text"]{
+    transition: width 0.4s ease-in-out;
+}
+input[trans="trans"]:focus{
+    transition: 0.3;
+    width : 50%;
+}
+input[trans="focus"]:focus{
+    border : 2px solid #777;
+}
+textarea {
+    display: block;
+    margin : 5px 0;
+    width: 80%;
+    border : 1px solid #777;
+    border-radius: 4px;
+}
+select{
+    display: block;
+    margin : 5px 0;
+    width: 80%;
+    border : 1px solid #777;
+    border-radius: 4px;
+    padding : 12px 4px;
+}
+button#button{
+    display: block;
+    margin : 5px 0;
+    width: 80%;
+    border : 1px solid #777;
+    background-color: #AAA;
+    border-radius: 4px;
+    padding : 12px 4px;
+}

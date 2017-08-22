@@ -2,6 +2,7 @@
 <header>
     <app-header (navActive)="toggleNav()"></app-header>
 </header>
+<div style="heigth : 50px;"></div>
 <!-- 배경 색깔 or 이미지 -->
 <div class="blur bgimage">
 </div>
@@ -14,6 +15,7 @@
         <a routerLink="/cats" routerLinkActive="active"><i class="fa fa-table" aria-hidden="true"></i> Cats</a>
         <a routerLink="/chats" routerLinkActive="active"><i class="fa fa-comments-o" aria-hidden="true"></i> Chats</a>
         <a routerLink="/editor" routerLinkActive="active"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editor</a>
+        <a routerLink="/css" routerLinkActive="active"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Css</a>
     </nav>
 </div>
 <!-- main 부분 
@@ -26,5 +28,5 @@
     <router-outlet></router-outlet>
 </div>
 <footer>
-    <!--<app-footer></app-footer>-->
+    <app-footer style="position : relative; bottom : 0;"></app-footer>
 </footer>

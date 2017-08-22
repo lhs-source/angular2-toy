@@ -1,0 +1,10 @@
+
+.head{
+    padding : 0 120px;
+    /*background-color: #AAA;*/
+}
+
+.head .border{
+    border-bottom: 2px dotted rgba(111, 111, 111, 0.6);
+    
+}

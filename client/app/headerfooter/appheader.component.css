@@ -55,4 +55,6 @@ nav a:hover {
 /* 메뉴 중 눌린 메뉴 */
 nav a.active {
   color: #f4ccf6;
+  /* to left, to top, */
+  box-shadow : inset 0 -4px 0 0 #f4ccf6;
 }

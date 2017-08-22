@@ -7,6 +7,7 @@
         <span class="app-navibarbutton" (click) = "toggleNav()"><i class="fa fa-bars" aria-hidden="true"></i> Navigation Bar </span>
         <!-- 로그인하면 보여지는 메뉴 -->
         <span *ngIf="auth.loggedIn">
+            <a routerLink="/home" routerLinkActive="active"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
             <a routerLink="/account" routerLinkActive="active"><i class="fa fa-user-circle" aria-hidden="true"></i> YOU</a>
             <span *ngIf="auth.isAdmin">
             <a routerLink="/admin" routerLinkActive="active"><i class="fa fa-lock" aria-hidden="true"></i> Admin</a>

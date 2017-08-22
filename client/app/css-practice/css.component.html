@@ -1,0 +1,13 @@
+<div class="head">
+    <div class="border">
+    <h1>Css Practice</h1>
+    </div>
+    <div>
+        <button (click)="convertpage(1)">css basic</button>
+        <button (click)="convertpage(2)">css3</button>
+        <button (click)="convertpage(3)">css usage</button>
+    </div>
+</div>
+<css-basic *ngIf="page == 1"></css-basic>
+<css-3 *ngIf="page == 2"></css-3>
+

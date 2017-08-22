@@ -28,6 +28,8 @@ nav a:hover {
 /* 메뉴 중 눌린 메뉴 */
 nav a.active {
   color: #f4ccf6;
+  border-left : 4px solid #f4ccf6;
+  text-indent: 4px;
 }
 /* navigation bar의 스타일이다. 숨겨져 있을 때를 나타낸다. */
 .app-navbar{

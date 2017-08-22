@@ -18,6 +18,8 @@ import { UserModule } from './user/user.module';
 
 import { WwModule } from './wysiwyg/wwtemp.module';
 
+import { CssModule } from './css-practice/css.module';
+
 import { AppHeaderComponent } from './headerfooter/appheader.component';
 import { AppFooterComponent } from './headerfooter/appfooter.component';
 
@@ -38,6 +40,7 @@ import { AppFooterComponent } from './headerfooter/appfooter.component';
     ChatModule,
     UserModule,
     WwModule,
+    CssModule,
   ],
   providers: [ //HeroService,
               CatService, ],
