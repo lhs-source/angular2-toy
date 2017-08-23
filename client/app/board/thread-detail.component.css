@@ -1,5 +1,11 @@
 
 
+.whole{
+    margin : 0 auto;
+    width : 80%;
+
+    border-radius : 5px; 
+}
 .back-image{
     background-color: #DDD;
 
@@ -16,15 +22,28 @@
     width : 80%;
 }
 .title-content{
-    position : absolute;
-    margin : 64px 10% ;
+    /*position : absolute;
+    margin : 64px 10% ;*/
+    margin : 40px auto;
     font-size : 3em;
 }
 .title-comment{
-    position : absolute;
-    margin : 160px 10%;
+    /*position : absolute;
+    margin : 160px 10%;*/
+    margin : 20px auto;
+    left : 10%;
 }
 .content{
-    width : 80%;
-    margin : 20px auto;
+    margin : 10px auto 80px auto;
+}
+
+button{
+    padding : 6px 16px;
+
+    border: 1px solid #BBB;
+    border-radius: 4px;
+}
+button:hover{
+    box-shadow: 0 0 4px rgba(111, 111,111, 0.3);
+    background-color: #DDD;
 }

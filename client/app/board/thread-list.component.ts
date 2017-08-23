@@ -24,9 +24,9 @@ export class ThreadListComponent implements OnInit{
         );
     }
     newThre() {
-        this.router.navigate(['thread/thread-list/thread-add']);
+        this.router.navigate(['thread/thread-add']);
     }
-    move(id : string){
-        this.router.navigate(['thread/thread-detail', id]);
+    move(_id : string){
+        this.router.navigate(['/thread/thread-detail', _id]);
     }
 }

@@ -1,12 +1,12 @@
 <div>
-    <a routerLink="thread-list" routerLinkActive="active"><i class="fa fa-calendar" aria-hidden="true"></i> list</a>
-    <a routerLink="thread-detail" routerLinkActive="active"><i class="fa fa-table" aria-hidden="true"></i> detail</a>
+    <!-- <a routerLink="thread-list" routerLinkActive="active"><i class="fa fa-calendar" aria-hidden="true"></i> list</a> -->
+    <!-- <a routerLink="thread-detail" routerLinkActive="active"><i class="fa fa-table" aria-hidden="true"></i> detail</a>-->
 </div>
-<div style="vertical-align: middle">
-    <div style="display : inline-block; width : 70%">
+<div style="vertical-align: middle;">
+    <div style="display : inline-block; width : 70%;" >
         <router-outlet></router-outlet>
     </div>
-    <div style="display : inline-block; width : 20%">
+    <div style="display : inline-block; width : 20%; position : absolute; top : 320px; right : 40px;">
         <thread-category></thread-category>
     </div>
 </div>

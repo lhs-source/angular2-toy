@@ -1,0 +1,44 @@
+
+
+.whole{
+    background-color : #FAFAFA; 
+
+    height : 720px; 
+    padding : 10px 0 0 0;    
+    margin : 0 auto;
+    width : 80%;
+
+    border-radius : 5px; 
+}
+.lists{
+    padding : 4px;
+    margin-right: 40px;
+
+    border: 1px solid rgba(111, 111, 111, 0.5);
+    border-radius: 2px;
+}
+.list-title{
+    padding : 4px 4px 4px 24px;
+
+
+    display: inline-block;
+    cursor: pointer;
+}
+
+button{
+    padding : 6px 16px;
+
+    border: 1px solid #BBB;
+    border-radius: 4px;
+}
+button:hover{
+    box-shadow: 0 0 4px rgba(111, 111,111, 0.3);
+    background-color: #DDD;
+}
+
+
+
+
+
+
+

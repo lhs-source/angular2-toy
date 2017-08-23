@@ -20,6 +20,7 @@ import { ThreadComponent } from './board/thread.component';
 import { ThreadDetailComponent } from './board/thread-detail.component';
 import { ThreadListComponent } from './board/thread-list.component';
 import { ThreadAddComponent } from './board/thread-add.component';
+import { ThreadEditComponent } from './board/thread-edit.component';
 
 import { AuthGuardLogin } from './user/auth-guard-login.service';
 import { AuthGuardAdmin } from './user/auth-guard-admin.service';
@@ -96,13 +97,17 @@ const routes : Routes = [
         component : ThreadListComponent,
       },
       {
-        path: 'thread-detail/:_id',
+        path: 'thread-detail/:id',
         component : ThreadDetailComponent,
       },
       {
         path: 'thread-add',
         component : ThreadAddComponent,
-      }
+      },
+      {
+        path: 'thread-edit/:id',
+        component : ThreadEditComponent,
+      },
     ]
   },
 ];

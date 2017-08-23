@@ -6,6 +6,9 @@ import { SafeHtmlPipe } from './ww-safehtml.pipe';
     declarations : [
         WwComponent,
         SafeHtmlPipe,
+    ],
+    exports :[
+        SafeHtmlPipe,
     ]
 })
 export class WwModule {

@@ -8,8 +8,12 @@ import { ThreadDetailComponent } from './thread-detail.component';
 import { ThreadListComponent } from './thread-list.component';
 import { ThreadCategoryComponent } from './thread-category.component';
 import { ThreadAddComponent } from './thread-add.component';
+import { ThreadEditComponent } from './thread-edit.component';
 
 import { ThreadService } from './thread.service';
+
+import { SafeHtmlPipe } from '../wysiwyg/ww-safehtml.pipe';
+
 
 @NgModule({
     declarations: [
@@ -18,16 +22,17 @@ import { ThreadService } from './thread.service';
         ThreadListComponent,
         ThreadCategoryComponent,
         ThreadAddComponent,
+        ThreadEditComponent,
     ],
     imports :[
         BrowserModule,
         FormsModule,
-        //ThreadRoutingModule,
         RouterModule,
         ReactiveFormsModule,
+        SafeHtmlPipe,
     ],
     providers : [
-        ThreadService
+        ThreadService,
     ]
 })
 export class ThreadModule{
