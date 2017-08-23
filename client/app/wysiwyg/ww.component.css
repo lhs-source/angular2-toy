@@ -1,0 +1,14 @@
+
+
+.test{
+    border: 2px solid #555;
+
+}
+
+button{
+    border : 1px solid #999;
+    border-radius: 3px;
+
+    padding : 4px 8px;
+    margin : 0;
+}

@@ -1,20 +1,24 @@
 <div>
+    <button (click)="viewHtml()">View Html</button>
     <button data-command='strong' (click)="command('strong')">bold</button>
     <button data-command='backColor' (click)="command('backColor')">backgroundColor</button>
     <button data-command='italic' (click)="command('italic')">italic</button>
-    <button data-command='InsertInputCheckbox' (click)="command('InsertInputCheckbox')">InsertInputCheckbox</button>
+    <button data-command='insertUnorderedList' (click)="command('insertUnorderedList')">insertUnorderedList</button>
+    <button data-command='formatBlock:h1' (click)="command('formatBlock','h1')">h1</button>
+    <button data-command='formatBlock:p' (click)="command('formatBlock', 'p')">p</button>
+    <button data-command='fontSize' (click)="command('fontSize', '+')">fontsize up</button>
+    <button data-command='fontSize' (click)="command('fontSize', '-')">fontsize down</button>
+    <button data-command='foreColor' (click)="command('foreColor', 'red')">font color</button>
+    <button data-command='removeFormat' (click)="command('removeFormat', 'red')">remove Format</button>
+    <button data-command='style' (click)="command('style', 'test')">style</button>
 </div>
 <div #editor contenteditable="true" spellcheck="false"
-    (change)="event_change('change')"
-    (keydown)="event_change('keydown')"
-    (selectChange)="event_change('keydown')"
-    (mousedown)="event_change('mousedown')"
-    (mouseup)="event_change('mouseup')">
+    (keydown)="event_keydown($event)">
     <h1>hi</h1>
     <b>here will be editor</b>
     thank you.
-    <div><br></div><div><p style="box-sizing: inherit; font-family: Verdana, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);">The CSS&nbsp;<code class="w3-codespan" style="box-sizing: inherit; font-family: Consolas, &quot;courier new&quot;; font-size: 16.5px; color: crimson; background-color: rgb(241, 241, 241); padding-left: 4px; padding-right: 4px;">border</code>&nbsp;properties allow you to specify the style, width, and color of an element's border.</p><div class="w3-container w3-border w3-border-black w3-margin-top" style="box-sizing: inherit; padding: 0.01em 16px; font-family: Verdana, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255); border: 1px solid rgb(0, 0, 0) !important; margin-top: 16px !important;"><p style="box-sizing: inherit;">I have borders on all sides.</p></div><br style="box-sizing: inherit; font-family: Verdana, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);"><div class="w3-container w3-border-bottom w3-border-red" style="box-sizing: inherit; padding: 0.01em 16px; font-family: Verdana, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255); border-bottom: 1px solid rgb(244, 67, 54) !important; border-top-color: rgb(244, 67, 54) !important; border-right-color: rgb(244, 67, 54) !important; border-left-color: rgb(244, 67, 54) !important;"><p style="box-sizing: inherit;">I have a red bottom border</p></div><br style="box-sizing: inherit; font-family: Verdana, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);"><div class="w3-container w3-border w3-round-xlarge" style="box-sizing: inherit; border-radius: 16px; padding: 0.01em 16px; font-family: Verdana, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204) !important;"><p style="box-sizing: inherit;">I have rounded borders.</p></div><br style="box-sizing: inherit; font-family: Verdana, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);"><div class="w3-container w3-pale-blue w3-leftbar w3-border-blue" style="box-sizing: inherit; padding: 0.01em 16px; font-family: Verdana, sans-serif; font-size: 15px; border-left: 6px solid rgb(33, 150, 243) !important; background-color: rgb(221, 255, 255) !important; border-top-color: rgb(33, 150, 243) !important; border-right-color: rgb(33, 150, 243) !important; border-bottom-color: rgb(33, 150, 243) !important;"><p style="box-sizing: inherit;">I have a blue left border.</p></div></div>
+    <div><br></div><div><p style="box-sizing: inherit; font-family: Verdana, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);">The CSS&nbsp;<code class="w3-codespan" style="box-sizing: inherit; font-family: Consolas, &quot;courier new&quot;; font-size: 16.5px; color: crimson; background-color: rgb(241, 241, 241); padding-left: 4px; padding-right: 4px;">border</code>&nbsp;properties allow you to specify the style, width, and color of an element's border.</p><div class="w3-container w3-border w3-border-black w3-margin-top" style="box-sizing: inherit; padding: 0.01em 16px; font-family: Verdana, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255); border: 1px solid rgb(0, 0, 0) !important; margin-top: 16px !important;"><p style="box-sizing: inherit;">I have borders on all sides.</p></div><br style="box-sizing: inherit; font-family: Verdana, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);"></div><br>
 </div>
 <button (click)="display()">view content</button>
 <div style="display : 'block'"><pre>{{htmlContent}}</pre></div>
-    <div [innerHTML]="htmlContent"></div>
+    <div [innerHTML]="htmlContent | safeHtml"></div>
