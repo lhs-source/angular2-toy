@@ -20,6 +20,10 @@ import { WwModule } from './wysiwyg/wwtemp.module';
 
 import { CssModule } from './css-practice/css.module';
 
+import { HomeComponent } from './home/home.component';
+
+import { ThreadModule } from './board/thread.module';
+
 import { AppHeaderComponent } from './headerfooter/appheader.component';
 import { AppFooterComponent } from './headerfooter/appfooter.component';
 
@@ -29,6 +33,7 @@ import { AppFooterComponent } from './headerfooter/appfooter.component';
     CatsComponent,
     AppHeaderComponent,
     AppFooterComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,7 @@ import { AppFooterComponent } from './headerfooter/appfooter.component';
     UserModule,
     WwModule,
     CssModule,
+    ThreadModule,
   ],
   providers: [ //HeroService,
               CatService, ],

@@ -1,0 +1,53 @@
+
+.back-image{
+    background-color: #DDD;
+
+    height : 240px;
+    width : 100%;
+
+    position : absolute;
+    left : 0;
+    top : 50px;
+    z-index: -1;
+}
+.title{
+    height : 240px;
+    width : 80%;
+}
+.title-content{
+    position : absolute;
+    margin : 64px 10% ;
+    font-size : 3em;
+}
+.title-comment{
+    position : absolute;
+    margin : 160px 10%;
+}
+.content{
+    width : 80%;
+    margin : 20px auto;
+}
+
+.card{
+    display : inline-block; 
+    height : 240px; 
+    box-shadow : 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 3px 12px 0 rgba(0, 0, 0, 0.29);
+    margin : 10px 0;
+    vertical-align: middle;
+}
+.col-2{
+    width : 48%;
+}
+.col-3{
+    width : 32%;
+}
+.col-4{
+    width : 22%;
+}
+
+
+
+
+
+
+

@@ -15,6 +15,11 @@ import { LogoutComponent } from './user/login/logout.component';
 import { AccountComponent } from './user/account/account.component';
 import { AdminComponent } from './user/admin/admin.component';
 import { CssComponent } from './css-practice/css.component';
+import { HomeComponent } from './home/home.component';
+import { ThreadComponent } from './board/thread.component';
+import { ThreadDetailComponent } from './board/thread-detail.component';
+import { ThreadListComponent } from './board/thread-list.component';
+import { ThreadAddComponent } from './board/thread-add.component';
 
 import { AuthGuardLogin } from './user/auth-guard-login.service';
 import { AuthGuardAdmin } from './user/auth-guard-admin.service';
@@ -71,6 +76,34 @@ const routes : Routes = [
     path: 'css', 
     component: CssComponent,
     canActivate: [AuthGuardLogin] 
+  },
+  {
+    path: 'home',
+    component : HomeComponent,
+  },
+  {
+    path: 'thread',
+    component : ThreadComponent,
+    canActivate: [AuthGuardLogin],
+    children :[
+      { // default
+        path : '',
+        redirectTo : 'thread-list',
+        pathMatch : 'full'
+      },
+      {
+        path: 'thread-list',
+        component : ThreadListComponent,
+      },
+      {
+        path: 'thread-detail/:_id',
+        component : ThreadDetailComponent,
+      },
+      {
+        path: 'thread-add',
+        component : ThreadAddComponent,
+      }
+    ]
   },
 ];
 

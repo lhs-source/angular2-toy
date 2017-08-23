@@ -12,13 +12,16 @@
     <button data-command='removeFormat' (click)="command('removeFormat', 'red')">remove Format</button>
     <button data-command='style' (click)="command('style', 'test')">style</button>
 </div>
-<div #editor contenteditable="true" spellcheck="false"
+<div #editor contenteditable="true" spellcheck="false"  style="border : 1px solid #BBB; margin : 20px; padding : 12px;"
     (keydown)="event_keydown($event)">
     <h1>hi</h1>
     <b>here will be editor</b>
     thank you.
-    <div><br></div><div><p style="box-sizing: inherit; font-family: Verdana, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);">The CSS&nbsp;<code class="w3-codespan" style="box-sizing: inherit; font-family: Consolas, &quot;courier new&quot;; font-size: 16.5px; color: crimson; background-color: rgb(241, 241, 241); padding-left: 4px; padding-right: 4px;">border</code>&nbsp;properties allow you to specify the style, width, and color of an element's border.</p><div class="w3-container w3-border w3-border-black w3-margin-top" style="box-sizing: inherit; padding: 0.01em 16px; font-family: Verdana, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255); border: 1px solid rgb(0, 0, 0) !important; margin-top: 16px !important;"><p style="box-sizing: inherit;">I have borders on all sides.</p></div><br style="box-sizing: inherit; font-family: Verdana, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);"></div><br>
+    <br>
+    <div>
+
+    </div>
 </div>
 <button (click)="display()">view content</button>
-<div style="display : 'block'"><pre>{{htmlContent}}</pre></div>
-    <div [innerHTML]="htmlContent | safeHtml"></div>
+<div style="width : 100%;  word-wrap: break-word;"><code>{{htmlContent}}</code></div>
+<div  style="border : 1px solid #BBB; margin : 20px; padding : 12px;" [innerHTML]="htmlContent | safeHtml"></div>

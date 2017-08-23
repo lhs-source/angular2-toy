@@ -1,0 +1,30 @@
+
+
+.back-image{
+    background-color: #DDD;
+
+    height : 240px;
+    width : 100%;
+
+    position : absolute;
+    left : 0;
+    top : 50px;
+    z-index: -1;
+}
+.title{
+    height : 240px;
+    width : 80%;
+}
+.title-content{
+    position : absolute;
+    margin : 64px 10% ;
+    font-size : 3em;
+}
+.title-comment{
+    position : absolute;
+    margin : 160px 10%;
+}
+.content{
+    width : 80%;
+    margin : 20px auto;
+}

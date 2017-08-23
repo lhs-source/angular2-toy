@@ -1,0 +1,7 @@
+<div style="background-color : #CCC; heigth : 960px;">
+    <ul>
+        <li *ngFor="let thread of threads"><a [routerLink]="['thread-detail',thread._id]" routerLinkActive="active"><i class="fa fa-calendar" aria-hidden="true"></i>{{thread.title}}</a></li>
+        <li *ngFor="let thread of threads"><div (click)="move(thread._id)"><i class="fa fa-calendar" aria-hidden="true"></i>{{thread.title}}</div></li>
+    </ul>
+    <button (click)="newThre()">+ new</button>
+</div>

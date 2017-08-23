@@ -12,6 +12,9 @@ import User from '../models/user';
 import ChatCtrl from '../controllers/chat';
 import Chat from '../models/chat';
 
+import ThreadCtrl from '../controllers/Thread';
+import Thread from '../models/Thread';
+
 export default function setRoutes(app){
     const router = express.Router();
 
@@ -19,6 +22,7 @@ export default function setRoutes(app){
   const catCtrl = new CatCtrl();
   const userCtrl = new UserCtrl();
   const chatCtrl = new ChatCtrl();
+  const threadCtrl = new ThreadCtrl();
 
   // Events
   router.route('/events').get(eventCtrl.getAll);
@@ -52,6 +56,14 @@ export default function setRoutes(app){
   router.route('/chat/:id').get(chatCtrl.get);
   router.route('/chat/:id').put(chatCtrl.update);
   router.route('/chat/:id').delete(chatCtrl.delete);
+
+  // Threads
+  router.route('/threads').get(threadCtrl.getAll);
+  router.route('/threads/count').get(threadCtrl.count);
+  router.route('/thread').post(threadCtrl.insert);
+  router.route('/thread/:id').get(threadCtrl.get);
+  router.route('/thread/:id').put(threadCtrl.update);
+  router.route('/thread/:id').delete(threadCtrl.delete);
 
   app.use('/api', router);
 }

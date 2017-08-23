@@ -1,0 +1,11 @@
+<div style="width : 80%; margin : 0 auto;">
+    <h1>New Post</h1>
+    <form [formGroup]="writeForm" (ngSubmit)="write()">
+        <div>you : {{username}}</div>
+        <div>id : {{id}}</div>
+        <input type="text" name="title" formControlName="title" placeholder="title">
+        <br>
+        <div #content style="border : 1px solid #AAA; border-radius : 4px; padding : 10px;" contenteditable="true"></div>
+        <button type="submit">write</button>
+    </form>
+</div>
