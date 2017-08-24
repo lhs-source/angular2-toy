@@ -9,7 +9,7 @@
         <div class="lists" *ngFor="let thread of threads">
             <!-- <li *ngFor="let thread of threads"><a [routerLink]="['thread-detail',thread._id]" routerLinkActive="active"><i class="fa fa-calendar" aria-hidden="true"></i>{{thread.title}}</a></li> -->
             <div class="list-title" (click)="move(thread._id)">
-                <i class="fa fa-calendar" aria-hidden="true"></i> {{thread.title}}
+                    <i class="fa fa-flag" aria-hidden="true"></i> {{thread.title}}
             </div>
             <div style="padding : 0px 4px 0px 16px; height : 100%; width : 200px; background-color:#CCC; display : inline-block; position : absolute; right : -0; font-size : 14px;">
                 <span style="margin : 12px 0 0 16px;">
@@ -19,5 +19,5 @@
             </div>
         </div>
     </div>
-    <button (click)="newThre()">+ new</button>
+    <button (click)="newThre()"><i class="fa fa-plus" aria-hidden="true"></i> New</button>
 </div>

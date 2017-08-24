@@ -26,14 +26,18 @@
     margin : 64px 10% ;*/
     height : 80px;
     margin : 32px auto;
+
     font-size : 2em;
 }
 .title-comment{
     /*position : absolute;*/
     position : relative;
+    
     margin : 0px auto;
     /*left : 10%;*/
     top : 0px;
+    
+    font-size : 0.8em;
 }
 .content{
     margin : 10px auto 80px auto;

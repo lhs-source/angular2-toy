@@ -45,7 +45,6 @@ export class ThreadService {
   ////////////////////////////////////////////
 
   getComments(comment): Observable<any> {
-    console.log(comment);
     return this.http.get(`/api/comments/${comment._discussion_id}`).map(res => res.json());
   }
 
@@ -54,7 +53,6 @@ export class ThreadService {
   }
 
   addComment(comment): Observable<any> {
-    console.log(comment);
     return this.http.post('/api/comment', JSON.stringify(comment), this.options);
   }
 

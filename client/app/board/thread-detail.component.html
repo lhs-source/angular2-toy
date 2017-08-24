@@ -16,26 +16,32 @@
         </div>
         <button (click)="goBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i> back</button>
         <span *ngIf="thre.userid === auth.currentUser._id">
-            <button (click)="goEdit()">edit</button>
-            <button (click)="goDelete()">delete</button>
+            <button (click)="goEdit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+            <button (click)="goDelete()"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
         </span>
         <div style="margin : 40px 0 0 0;">
             <hr>
             <div *ngFor="let comment of comments; let i = index" style="border-bottom : 1px solid #AAA; padding : 8px 4px;">
-                <i class="fa fa-commenting-o" aria-hidden="true"></i>
-                <p style="font-size : 14px;"><i class="fa fa-child" aria-hidden="true"></i> {{comment.username}}   <span style="font-size : 12px;"><i class="fa fa-calendar-o" aria-hidden="true"></i> {{comment.create_date | date : 'medium'}}</span>
-                    <span *ngIf="comment.userid === auth.currentUser._id" style="float : right; margin : 0 10px 0 0">my comment
-                        <button (click)="convertMode(2, comment)">edit</button>
-                        <button (click)="goCommentDelete(comment)">delete</button>
-                    </span>
-                </p>
-                <div [innerHTML]="comment.content | safeHtml"></div>
+                <!-- <i class="fa fa-commenting-o" aria-hidden="true"></i> -->
+                <div style="font-size : 14px; margin-bottom : 10px;"><i class="fa fa-child" aria-hidden="true"></i> {{comment.username}}   <span style="font-size : 12px;"><i class="fa fa-calendar-o" aria-hidden="true"></i> {{comment.create_date | date : 'medium'}}</span>
+                    <span style="float : right; margin : 0 10px 0 0">
+                        <span *ngIf="comment.userid === auth.currentUser._id"><i class="fa fa-hand-peace-o" aria-hidden="true"></i> my comment
+                            <button (click)="convertMode(2, comment)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+                            <button (click)="goCommentDelete(comment)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                        </span>
+                        <button (click)="convertMode(3, comment)"><i class="fa fa-plus" aria-hidden="true"></i> Comment</button>
+                    </span>               
+                </div>
+                <div style="margin : 32px 0;"></div>
+                <!-- <div *ngIf="comment._parent_id != '-1'" style="margin : 8px 0; padding : 4px; border : 1px solid #CCC; border-radius : 4px;" [innerHTML]="comment.parent_comment.content | safeHtml"></div> -->
+                <div style="margin-bottom : 10px;" [innerHTML]="comment.content | safeHtml"></div>
             </div>
             <div style="margin : 20px;"></div>
             <!-- <div #comment contenteditable="" style="border : 1px solid #AAA; min-height : 80px; padding : 8px;"></div> -->
             <div style="margin : 10px;"></div>
             <!-- <button (click)="addComment()">comment</button> -->
-            <button (click)="convertMode(1)">comment</button>
+            <button (click)="goBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i> back</button>
+            <button (click)="convertMode(1)"><i class="fa fa-plus" aria-hidden="true"></i> Comment</button>
         </div>
     </div>
 </div>
@@ -47,11 +53,13 @@
     <div class="modal-box" [ngClass]="{'modal-box-show' : editPopup}">
         <div class="modal-content">
             <!-- <div #editcomment contenteditable="true" [innerHTML]="selComment.content | safeHtml" style=""></div> -->
-            <div #comment contenteditable="" [innerHTML]="modComment | safeHtml" style="border : 1px solid #AAA; height : 360px; padding : 8px;">
+            <div *ngIf="editPopup === 3" [innerHTML]="selComment.content | safeHtml" style="border : 1px solid #AAA; height : 120px; margin-bottom : 16px; padding : 8px; overflow : auto;"></div>
+            <div #comment contenteditable="" [innerHTML]="modComment | safeHtml" style="border : 1px solid #AAA; height : 360px; padding : 8px; overflow : auto;">
             </div>
             <div style="margin : 20px;"></div>
             <div *ngIf="editPopup === 1"><button (click)="addComment()">New Comment</button></div>
             <div *ngIf="editPopup === 2"><button (click)="editComment()">Edit Comment</button></div>
+            <div *ngIf="editPopup === 3"><button (click)="commentComment()">Edit Comment</button></div>
         </div>
     </div>
 </div>

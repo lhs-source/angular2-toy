@@ -26,6 +26,9 @@ export class ThreadDetailComponent implements OnInit {
     selComment : any;
     modComment : string;
 
+    parenthtmlformat1 : string;
+    parenthtmlformat2 : string;
+
     constructor(
         private ThreadService: ThreadService,
         private route: ActivatedRoute,
@@ -35,6 +38,10 @@ export class ThreadDetailComponent implements OnInit {
       ) {}
 
     ngOnInit(): void {
+        this.modComment = "";
+        this.parenthtmlformat1 = "<div style='margin : 8px 0; padding : 4px; border : 1px solid #CCC; border-radius : 4px;'>"; 
+        this.parenthtmlformat2 = "</div>";
+
         this.id = this.route.snapshot.paramMap.get('id');
         this.ThreadService.getThread({_id : this.id})
                             .subscribe(thread => {
@@ -44,9 +51,17 @@ export class ThreadDetailComponent implements OnInit {
         this.ThreadService.getComments({_discussion_id : this.id})
                             .subscribe(comments => {
                                 this.comments = comments; 
+                                this.comments.forEach(com =>{
+                                    this.ThreadService.getComment({_id : com._parent_id}).subscribe(
+                                        parent => {
+                                            com.parent_comment = parent; 
+                                            com.content = this.parenthtmlformat1 + parent.content + this.parenthtmlformat2;
+                                        },
+                                    )
+                                });
+                                console.log(comments);
                             });
 
-        this.modComment = "";
     }
 
     goBack(): void {
@@ -103,6 +118,34 @@ export class ThreadDetailComponent implements OnInit {
             }
         );
     }
+    commentComment() : void {
+        let comment = {
+            _discussion_id : this.id,
+            _parent_id : this.selComment._id,
+            userid : this.auth.currentUser._id, 
+            username : this.auth.currentUser.username, 
+            content : this.commentContent.nativeElement.innerHTML,
+            create_date : Date.now(),
+            update_date : Date.now(),
+        };
+        this.ThreadService.getComment({_id : comment._parent_id}).subscribe(
+            parent => {
+                comment.content = this.parenthtmlformat1 + parent.content + this.parenthtmlformat2 + comment.content;
+            },
+        );
+        console.log(comment);
+        this.ThreadService.addComment(comment).subscribe(
+            res => {
+                console.log(res.json()); 
+                let com = res.json();
+                this.comments.push(com);
+            },
+            error => {console.log(error)},
+            () => {
+                this.closeModal();
+            }
+        );
+    }
     goCommentDelete(comment): void {
         this.ThreadService.deleteComment({_id : comment._id}).subscribe(
             res => {
@@ -124,6 +167,7 @@ export class ThreadDetailComponent implements OnInit {
                 break;
             case 3: // comment comment
                 this.selComment = comment;
+                this.modComment = "";
                 break;
             default:
                 break;
