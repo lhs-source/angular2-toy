@@ -30,7 +30,7 @@
 
 .card{
     display : inline-block; 
-    height : 240px; 
+    height : 480px; 
     box-shadow : 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 3px 12px 0 rgba(0, 0, 0, 0.29);
     margin : 10px 0;
     vertical-align: middle;

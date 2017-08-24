@@ -52,14 +52,17 @@ export class ThreadDetailComponent implements OnInit {
                             .subscribe(comments => {
                                 this.comments = comments; 
                                 this.comments.forEach(com =>{
-                                    this.ThreadService.getComment({_id : com._parent_id}).subscribe(
-                                        parent => {
-                                            com.parent_comment = parent; 
-                                            com.content = this.parenthtmlformat1 + parent.content + this.parenthtmlformat2;
-                                        },
-                                    )
+                                    if(com._parent_id != '-1'){
+                                        this.ThreadService.getComment({_id : com._parent_id}).subscribe(
+                                            parent => {
+                                                com['parent_comment'] = parent; 
+                                                
+                                                //com.content = this.parenthtmlformat1 + parent.content + this.parenthtmlformat2;
+                                            },
+                                        )
+                                    }
                                 });
-                                console.log(comments);
+                                console.log(JSON.stringify(comments));
                             });
 
     }
@@ -90,9 +93,9 @@ export class ThreadDetailComponent implements OnInit {
             username : this.auth.currentUser.username, 
             content : this.commentContent.nativeElement.innerHTML,
             create_date : Date.now(),
-            update_date : Date.now()
+            update_date : Date.now(),
         };
-        console.log(comment);
+        console.log(JSON.stringify(comment));
         this.ThreadService.addComment(comment).subscribe(
             res => {
                 console.log(res.json()); 
@@ -127,17 +130,19 @@ export class ThreadDetailComponent implements OnInit {
             content : this.commentContent.nativeElement.innerHTML,
             create_date : Date.now(),
             update_date : Date.now(),
+            parent_comment : {},
         };
-        this.ThreadService.getComment({_id : comment._parent_id}).subscribe(
-            parent => {
-                comment.content = this.parenthtmlformat1 + parent.content + this.parenthtmlformat2 + comment.content;
-            },
-        );
-        console.log(comment);
+        console.log(JSON.stringify(comment));
         this.ThreadService.addComment(comment).subscribe(
             res => {
                 console.log(res.json()); 
                 let com = res.json();
+                this.ThreadService.getComment({_id : com._parent_id}).subscribe(
+                    parent => {
+                        com.parent_comment = parent;
+                        //comment.content = this.parenthtmlformat1 + parent.content + this.parenthtmlformat2 + comment.content;
+                    },
+                );
                 this.comments.push(com);
             },
             error => {console.log(error)},
@@ -160,6 +165,7 @@ export class ThreadDetailComponent implements OnInit {
     convertMode(mode : number, comment) {
         switch(mode){
             case 1: // new comment
+                this.modComment = "";
                 break;
             case 2: // edit comment
                 this.selComment = comment;
@@ -179,6 +185,8 @@ export class ThreadDetailComponent implements OnInit {
         this.editPopup = 0;
         this.selComment = {};
         this.modComment = "";
+        this.commentContent.nativeElement.innerHTML = "";
+        console.log("clear " + this.modComment);
     }
 
 }
