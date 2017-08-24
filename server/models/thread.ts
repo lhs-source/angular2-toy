@@ -10,6 +10,6 @@ const threadSchema = new mongoose.Schema({
   update_date : Number
 });
 
-const chat = mongoose.model('Thread', threadSchema);
+const thread = mongoose.model('Thread', threadSchema);
 
-export default chat;
+export default thread;

@@ -1,11 +1,12 @@
 <div style="width : 80%; margin : 0 auto;">
     <h1>Edit Post</h1>
     <form [formGroup]="writeForm" (ngSubmit)="write()">
-        <div>you : {{username}}</div>
-        <div>id : {{id}}</div>
-        <input type="text" name="title" formControlName="title" placeholder="title">
+        <div style="margin : 10px 0;">you : {{username}}</div>
+        <div style="margin : 10px 0;">id : {{id}}</div>
+        <input type="text" name="title" formControlName="title" placeholder="title"
+            style="border : 1px solid #AAA; border-radius : 4px; padding : 6px 12px; margin : 0 0 10px 0; width : 95%;">
         <br>
-        <div #content style="border : 1px solid #AAA; border-radius : 4px; padding : 10px;" contenteditable="true"></div>
+        <div #content style="border : 1px solid #AAA; border-radius : 4px; padding : 10px; margin : 0 0 10px 0; min-height : 240px;" contenteditable="true"></div>
         <button type="submit">write</button>
         <button (click)="goBack();">cancel</button>
     </form>

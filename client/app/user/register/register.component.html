@@ -30,6 +30,7 @@
       </div>
       <br>
       <button class="button" type="submit" [disabled]="!registerForm.valid"><i class="fa fa-user-plus"></i> Register</button>
+      <button class="button" type="button" (click)="register()"><i class="fa fa-user-plus"></i> Register</button>
       <button type="button" *ngIf="this.closeFunction" (click)="close()"><i class='fa fa-arrow-left'></i> Back</button>
     </form>
   </div>

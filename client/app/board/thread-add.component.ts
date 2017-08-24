@@ -45,6 +45,11 @@ export class ThreadAddComponent implements OnInit {
         console.log(" ");
         console.log("date : " + Date.now());
 
+        if(!this.username || !this.id || !this.title.value){
+            console.log("invalid");
+            return;
+        }
+
         this.threServ.addThread({
             username : this.username,
             userid : this.id,
@@ -58,5 +63,8 @@ export class ThreadAddComponent implements OnInit {
             () => {this.router.navigate(['thread/thread-list']);}
         )
 
+    }
+    goBack(): void {
+        this.router.navigate(['thread/thread-list']);
     }
 }

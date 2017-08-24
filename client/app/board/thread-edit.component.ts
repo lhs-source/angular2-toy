@@ -65,11 +65,8 @@ export class ThreadEditComponent implements OnInit {
 
         this.threServ.editThread({
             _id : this.id,
-            username : this.username,
-            userid : this.id,
             title : this.title.value,
             content : this.content.nativeElement.innerHTML,
-            create_date : Date.now(),
             update_date : Date.now()
         }).subscribe(
             rep => {console.log(rep)},

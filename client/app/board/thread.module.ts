@@ -13,6 +13,7 @@ import { ThreadEditComponent } from './thread-edit.component';
 import { ThreadService } from './thread.service';
 
 import { SafeHtmlPipe } from '../wysiwyg/ww-safehtml.pipe';
+import { GlobalModule } from '../global.module';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { SafeHtmlPipe } from '../wysiwyg/ww-safehtml.pipe';
         FormsModule,
         RouterModule,
         ReactiveFormsModule,
-        SafeHtmlPipe,
+        GlobalModule
     ],
     providers : [
         ThreadService,

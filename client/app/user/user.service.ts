@@ -19,6 +19,7 @@ export class UserService {
    }
 
   register(user): Observable<any> {
+    console.log(user);
     return this.http.post('/api/user', JSON.stringify(user), this.options);
   }
 

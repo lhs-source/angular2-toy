@@ -1,7 +1,18 @@
 
 
+.back-image{
+    background-color: #DDD;
+
+    height : 120px;
+    width : 100%;
+
+    position : absolute;
+    left : 0;
+    top : 50px;
+    z-index: -1;
+}
 .whole{
-    background-color : #FAFAFA; 
+    background-color : #AAA; 
 
     height : 720px; 
     padding : 10px 0 0 0;    
@@ -11,18 +22,22 @@
     border-radius : 5px; 
 }
 .lists{
-    padding : 4px;
     margin-right: 40px;
+    height : 80px;
 
     border: 1px solid rgba(111, 111, 111, 0.5);
     border-radius: 2px;
+    position: relative;
 }
 .list-title{
-    padding : 4px 4px 4px 24px;
-
+    padding : 8px 4px 4px 20px;
 
     display: inline-block;
     cursor: pointer;
+    
+    position: absolute;
+    left : 0; 
+    right : 220px;
 }
 
 button{

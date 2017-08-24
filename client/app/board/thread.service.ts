@@ -42,4 +42,32 @@ export class ThreadService {
     return this.http.delete(`/api/thread/${thread._id}`, this.options);
   }
 
+  ////////////////////////////////////////////
+
+  getComments(comment): Observable<any> {
+    console.log(comment);
+    return this.http.get(`/api/comments/${comment._discussion_id}`).map(res => res.json());
+  }
+
+  countComments(): Observable<any> {
+    return this.http.get('/api/comments/count').map(res => res.json());
+  }
+
+  addComment(comment): Observable<any> {
+    console.log(comment);
+    return this.http.post('/api/comment', JSON.stringify(comment), this.options);
+  }
+
+  getComment(comment): Observable<any> {
+    return this.http.get(`/api/comment/${comment._id}`).map(res => res.json());
+  }
+
+  editComment(comment): Observable<any> {
+    return this.http.put(`/api/comment/${comment._id}`, JSON.stringify(comment), this.options);
+  }
+
+  deleteComment(comment): Observable<any> {
+    return this.http.delete(`/api/comment/${comment._id}`, this.options);
+  }
+
 }
