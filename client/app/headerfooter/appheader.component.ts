@@ -21,4 +21,10 @@ export class AppHeaderComponent {
     toggleNav():void{
         this.navActive.emit();
     }
+    getlogin() : boolean{
+        return this.auth.loggedIn;
+    }
+    getadmin() : boolean{
+        return this.auth.loggedIn;
+    }
 }

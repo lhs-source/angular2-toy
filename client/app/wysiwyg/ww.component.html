@@ -1,16 +1,16 @@
 <div>
     <button (click)="viewHtml()">View Html</button>
-    <button data-command='strong' (click)="command('strong')">bold</button>
-    <button data-command='backColor' (click)="command('backColor')">backgroundColor</button>
-    <button data-command='italic' (click)="command('italic')">italic</button>
-    <button data-command='insertUnorderedList' (click)="command('insertUnorderedList')">insertUnorderedList</button>
-    <button data-command='formatBlock:h1' (click)="command('formatBlock','h1')">h1</button>
-    <button data-command='formatBlock:p' (click)="command('formatBlock', 'p')">p</button>
-    <button data-command='fontSize' (click)="command('fontSize', '+')">fontsize up</button>
-    <button data-command='fontSize' (click)="command('fontSize', '-')">fontsize down</button>
-    <button data-command='foreColor' (click)="command('foreColor', 'red')">font color</button>
-    <button data-command='removeFormat' (click)="command('removeFormat', 'red')">remove Format</button>
-    <button data-command='style' (click)="command('style', 'test')">style</button>
+    <button (click)="command('strong', '')">bold</button>
+    <button (click)="command('backColor', '')">backgroundColor</button>
+    <button (click)="command('italic', '')">italic</button>
+    <button (click)="command('insertUnorderedList', '')">insertUnorderedList</button>
+    <button (click)="command('formatBlock','h1')">h1</button>
+    <button (click)="command('formatBlock', 'p')">p</button>
+    <button (click)="command('fontSize', '+')">fontsize up</button>
+    <button (click)="command('fontSize', '-')">fontsize down</button>
+    <button (click)="command('foreColor', 'red')">font color</button>
+    <button (click)="command('removeFormat', 'red')">remove Format</button>
+    <button (click)="command('style', 'test')">style</button>
 </div>
 <div #editor contenteditable="true" spellcheck="false"  style="border : 1px solid #BBB; margin : 20px; padding : 12px;"
     (keydown)="event_keydown($event)">
