@@ -13,13 +13,16 @@ export class ThreadService {
   private options = new RequestOptions({ headers: this.headers });
 
   thre : Thread;
+  category : {name : string};
+  page : number;
 
   constructor(private http: Http) {
     console.log("Service : Thread(Constructor)");
    }
 
-  getThreads(): Observable<any> {
-    return this.http.get('/api/threads').map(res => res.json());
+  getThreads(category): Observable<any> {
+    this.category = {name : category.category};
+    return this.http.get(`/api/threads/${category.category}`).map(res => res.json());
   }
 
   countThreads(): Observable<any> {
@@ -68,4 +71,29 @@ export class ThreadService {
     return this.http.delete(`/api/comment/${comment._id}`, this.options);
   }
 
+  ////////////////////////////////////////////////
+
+  getCategorys(): Observable<any> {
+    return this.http.get('/api/categories').map(res => res.json());
+  }
+
+  countCategorys(): Observable<any> {
+    return this.http.get('/api/categories/count').map(res => res.json());
+  }
+
+  addCategory(category): Observable<any> {
+    return this.http.post('/api/category', JSON.stringify(category), this.options);
+  }
+
+  getCategory(category): Observable<any> {
+    return this.http.get(`/api/category/${category._id}`).map(res => res.json());
+  }
+
+  editCategory(category): Observable<any> {
+    return this.http.put(`/api/category/${category._id}`, JSON.stringify(category), this.options);
+  }
+
+  deleteCategory(category): Observable<any> {
+    return this.http.delete(`/api/category/${category._id}`, this.options);
+  }
 }

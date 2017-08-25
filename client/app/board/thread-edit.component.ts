@@ -18,7 +18,9 @@ export class ThreadEditComponent implements OnInit {
     email : string;
     id : string;
     title = new FormControl('', [Validators.required,
-        Validators.minLength(4)]);
+        Validators.maxLength(64)]);
+    category = new FormControl('', [Validators.required,
+        Validators.minLength(1)]);
     
     thre = {};
 
@@ -39,6 +41,7 @@ export class ThreadEditComponent implements OnInit {
     ngOnInit() {
         this.writeForm = this.formBuilder.group({
             title : this.title,
+            category : this.category,
         });
         this.id = this.route.snapshot.paramMap.get('id');
         this.threServ.getThread({_id : this.id})
@@ -59,6 +62,7 @@ export class ThreadEditComponent implements OnInit {
         console.log("email : " + this.email);
         console.log("id : " + this.id);
         console.log("title : " + this.title.value);
+        console.log("category : " + this.category.value);
         console.log("content : " + this.content.nativeElement.innerText);
         console.log(" ");
         console.log("date : " + Date.now());
@@ -66,6 +70,7 @@ export class ThreadEditComponent implements OnInit {
         this.threServ.editThread({
             _id : this.id,
             title : this.title.value,
+            category : this.category.value,
             content : this.content.nativeElement.innerHTML,
             update_date : Date.now()
         }).subscribe(

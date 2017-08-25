@@ -109,7 +109,7 @@ export class ThreadDetailComponent implements OnInit {
     }
     editComment(): void {
         //this.selComment = this.commentContent.nativeElement.innerHTML,
-        this.ThreadService.editComment({_id : this.selComment._id, content : this.commentContent.nativeElement.innerHTML}).subscribe(
+        this.ThreadService.editComment({_id : this.selComment._id, content : this.commentContent.nativeElement.innerHTML, update_date : Date.now()}).subscribe(
             res => {
                 console.log(this.selComment._id);
                 const pos = this.comments.map(elem => elem._id).indexOf(this.selComment._id);

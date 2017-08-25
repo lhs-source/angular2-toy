@@ -6,7 +6,7 @@ export default class ThreadCtrl extends BaseCtrl {
 
     getAllSortd = (req, res) => {
         /* sort({'key' : 1 - inc / -1 - dec }) */
-        this.model.find({}).sort({'create_date' : -1}).exec((err, docs) => {
+        this.model.find({category : req.params.category}).sort({'create_date' : -1}).exec((err, docs) => {
         if (err) { return console.error(err); }
         res.json(docs);
         });

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 
 import { ThreadService } from './thread.service';
@@ -12,12 +12,20 @@ import { ThreadService } from './thread.service';
 
 export class ThreadListComponent implements OnInit{
     threads : any[];
+    category : string;
+    page : number;
 
     constructor(private router : Router,
-        private threServ : ThreadService){}
+        private threServ : ThreadService,
+        private route: ActivatedRoute,
+    ){}
 
     ngOnInit() {
-        this.threServ.getThreads().subscribe(
+        this.category = this.route.snapshot.paramMap.get('category');
+        if(!this.category){
+            this.router.navigate(['thread/thread-list', 'default']);
+        }
+        this.threServ.getThreads({category : this.category}).subscribe(
             rep => {this.threads = rep; console.log(this.threads)},
             error => {console.log(error)},
             () => {} ,

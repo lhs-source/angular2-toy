@@ -18,6 +18,9 @@ import Thread from '../models/Thread';
 import CommentCtrl from '../controllers/Comment';
 import Comment from '../models/Comment';
 
+import CategoryCtrl from '../controllers/Category';
+import Category from '../models/Category';
+
 export default function setRoutes(app){
     const router = express.Router();
 
@@ -27,6 +30,7 @@ export default function setRoutes(app){
   const chatCtrl = new ChatCtrl();
   const threadCtrl = new ThreadCtrl();
   const commentCtrl = new CommentCtrl();
+  const categoryCtrl = new CategoryCtrl();
 
   // Events
   router.route('/events').get(eventCtrl.getAll);
@@ -62,7 +66,7 @@ export default function setRoutes(app){
   router.route('/chat/:id').delete(chatCtrl.delete);
 
   // Threads
-  router.route('/threads').get(threadCtrl.getAllSortd);
+  router.route('/threads/:category').get(threadCtrl.getAllSortd);
   router.route('/threads/count').get(threadCtrl.count);
   router.route('/thread').post(threadCtrl.insert);
   router.route('/thread/:id').get(threadCtrl.get);
@@ -75,6 +79,13 @@ export default function setRoutes(app){
   router.route('/comment/:id').get(commentCtrl.get);
   router.route('/comment/:id').put(commentCtrl.update);
   router.route('/comment/:id').delete(commentCtrl.delete);
+
+  router.route('/categories').get(categoryCtrl.getAll);
+  router.route('/categories/count').get(categoryCtrl.count);
+  router.route('/category').post(categoryCtrl.insert);
+  router.route('/category/:id').get(categoryCtrl.get);
+  router.route('/category/:id').put(categoryCtrl.update);
+  router.route('/category/:id').delete(categoryCtrl.delete);
 
   app.use('/api', router);
 }

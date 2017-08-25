@@ -2,6 +2,7 @@ import * as mongoose from 'mongoose';
 
 const threadSchema = new mongoose.Schema({  
   //_id : Number,
+  category : String,
   userid : String, 
   username : String, 
   title : String, 
