@@ -110,7 +110,7 @@ export default class ThreadCtrl extends BaseCtrl {
         if(req.body.comments.deleted){
             pipe.$set['comments.$.deleted'] = req.body.comments.deleted;
             pipe.$set['comments.$.old_content'] = req.body.comments.content;
-            pipe.$set['comments.$.content'] = "삭제된 댓글입니다.";
+            pipe.$set['comments.$.content'] = "<span style='text-decoration:line-through;'>삭제된 댓글입니다.</span>";
         }
         console.log(pipe);
         /*
