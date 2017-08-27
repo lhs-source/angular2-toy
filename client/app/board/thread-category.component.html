@@ -1,7 +1,7 @@
-<div style="border : 1px dotted #AAA; border-radius : 4px;">
-    <ul>
-        <li *ngFor="let category of categoryList" style="list-style-type: none;"><span (click)="changeCategory(category.name)" style="cursor : pointer;"> {{category.name}}</span></li>
-    </ul>
+<div style="border : 1px dotted #AAA; border-radius : 4px; background-color : #F5F5F5;">
+    
+        <div *ngFor="let category of categoryList" style="list-style-type: none; margin-right : 4px;"><span (click)="changeCategory(category.name)" style="cursor : pointer;"> {{category.name}}</span></div>
+    
     <form [formGroup]="addForm" (ngSubmit)="add()">
         <input type="text" name="name" formControlName="name" placeholder="addcategory"
             style="border : 1px solid #AAA; border-radius : 4px; padding : 6px 12px; margin : 0 0 10px 0; width : 80%;">

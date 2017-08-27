@@ -3,11 +3,12 @@
     <!-- <a routerLink="thread-detail" routerLinkActive="active"><i class="fa fa-table" aria-hidden="true"></i> detail</a>-->
 </div>
 <div>
-    <div style="display : inline-block; width : 78%; " >
+    <div style="width : 78%; margin : 0 auto;" >
         <router-outlet></router-outlet>
     </div>
-    <div style="display : inline-block; width : 17%; position : absolute; top : 360px; right : 60px;">
-        <thread-category></thread-category>
+    <div style="display : inline-block; width : 17%; position : absolute; top : 80px; right : 60px;">
+        <button (click)="toggle()">Category <i class="fa fa-chevron-down" aria-hidden="true"></i></button>
+        <thread-category class="category" [ngClass]="{categoryShow : toggleCategory}"></thread-category>
     </div>
 </div>
 

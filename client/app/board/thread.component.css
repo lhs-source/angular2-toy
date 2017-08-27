@@ -1,0 +1,30 @@
+
+
+
+.category{
+    
+    opacity: 0;
+    visibility: hidden;
+}
+.categoryShow{
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+button{
+    padding : 12px 24px;
+
+    border: 1px solid #16447D;
+    border-radius: 4px;
+
+    background-color: #3273C3;
+    color : #DDD;
+    font-size : 1em;
+}
+button:hover{
+    box-shadow: 0 0 4px rgba(111, 111,111, 0.3);
+    background-color: #2966B2;
+    color : #DDD;
+}

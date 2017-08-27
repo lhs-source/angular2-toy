@@ -73,12 +73,12 @@ export default function setRoutes(app){
   router.route('/thread/:id').put(threadCtrl.update);
   router.route('/thread/:id').delete(threadCtrl.delete);
 
-  router.route('/comments/:id').get(commentCtrl.getAllSortd);
-  router.route('/comments/count').get(commentCtrl.count);
-  router.route('/comment').post(commentCtrl.insert);
-  router.route('/comment/:id').get(commentCtrl.get);
-  router.route('/comment/:id').put(commentCtrl.update);
-  router.route('/comment/:id').delete(commentCtrl.delete);
+  router.route('/thread/:tid/comments/:cid').get(threadCtrl.getAllComment);
+  router.route('/thread/:tid/comments/count').get(threadCtrl.countComment);
+  router.route('/thread/:tid/comment').put(threadCtrl.insertComment);
+  router.route('/thread/:tid/comment/:cid').get(threadCtrl.getComment);
+  router.route('/thread/:tid/comment/:cid').put(threadCtrl.updateComment);
+  router.route('/thread/:tid/comment/:cid').delete(threadCtrl.deleteComment);
 
   router.route('/categories').get(categoryCtrl.getAll);
   router.route('/categories/count').get(categoryCtrl.count);

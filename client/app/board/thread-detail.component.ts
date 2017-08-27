@@ -16,7 +16,9 @@ import 'rxjs/add/operator/switchMap';
 
 export class ThreadDetailComponent implements OnInit {
 
-    thre = {};
+    thre = {
+        comments : []
+    };
     id : string;
     comments = [];
 
@@ -46,8 +48,17 @@ export class ThreadDetailComponent implements OnInit {
         this.ThreadService.getThread({_id : this.id})
                             .subscribe(thread => {
                                 this.thre = thread;
+                                console.log(this.thre);
+                                this.thre.comments.forEach(
+                                    entry => {
+                                        if(entry._parent_id != '-1'){
+                                            entry.parent_comment = this.thre.comments.filter(com => com._id === entry._parent_id).pop();
+                                            console.log(entry.parent_comment);
+                                        }
+                                    }
+                                );
                             });
-        
+        /*
         this.ThreadService.getComments({_discussion_id : this.id})
                             .subscribe(comments => {
                                 this.comments = comments; 
@@ -64,6 +75,7 @@ export class ThreadDetailComponent implements OnInit {
                                 });
                                 console.log(JSON.stringify(comments));
                             });
+        */
 
     }
 
@@ -77,7 +89,7 @@ export class ThreadDetailComponent implements OnInit {
     }
     goDelete(): void {
         this.ThreadService.deleteThread({_id : this.id}).subscribe(
-            res => {console.log(res.json());},
+            res => {console.log(res);},
             error => {console.log(error)},
             () => {}
         );
@@ -96,6 +108,19 @@ export class ThreadDetailComponent implements OnInit {
             update_date : Date.now(),
         };
         console.log(JSON.stringify(comment));
+        console.log(comment);
+        this.ThreadService.addComment({_id : comment._discussion_id, comments : comment}).subscribe(
+            res => {
+                console.log(res); 
+                comment['_id'] = res.comments.pop()._id;
+                this.thre.comments.push(comment);
+            },
+            error => {console.log(error)},
+            () => {
+                this.closeModal();
+            }
+        );
+        /*
         this.ThreadService.addComment(comment).subscribe(
             res => {
                 console.log(res.json()); 
@@ -106,14 +131,15 @@ export class ThreadDetailComponent implements OnInit {
                 this.closeModal();
             }
         );
+        */
     }
     editComment(): void {
         //this.selComment = this.commentContent.nativeElement.innerHTML,
-        this.ThreadService.editComment({_id : this.selComment._id, content : this.commentContent.nativeElement.innerHTML, update_date : Date.now()}).subscribe(
+        this.ThreadService.editComment({_id : this.selComment._discussion_id, comments : {_id : this.selComment._id, content : this.commentContent.nativeElement.innerHTML, update_date : Date.now()}}).subscribe(
             res => {
                 console.log(this.selComment._id);
-                const pos = this.comments.map(elem => elem._id).indexOf(this.selComment._id);
-                this.comments[pos].content = this.commentContent.nativeElement.innerHTML;
+                const pos = this.thre.comments.map(elem => elem._id).indexOf(this.selComment._id);
+                this.thre.comments[pos].content = this.commentContent.nativeElement.innerHTML;
             },
             error => {console.log(error)},
             () => {
@@ -133,17 +159,13 @@ export class ThreadDetailComponent implements OnInit {
             parent_comment : {},
         };
         console.log(JSON.stringify(comment));
-        this.ThreadService.addComment(comment).subscribe(
+        this.ThreadService.addComment({_id : comment._discussion_id, comments : comment}).subscribe(
             res => {
-                console.log(res.json()); 
-                let com = res.json();
-                this.ThreadService.getComment({_id : com._parent_id}).subscribe(
-                    parent => {
-                        com.parent_comment = parent;
-                        //comment.content = this.parenthtmlformat1 + parent.content + this.parenthtmlformat2 + comment.content;
-                    },
-                );
-                this.comments.push(com);
+                console.log(res); 
+                comment.parent_comment = this.thre.comments.filter(com => com._id === comment._parent_id).pop();
+                console.log(comment.parent_comment);
+                this.thre.comments.push(comment);
+                console.log("ok"); 
             },
             error => {console.log(error)},
             () => {
@@ -152,14 +174,34 @@ export class ThreadDetailComponent implements OnInit {
         );
     }
     goCommentDelete(comment): void {
-        this.ThreadService.deleteComment({_id : comment._id}).subscribe(
+        //  pull로 아예 삭제
+        /*
+        this.ThreadService.deleteComment({_id : comment._discussion_id, comments : {_id : comment._id}}).subscribe(
             res => {
-                const pos = this.comments.map(elem => elem._id).indexOf(comment._id);
-                this.comments.splice(pos, 1);
+                console.log(res);
+                const pos = this.thre.comments.map(elem => elem._id).indexOf(comment._id);
+                console.log(pos);
+                this.thre.comments.splice(pos, 1);
             },
             error => {console.log(error)},
             () => {}
         );
+        */
+        // mongoose에서는 pull 해도 null로 바뀌어서 
+        // 삭제되었습니다. 로 바꾸는 방안...
+        
+        this.ThreadService.editComment({_id : comment._discussion_id, comments : {_id : comment._id, content : comment.content, deleted : true, update_date : Date.now()}}).subscribe(
+            res => {
+                console.log(comment._id);
+                const pos = this.thre.comments.map(elem => elem._id).indexOf(comment._id);
+                this.thre.comments[pos].content = "삭제된 댓글입니다.";
+            },
+            error => {console.log(error)},
+            () => {
+                this.closeModal();
+            }
+        );
+        
     }
 
     convertMode(mode : number, comment) {

@@ -26,8 +26,11 @@ export class ThreadListComponent implements OnInit{
             this.router.navigate(['thread/thread-list', 'default']);
         }
         this.threServ.getThreads({category : this.category}).subscribe(
-            rep => {this.threads = rep; console.log(this.threads)},
-            error => {console.log(error)},
+            rep => {
+                this.threads = rep; 
+                console.log(this.threads)
+            },
+            error => {console.log(error);},
             () => {} ,
         );
     }

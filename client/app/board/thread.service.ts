@@ -48,27 +48,28 @@ export class ThreadService {
   ////////////////////////////////////////////
 
   getComments(comment): Observable<any> {
-    return this.http.get(`/api/comments/${comment._discussion_id}`).map(res => res.json());
+    return this.http.get(`/api/thread/${comment._id}/comments`).map(res => res.json());
   }
 
-  countComments(): Observable<any> {
-    return this.http.get('/api/comments/count').map(res => res.json());
+  countComments(comment): Observable<any> {
+    return this.http.get(`/api/thread/${comment._id}/comments/count`).map(res => res.json());
   }
 
   addComment(comment): Observable<any> {
-    return this.http.post('/api/comment', JSON.stringify(comment), this.options);
+    return this.http.put(`/api/thread/${comment._id}/comment`, JSON.stringify(comment), this.options).map(res => res.json());
   }
 
   getComment(comment): Observable<any> {
-    return this.http.get(`/api/comment/${comment._id}`).map(res => res.json());
+    return this.http.get(`/api/thread/${comment._id}/comment/${comment.comments._id}`).map(res => res.json());
   }
 
   editComment(comment): Observable<any> {
-    return this.http.put(`/api/comment/${comment._id}`, JSON.stringify(comment), this.options);
+    return this.http.put(`/api/thread/${comment._id}/comment/${comment.comments._id}`, JSON.stringify(comment), this.options);
   }
 
   deleteComment(comment): Observable<any> {
-    return this.http.delete(`/api/comment/${comment._id}`, this.options);
+    //return this.http.delete(`/api/thread/${comment._id}/comment/${comment.comments._id}`, this.options);
+    return this.http.put(`/api/thread/${comment._id}/comment/${comment.comments._id}`, this.options);
   }
 
   ////////////////////////////////////////////////

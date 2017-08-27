@@ -8,4 +8,8 @@ import { Component } from '@angular/core'
 })
 
 export class ThreadComponent {
+    toggleCategory : boolean;
+    toggle(){
+        this.toggleCategory = !this.toggleCategory;
+    }
 }
