@@ -54,6 +54,8 @@ export class ThreadEditComponent implements OnInit {
                                 this.content.nativeElement.innerHTML = thread.content;
                             }
                         );
+                        
+        this.category.setValue(this.threServ.category.name);
         console.log(this.thre);
     }
 
