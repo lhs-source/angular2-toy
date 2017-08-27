@@ -195,6 +195,7 @@ export class ThreadDetailComponent implements OnInit {
                 console.log(comment._id);
                 const pos = this.thre.comments.map(elem => elem._id).indexOf(comment._id);
                 this.thre.comments[pos].content = "삭제된 댓글입니다.";
+                this.thre.comments[pos]['deleted'] = true;
             },
             error => {console.log(error)},
             () => {

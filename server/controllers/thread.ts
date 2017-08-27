@@ -37,7 +37,7 @@ export default class ThreadCtrl extends BaseCtrl {
         }
         var pipe = {
             $push : {
-                comments : req.body.comments
+                comments : obj.comments[0];
             }
         }
         
