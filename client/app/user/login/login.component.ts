@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
         console.log("Component : login(onInit)");
     if (this.auth.loggedIn) {
-      this.router.navigate(['/chats']);
+      this.router.navigate(['/home']);
     }
     this.loginForm = this.formBuilder.group({
       email: this.email,
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   login() {
     this.auth.login(this.loginForm.value).subscribe(
       res => {
-        this.router.navigate(['/chats']);
+        this.router.navigate(['/home']);
       },
       error => this.toast.setMessage('invalid email or password!', 'danger')
     );

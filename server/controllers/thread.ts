@@ -1,5 +1,6 @@
 import Thread from '../models/thread';
 import BaseCtrl from './base';
+import * as bcrypt from 'bcryptjs';
 
 export default class ThreadCtrl extends BaseCtrl {
     model = Thread;
@@ -37,10 +38,10 @@ export default class ThreadCtrl extends BaseCtrl {
         }
         var pipe = {
             $push : {
-                comments : obj.comments[0];
+                comments : obj.comments[0],
             }
         }
-        
+        console.log(pipe);
         this.model.findOneAndUpdate(condition, pipe, { safe: true, upsert: true }, (err, item) => {
             if (err) { return console.error(err); }
             // 이러면 res가 obj로 감
@@ -151,14 +152,17 @@ export default class ThreadCtrl extends BaseCtrl {
         
         var condition ={
             _id: req.params.tid, 
-            'comments._id' : req.params.cid
         };
         var pipe = {
-
+            $pull : {
+                comments : {
+                    _id : req.params.cid
+                }
+            }
         };
-        this.model.where({ _id: req.params.tid }).update({ _id: req.params.tid }, {$pull : {comments : {_id : req.params.cid}}}, { 'new': true }, (err) => {
-        if (err) { return console.error(err); }
-        res.sendStatus(200);
+        this.model.update(condition, pipe, { 'new': true }, (err) => {
+            if (err) { return console.error(err); }
+            res.sendStatus(200);
         });
     };
 }

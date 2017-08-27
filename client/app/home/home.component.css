@@ -1,8 +1,12 @@
 
 .back-image{
     background-color: #DDD;
+    background-image : url("http://i.imgur.com/ALmo7sb.jpg");
+    background-repeat: no-repeat;
+    /*background-attachment: fixed;*/
+    background-size: cover;
 
-    height : 240px;
+    height : 960px;
     width : 100%;
 
     position : absolute;
@@ -11,7 +15,7 @@
     z-index: -1;
 }
 .title{
-    height : 240px;
+    height : 960px;
     width : 80%;
 }
 .title-content{
