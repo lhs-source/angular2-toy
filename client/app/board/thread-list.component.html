@@ -30,7 +30,7 @@
     <div>
         <button (click)="pageMoveAbsolute(1)">first</button>
         <button (click)="pageMove(-1);">prev</button>
-        <span *ngFor="let pagi of countArray"><button (click)="pageMoveAbsolute(pagi)" [ngClass]="{'pagithispage' : pagi === page}">{{pagi}}</button></span>
+        <span *ngFor="let pagi of countArray"><button (click)="pageMoveAbsolute(pagi)" [ngClass]="{'pagithispage' : pagi == page}">{{pagi}}</button></span>
         <button (click)="pageMove(1);">next</button>
         <button (click)="pageMoveAbsolute(-1)">last</button>
     </div>

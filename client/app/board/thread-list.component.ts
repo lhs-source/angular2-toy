@@ -50,33 +50,27 @@ export class ThreadListComponent implements OnInit{
         // 카테고리 안의 스레 개수
         this.threServ.countThreads({category : this.category}).subscribe(
             res => { 
-                console.log("count");
-                console.log(res);
                 this.count = res;
                 
-                if(Math.ceil(this.count / 5) < this.count){
+                if(Math.ceil(this.count / 5) < parseInt(this.page)){
                     this.router.navigate(['thread/thread-list', this.category, '1']);
                     return;
                 }
                 const perPage = 5;
                 const perPagi = 3;
-                let pagiStart = ((((parseInt(this.page) - 1) | 0) / 3) * 3 + 1);
-                let arrayLength = Math.ceil(this.count / perPage);
+                let pagiStart = parseInt(this.page) - Math.floor(perPage / 2);
+                let pagiEnd = Math.ceil(this.count / perPage);
+                let pagiLast = parseInt(this.page) + Math.floor(perPage / 2);
+                if(pagiStart <= 0){
+                    pagiStart = 1;
+                }
+                if(pagiEnd < pagiLast){
+                    pagiLast = pagiEnd;
+                }
                 console.log(pagiStart);
-                console.log(arrayLength);
-                if(arrayLength - pagiStart < 3){
-                    arrayLength -= (pagiStart - 1);
-                }
-                else{
-                    arrayLength = perPagi;
-                }
-                let pagiLength = (Math.ceil(this.count / perPage) + 1);
-                // if(perPagi <= arrayLength){
-                //     arrayLength = perPagi;
-                // }
+                console.log(pagiLast);
                 let i = 0;
-                this.countArray = new Array(arrayLength).fill(pagiStart | 0).map(value => value + i++);
-                console.log(this.countArray);
+                this.countArray = new Array(pagiLast - pagiStart + 1).fill(pagiStart).map(value => value + i++);
             },
             error => { console.log(error);}
             

@@ -55,7 +55,9 @@
     background-color:#CCC; 
 }
 .pagithispage{
-    background-color: #777;
+    background-color: #B0B0B0;
+
+    /*padding : 10px;*/
 }
 
 button{
@@ -66,7 +68,7 @@ button{
 }
 button:hover{
     box-shadow: 0 0 4px rgba(111, 111,111, 0.3);
-    background-color: #DDD;
+    background-color: #A0A0A0;
 }
 
 
