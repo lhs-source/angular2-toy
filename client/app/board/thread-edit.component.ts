@@ -14,6 +14,10 @@ import { ThreadService } from './thread.service';
 })
 
 export class ThreadEditComponent implements OnInit {
+    ///////////
+    // objects
+    ///////////
+
     username : string;
     email : string;
     id : string;
@@ -28,6 +32,10 @@ export class ThreadEditComponent implements OnInit {
     
     writeForm: FormGroup;
 
+    //////////////
+    // contructor
+    //////////////
+
     constructor(private auth: AuthService,
         private formBuilder: FormBuilder,
         private location: Location,
@@ -38,51 +46,62 @@ export class ThreadEditComponent implements OnInit {
             this.id = auth.currentUser._id;
          }
 
+    /////////////
+    // lifecycle
+    /////////////
+
     ngOnInit() {
         this.writeForm = this.formBuilder.group({
             title : this.title,
             category : this.category,
         });
+        // 파라미터 겟
         this.id = this.route.snapshot.paramMap.get('id');
-        this.threServ.getThread({_id : this.id})
-                            .subscribe(thread => {
-                                this.thre = thread; 
-                                console.log(this.thre); 
-                                this.username = thread.username;
-                                this.email = thread.email;
-                                this.title.setValue(thread.title);
-                                this.content.nativeElement.innerHTML = thread.content;
-                            }
-                        );
+        let condition = {_id : this.id};
+        this.threServ.getThread(condition).subscribe(
+            thread => {
+                this.thre = thread; 
+                console.log(this.thre); 
+                this.username = thread.username;
+                this.email = thread.email;
+                this.title.setValue(thread.title);
+                this.content.nativeElement.innerHTML = thread.content;
+            }
+        );
                         
         this.category.setValue(this.threServ.category.name);
         console.log(this.thre);
     }
 
-    write() {
-        console.log("username : " + this.username);
-        console.log("email : " + this.email);
-        console.log("id : " + this.id);
-        console.log("title : " + this.title.value);
-        console.log("category : " + this.category.value);
-        console.log("content : " + this.content.nativeElement.innerText);
-        console.log(" ");
-        console.log("date : " + Date.now());
+    ///////////
+    // methods
+    ///////////
 
-        this.threServ.editThread({
+    // 스레 수정
+    write() {
+        let editthread = {
             _id : this.id,
             title : this.title.value,
             category : this.category.value,
             content : this.content.nativeElement.innerHTML,
             update_date : Date.now()
-        }).subscribe(
-            rep => {console.log(rep)},
-            error => {console.log(error)},
-            () => { this.router.navigate(['thread/thread-detail', this.id]); }
+        };
+
+        this.threServ.editThread(editthread).subscribe(
+            rep => {
+                console.log(rep)
+            },
+            error => {
+                console.log(error)
+            },
+            () => { 
+                this.router.navigate(['thread/thread-detail', this.id]); 
+            }
         )
 
     }
 
+    // 뒤로가기
     goBack(): void {
         this.location.back();
     }

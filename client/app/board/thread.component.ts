@@ -8,7 +8,18 @@ import { Component } from '@angular/core'
 })
 
 export class ThreadComponent {
+    ///////////
+    // objects
+    ///////////
+
+    // 카테고리창 키고 끄기
     toggleCategory : boolean;
+
+    ///////////
+    // methods
+    ///////////
+
+    // 카테고리창 키고 끄기
     toggle(){
         this.toggleCategory = !this.toggleCategory;
     }

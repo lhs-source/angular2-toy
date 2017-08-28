@@ -14,9 +14,14 @@ import { ThreadService } from './thread.service';
 })
 
 export class ThreadAddComponent implements OnInit {
+    ///////////
+    // objects
+    ///////////
+
     username : string;
     email : string;
     id : string;
+
     title = new FormControl('', [Validators.required,
         Validators.maxLength(64)]);
     category = new FormControl('', [Validators.required,
@@ -24,6 +29,10 @@ export class ThreadAddComponent implements OnInit {
     @ViewChild('content') content : ElementRef;
     
     writeForm: FormGroup;
+    
+    //////////////
+    // contructor
+    //////////////
 
     constructor(private auth: AuthService,
         private formBuilder: FormBuilder,
@@ -32,7 +41,11 @@ export class ThreadAddComponent implements OnInit {
         private threServ : ThreadService) {
             this.username = auth.currentUser.username;
             this.id = auth.currentUser._id;
-         }
+    }
+
+    /////////////
+    // lifecycle
+    /////////////
 
     ngOnInit() {
         this.writeForm = this.formBuilder.group({
@@ -42,22 +55,14 @@ export class ThreadAddComponent implements OnInit {
         this.category.setValue(this.threServ.category.name);
     }
 
+    ///////////
+    // methods
+    ///////////
+
+    // 스레 추가
     write() {
-        console.log("username : " + this.username);
-        console.log("email : " + this.email);
-        console.log("id : " + this.id);
-        console.log("title : " + this.title.value);
-        console.log("category : " + this.category.value);
-        console.log("content : " + this.content.nativeElement.innerText);
-        console.log(" ");
-        console.log("date : " + Date.now());
-
-        if(!this.username || !this.id || !this.title.value){
-            console.log("invalid");
-            return;
-        }
-
-        this.threServ.addThread({
+        // 스레 오브젝트 생성
+        let addthread = {
             username : this.username,
             userid : this.id,
             title : this.title.value,
@@ -65,18 +70,27 @@ export class ThreadAddComponent implements OnInit {
             content : this.content.nativeElement.innerHTML,
             create_date : Date.now(),
             update_date : Date.now()
-        }).subscribe(
-            rep => {console.log(rep)},
-            error => {console.log(error)},
+        }
+        // 뭔가 이상하면 백
+        if(!this.username || !this.id || !this.title.value){
+            console.log("invalid");
+            return;
+        }
+        // 추가
+        this.threServ.addThread(addthread).subscribe(
+            rep => {
+                console.log(rep)
+            },
+            error => {
+                console.log(error)
+            },
             () => {
-                //this.router.navigate(['thread/thread-list']);
                 this.goBack();
             }
         )
-
     }
+    // 뒤로가기
     goBack(): void {
-        //this.router.navigate(['thread/thread-list']);
         this.location.back();
     }
 }

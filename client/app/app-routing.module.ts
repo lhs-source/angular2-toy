@@ -97,7 +97,7 @@ const routes : Routes = [
         component : ThreadListComponent,
       },
       {
-        path: 'thread-list/:category',
+        path: 'thread-list/:category/:page',
         component : ThreadListComponent,
       },
       {

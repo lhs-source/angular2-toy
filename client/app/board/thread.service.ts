@@ -22,11 +22,12 @@ export class ThreadService {
 
   getThreads(category): Observable<any> {
     this.category = {name : category.category};
-    return this.http.get(`/api/threads/${category.category}`).map(res => res.json());
+    return this.http.get(`/api/threads/${category.category}/${category.page}`).map(res => res.json());
   }
 
-  countThreads(): Observable<any> {
-    return this.http.get('/api/threads/count').map(res => res.json());
+  countThreads(category): Observable<any> {
+    console.log(category);
+    return this.http.get(`/api/threadscount/${category.category}`).map(res => res.json());
   }
 
   addThread(thread): Observable<any> {

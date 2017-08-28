@@ -66,8 +66,8 @@ export default function setRoutes(app){
   router.route('/chat/:id').delete(chatCtrl.delete);
 
   // Threads
-  router.route('/threads/:category').get(threadCtrl.getAllSortd);
-  router.route('/threads/count').get(threadCtrl.count);
+  router.route('/threads/:category/:page').get(threadCtrl.getAllSortd);
+  router.route('/threadscount/:category').get(threadCtrl.countThread);
   router.route('/thread').post(threadCtrl.insert);
   router.route('/thread/:id').get(threadCtrl.get);
   router.route('/thread/:id').put(threadCtrl.update);

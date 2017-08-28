@@ -1,14 +1,18 @@
 <div style="width : 80%; margin : 0 auto;">
     <h1>Edit Post</h1>
+    <!-- 글 수정 폼 -->
     <form [formGroup]="writeForm" (ngSubmit)="write()">
-        <input type="text" name="category" formControlName="category" placeholder="category"
-            style="border : 1px solid #AAA; border-radius : 4px; padding : 6px 12px; margin : 0 0 10px 0; width : 95%;">
+        <!-- 카테고리 란 -->
+        <input type="text" name="category" formControlName="category" placeholder="category">
+        <!-- 유저 이름과 아이디(아이디는 그냥 디버그용) -->
         <div style="margin : 10px 0; font-size : 0.8em;">you : {{username}}</div>
         <div style="margin : 10px 0; font-size : 0.8em;">id : {{id}}</div>
-        <input type="text" name="title" formControlName="title" placeholder="title"
-            style="border : 1px solid #AAA; border-radius : 4px; padding : 6px 12px; margin : 0 0 10px 0; width : 95%;">
+        <!-- 제목 -->
+        <input type="text" name="title" formControlName="title" placeholder="title">
         <br>
-        <div #content style="border : 1px solid #AAA; border-radius : 4px; padding : 10px; margin : 0 0 10px 0; min-height : 240px;" contenteditable="true"></div>
+        <!-- 내용 -->
+        <div #content class="contentInput" contenteditable="true"></div>
+        <!-- 쓰기와 취소 버튼 -->
         <button type="submit">write</button>
         <button (click)="goBack();">cancel</button>
     </form>

@@ -47,8 +47,9 @@ class Server{
     this.app.use('/', express.static(path.join(__dirname, '../public')));
     // 항상
     // json 파싱하는듯
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: false }));
+    this.app.use(bodyParser.json({limit: '50mb'}));
+    this.app.use(bodyParser.urlencoded({limit: '16mb', extended: false }));
+    //this.app.use(express.bodyParser({limit: '16mb'}));
     this.app.use(morgan('dev'));
   }
   private step11(){

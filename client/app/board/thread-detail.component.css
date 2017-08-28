@@ -54,6 +54,42 @@ button:hover{
     background-color: #DDD;
 }
 
+.comment{
+    padding : 8px 16px;
+
+    border-bottom : 1px solid #777; 
+}
+
+.parent-comment{
+    margin : 16px 8px 16px 8px; 
+
+    border : 1px solid #CCC; 
+    border-radius : 4px;
+}
+.parent-comment-info{
+    padding : 4px 4px; 
+
+    border-bottom : 1px solid #CCC; 
+    
+    background-color : rgba(192, 192, 192, 0.7); 
+    font-size : 0.8em;
+}
+
+.comment-edit{
+    border : 1px solid #AAA; 
+    height : 360px; 
+    padding : 8px; 
+    overflow : auto;  
+
+}
+.comment-edit-parent{
+    border : 1px solid #AAA; 
+    height : 120px; 
+    margin-bottom : 16px; 
+    padding : 8px; 
+    overflow : auto;
+  
+}
 
 
 /* modal */

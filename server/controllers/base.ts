@@ -3,6 +3,7 @@ abstract class BaseCtrl{
 
     // Get all
     getAll = (req, res) => {
+        console.log("getAll");
         this.model.find({}, (err, docs) => {
         if (err) { return console.error(err); }
         res.json(docs);
@@ -11,6 +12,7 @@ abstract class BaseCtrl{
 
     // Count all
     count = (req, res) => {
+        console.log("count");
         this.model.count((err, count) => {
         if (err) { return console.error(err); }
         res.json(count);
@@ -18,6 +20,7 @@ abstract class BaseCtrl{
     };
     // Insert
     insert = (req, res) => {
+        console.log("insert");
         const obj = new this.model(req.body);
         console.log(obj);
         obj.save((err, item) => {
@@ -34,6 +37,7 @@ abstract class BaseCtrl{
 
     // Get by id
     get = (req, res) => {
+        console.log("get");
         this.model.findOne({ _id: req.params.id }, (err, obj) => {
         if (err) { return console.error(err); }
         res.json(obj);
@@ -43,6 +47,7 @@ abstract class BaseCtrl{
 
     // Update by id
     update = (req, res) => {
+        console.log("update");
         this.model.findOneAndUpdate({ _id: req.params.id }, req.body, (err) => {
         if (err) { return console.error(err); }
         res.sendStatus(200);
@@ -51,6 +56,7 @@ abstract class BaseCtrl{
 
     // Delete by id
     delete = (req, res) => {
+        console.log("delete");
         this.model.findOneAndRemove({ _id: req.params.id }, (err) => {
         if (err) { return console.error(err); }
         res.sendStatus(200);

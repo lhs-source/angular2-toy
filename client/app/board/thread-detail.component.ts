@@ -15,21 +15,28 @@ import 'rxjs/add/operator/switchMap';
 })
 
 export class ThreadDetailComponent implements OnInit {
+    ///////////
+    // objects
+    ///////////
 
     thre = {
         comments : []
     };
     id : string;
-    comments = [];
 
     @ViewChild('comment') commentContent : ElementRef;
 
+    // 댓글 입력창
+    // 1 - 추가, 2 - 수정, 3 - 대댓
     editPopup : number;
+    // 선택된 댓글
     selComment : any;
+    // 입력창에 띄울 내용
     modComment : string;
 
-    parenthtmlformat1 : string;
-    parenthtmlformat2 : string;
+    //////////////
+    // contructor
+    //////////////
 
     constructor(
         private ThreadService: ThreadService,
@@ -39,64 +46,65 @@ export class ThreadDetailComponent implements OnInit {
         private auth: AuthService,
       ) {}
 
+    /////////////
+    // lifecycle
+    /////////////
+
     ngOnInit(): void {
         this.modComment = "";
-        this.parenthtmlformat1 = "<div style='margin : 8px 0; padding : 4px; border : 1px solid #CCC; border-radius : 4px;'>"; 
-        this.parenthtmlformat2 = "</div>";
 
+        // 파라미터 가져오기 
         this.id = this.route.snapshot.paramMap.get('id');
-        this.ThreadService.getThread({_id : this.id})
-                            .subscribe(thread => {
-                                this.thre = thread;
-                                console.log(this.thre);
-                                this.thre.comments.forEach(
-                                    entry => {
-                                        if(entry._parent_id != '-1'){
-                                            entry.parent_comment = this.thre.comments.filter(com => com._id === entry._parent_id).pop();
-                                            console.log(entry.parent_comment);
-                                        }
-                                    }
-                                );
-                            });
-        /*
-        this.ThreadService.getComments({_discussion_id : this.id})
-                            .subscribe(comments => {
-                                this.comments = comments; 
-                                this.comments.forEach(com =>{
-                                    if(com._parent_id != '-1'){
-                                        this.ThreadService.getComment({_id : com._parent_id}).subscribe(
-                                            parent => {
-                                                com['parent_comment'] = parent; 
-                                                
-                                                //com.content = this.parenthtmlformat1 + parent.content + this.parenthtmlformat2;
-                                            },
-                                        )
-                                    }
-                                });
-                                console.log(JSON.stringify(comments));
-                            });
-        */
 
+        // 파라미터로 받은 id 갖고 스레드 가져오기
+        const condition = {_id : this.id};
+        this.ThreadService.getThread(condition).subscribe(
+            res => {
+                this.thre = res;
+                console.log(this.thre);
+                // 부모가 있으면 parent_comment에 부모댓글 넣어주기
+                this.thre.comments.forEach(
+                    entry => {
+                        if(entry._parent_id != '-1'){
+                            entry.parent_comment = this.thre.comments.filter(com => com._id === entry._parent_id).pop();
+                        }
+                    }
+                );
+            }
+        );
     }
 
+    ///////////
+    // methods
+    ///////////
+
+    // 뒤로가기
     goBack(): void {
         //this.location.back();
         this.router.navigate(['/thread/thread-list']);
     }
-    // thread modify
+    // 스레 수정
     goEdit(): void {
         this.router.navigate(['/thread/thread-edit', this.id]);
     }
+    // 스레 삭제
     goDelete(): void {
-        this.ThreadService.deleteThread({_id : this.id}).subscribe(
-            res => {console.log(res);},
-            error => {console.log(error)},
+        const condition = {_id : this.id};
+        this.ThreadService.deleteThread(condition).subscribe(
+            res => {
+                console.log(res);
+            },
+            error => {
+                console.log(error)
+            },
             () => {}
         );
         this.router.navigate(['/thread/thread-list']);
     }
 
-    // comment modify
+    ////////// 댓글 //////////
+
+    // 댓글 추가
     addComment() : void {
         let comment = {
             _discussion_id : this.id,
@@ -107,12 +115,17 @@ export class ThreadDetailComponent implements OnInit {
             create_date : Date.now(),
             update_date : Date.now(),
         };
-        console.log(JSON.stringify(comment));
         console.log(comment);
-        this.ThreadService.addComment({_id : comment._discussion_id, comments : comment}).subscribe(
+        const condition = {
+            _id : comment._discussion_id, 
+            comments : comment
+        };
+        this.ThreadService.addComment(condition).subscribe(
             res => {
                 console.log(res); 
-                comment['_id'] = res.comments.pop()._id;
+                let recvComment = res.comments;
+                comment['_id'] = recvComment._id;
+                comment['seq_id'] = recvComment.seq_id;
                 this.thre.comments.push(comment);
             },
             error => {console.log(error)},
@@ -120,22 +133,17 @@ export class ThreadDetailComponent implements OnInit {
                 this.closeModal();
             }
         );
-        /*
-        this.ThreadService.addComment(comment).subscribe(
-            res => {
-                console.log(res.json()); 
-                this.comments.push(res.json());
-            },
-            error => {console.log(error)},
-            () => {
-                this.closeModal();
-            }
-        );
-        */
     }
     editComment(): void {
-        //this.selComment = this.commentContent.nativeElement.innerHTML,
-        this.ThreadService.editComment({_id : this.selComment._discussion_id, comments : {_id : this.selComment._id, content : this.commentContent.nativeElement.innerHTML, update_date : Date.now()}}).subscribe(
+        let condition = {
+            _id : this.selComment._discussion_id, 
+            comments : {
+                _id : this.selComment._id, 
+                content : this.commentContent.nativeElement.innerHTML, 
+                update_date : Date.now()
+            }
+        };
+        this.ThreadService.editComment(condition).subscribe(
             res => {
                 console.log(this.selComment._id);
                 const pos = this.thre.comments.map(elem => elem._id).indexOf(this.selComment._id);
@@ -158,14 +166,19 @@ export class ThreadDetailComponent implements OnInit {
             update_date : Date.now(),
             parent_comment : {},
         };
-        console.log(JSON.stringify(comment));
-        this.ThreadService.addComment({_id : comment._discussion_id, comments : comment}).subscribe(
+        console.log(comment);
+        const condition = {
+            _id : comment._discussion_id, 
+            comments : comment
+        };
+        this.ThreadService.addComment(condition).subscribe(
             res => {
                 console.log(res); 
+                let recvComment = res.comments;
+                comment['_id'] = recvComment._id;
+                comment['seq_id'] = recvComment.seq_id;
                 comment.parent_comment = this.thre.comments.filter(com => com._id === comment._parent_id).pop();
-                console.log(comment.parent_comment);
                 this.thre.comments.push(comment);
-                console.log("ok"); 
             },
             error => {console.log(error)},
             () => {
@@ -189,8 +202,16 @@ export class ThreadDetailComponent implements OnInit {
         */
         // mongoose에서는 pull 해도 null로 바뀌어서 
         // 삭제되었습니다. 로 바꾸는 방안...
-        
-        this.ThreadService.editComment({_id : comment._discussion_id, comments : {_id : comment._id, content : comment.content, deleted : true, update_date : Date.now()}}).subscribe(
+        let condition = {
+            _id : comment._discussion_id, 
+            comments : {
+                _id : comment._id, 
+                content : comment.content, 
+                update_date : Date.now(),
+                deleted : true, 
+            }
+        };
+        this.ThreadService.editComment(condition).subscribe(
             res => {
                 console.log(comment._id);
                 const pos = this.thre.comments.map(elem => elem._id).indexOf(comment._id);

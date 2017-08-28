@@ -42,6 +42,21 @@
     
     font-size : 0.8em;
 }
+.list-info{
+    padding : 0px 4px 0px 16px; 
+    height : 100%; 
+    width : 200px; 
+    
+    display : inline-block; 
+    position : absolute; 
+    right : -0; 
+    font-size : 14px;
+    
+    background-color:#CCC; 
+}
+.pagithispage{
+    background-color: #777;
+}
 
 button{
     padding : 6px 16px;
