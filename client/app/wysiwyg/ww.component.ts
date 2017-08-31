@@ -21,6 +21,10 @@ export class WwComponent{
             // 다음 엘리먼트로 포커스 옮기는 거 방지
             event.preventDefault();
         }
+        else if(event.keyCode == 13){
+            document.execCommand('insertLineBreak', false);
+            event.preventDefault();
+        }
     }
     command(cmd : string, value : any){
         console.log(cmd + ", " + value);
@@ -43,6 +47,12 @@ export class WwComponent{
         case 'fontSize':
             document.execCommand('fontSize', false, value + "1");
             break;
+        case 'increaseFontSize':
+            document.execCommand('fontSize', false, value + "1");
+            break;
+        case 'decreaseFontSize':
+            document.execCommand('fontSize', false, value + "1");
+            break;
         case 'foreColor':
             document.execCommand('foreColor', false, value);
             break;
@@ -50,14 +60,24 @@ export class WwComponent{
             document.execCommand('removeFormat', false, value);
             break;
         case 'style':
+            let style = "border : 1px solid #AAA; border-left : 3px solid #AAA; padding : 6px 8px;";
             document.designMode = "on";
             document.execCommand('formatBlock', false, 'div');
             var test = document.getSelection().focusNode.parentElement;
-            test.className = "test";
-            //$(test).addClass('test');
-            console.log(test);
-            console.log(test.classList);
+            if(document.getSelection().type === "Caret"){
+                document.execCommand('insertHTML', false, '<div style="' + style + '">입력하세요</div>');
+            }
+            else if(document.getSelection().type === "Range"){
+                test.style.cssText = style;
+            }
             document.designMode = "off";
+            console.log(document.getSelection());
+            console.log(test);
+            console.log(test.innerHTML);
+            console.log(test.outerHTML);
+            console.log(test.style);
+            console.log(test.parentElement);
+            console.log(test.classList);
             break;
         default :
             break;
