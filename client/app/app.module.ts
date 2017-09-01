@@ -22,6 +22,8 @@ import { CssModule } from './css-practice/css.module';
 
 import { HomeComponent } from './home/home.component';
 
+import { ColorPickerModule } from './colorPicker/color-picker.module';
+
 import { ThreadModule } from './board/thread.module';
 
 import { AppHeaderComponent } from './headerfooter/appheader.component';
@@ -46,6 +48,7 @@ import { AppFooterComponent } from './headerfooter/appfooter.component';
     UserModule,
     WwModule,
     CssModule,
+    ColorPickerModule,
     ThreadModule,
   ],
   providers: [ //HeroService,

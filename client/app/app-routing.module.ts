@@ -16,6 +16,8 @@ import { AccountComponent } from './user/account/account.component';
 import { AdminComponent } from './user/admin/admin.component';
 import { CssComponent } from './css-practice/css.component';
 import { HomeComponent } from './home/home.component';
+import { ColorPickerComponent } from './colorPicker/color-picker.component';
+
 import { ThreadComponent } from './board/thread.component';
 import { ThreadDetailComponent } from './board/thread-detail.component';
 import { ThreadListComponent } from './board/thread-list.component';
@@ -77,6 +79,10 @@ const routes : Routes = [
     path: 'css', 
     component: CssComponent,
     canActivate: [AuthGuardLogin] 
+  },
+  {
+    path : 'colorpicker',
+    component: ColorPickerComponent,
   },
   {
     path: 'home',

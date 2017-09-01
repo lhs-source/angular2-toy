@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, Pipe } from '@angular/core';
+import { Component, ViewChild, ElementRef, Pipe, Renderer2 } from '@angular/core';
 
 @Component({
     selector : "ww",
@@ -10,6 +10,10 @@ export class WwComponent{
 
     htmlContent : string;
     isHtml : boolean;
+
+    constructor(private rd: Renderer2){
+
+    }
 
     display() : void {
         this.htmlContent = this.editor.nativeElement.innerHTML;
@@ -61,23 +65,27 @@ export class WwComponent{
             break;
         case 'style':
             let style = "border : 1px solid #AAA; border-left : 3px solid #AAA; padding : 6px 8px;";
-            document.designMode = "on";
-            document.execCommand('formatBlock', false, 'div');
+            //document.designMode = "on";
+            console.log(document.getSelection());
+            console.log(this.rd);
+            console.log(this.editor);
+            console.log(this.editor.nativeElement);
+            console.log(document.hasFocus());
             var test = document.getSelection().focusNode.parentElement;
             if(document.getSelection().type === "Caret"){
-                document.execCommand('insertHTML', false, '<div style="' + style + '">입력하세요</div>');
+                document.execCommand('insertHTML', false, '<br><div style="' + style + '">입력하세요</div><br>');
             }
             else if(document.getSelection().type === "Range"){
+                document.execCommand('formatBlock', false, 'div');
                 test.style.cssText = style;
             }
             document.designMode = "off";
-            console.log(document.getSelection());
-            console.log(test);
-            console.log(test.innerHTML);
-            console.log(test.outerHTML);
-            console.log(test.style);
-            console.log(test.parentElement);
-            console.log(test.classList);
+            // console.log(test);
+            // console.log(test.innerHTML);
+            // console.log(test.outerHTML);
+            // console.log(test.style);
+            // console.log(test.parentElement);
+            // console.log(test.classList);
             break;
         default :
             break;
