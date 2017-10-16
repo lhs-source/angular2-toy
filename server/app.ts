@@ -41,7 +41,7 @@ class Server{
     dotenv.load({ path: '.env' });
 
     // 포트는 8080 - socket
-    this.app.set('port', (process.env.PORT || 8080));
+    this.app.set('port', (process.env.PORT || 9999));
 
     // /로 시작되는 경로에서 모두 실행
     this.app.use('/', express.static(path.join(__dirname, '../public')));
@@ -84,9 +84,21 @@ class Server{
     this.db.once('open', () => {
       console.log('Connected to MongoDB');
 
+      this.app.use(
+        function(req, res, next) {
+          res.header('Acess-Control-Allow-Origin', '*');
+          res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+          res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+          (req.method === 'OPTIONS') ?
+            res.send(200) :
+            next();
+        }
+      );
+      
       // api route 설정
       setRoutes(this.app);
 
+      
       // localhost:3000으로 접속하면 클라이언트로 index.html을 전송
       this.app.get('/*', function(req, res) {
         res.sendFile(path.join(__dirname, '../public/index.html'));

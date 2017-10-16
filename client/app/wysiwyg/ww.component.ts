@@ -11,6 +11,19 @@ export class WwComponent{
     htmlContent : string;
     isHtml : boolean;
 
+    // ngx-editor
+    editorConfig = {
+        editable: true,
+        spellcheck: false,
+        height: '5rem',
+        minHeight: '2rem',
+        placeholder: 'Enter text here...',
+        translate: 'no'
+      };
+
+
+    // ngx-editor
+
     constructor(private rd: Renderer2){
 
     }
@@ -29,6 +42,14 @@ export class WwComponent{
             document.execCommand('insertLineBreak', false);
             event.preventDefault();
         }
+    }
+    event_click() : void{
+        let selection = document.getSelection();
+        console.log(selection);
+        console.log("anchorNode.nodeValue" + selection.anchorNode.nodeValue);
+        console.log("anchorNode Offset" + selection.anchorOffset);
+        console.log("focusNode.nodeValue" + selection.focusNode.nodeValue);
+        console.log("focusNode Offset" + selection.focusOffset);
     }
     command(cmd : string, value : any){
         console.log(cmd + ", " + value);
@@ -66,26 +87,47 @@ export class WwComponent{
         case 'style':
             let style = "border : 1px solid #AAA; border-left : 3px solid #AAA; padding : 6px 8px;";
             //document.designMode = "on";
-            console.log(document.getSelection());
-            console.log(this.rd);
-            console.log(this.editor);
-            console.log(this.editor.nativeElement);
-            console.log(document.hasFocus());
-            var test = document.getSelection().focusNode.parentElement;
+            
             if(document.getSelection().type === "Caret"){
                 document.execCommand('insertHTML', false, '<br><div style="' + style + '">입력하세요</div><br>');
             }
             else if(document.getSelection().type === "Range"){
                 document.execCommand('formatBlock', false, 'div');
+                var test = document.getSelection().focusNode.parentElement;
                 test.style.cssText = style;
+
+                let styles = document.createElement("style");
+                styles.appendChild(
+                    document.createTextNode(".h:hover { background : #444; }")
+                );
+                document.querySelector("head").appendChild(styles);
+
+                let range = document.getSelection().getRangeAt(0);
+                var span = document.createElement("div");
+                span.id = "hover";
+                span.className = "h";
+                span.appendChild( document.createTextNode("hi") );
+                range.insertNode(span);
             }
             document.designMode = "off";
-            // console.log(test);
-            // console.log(test.innerHTML);
-            // console.log(test.outerHTML);
-            // console.log(test.style);
-            // console.log(test.parentElement);
-            // console.log(test.classList);
+
+            // var sel, range;
+            // if (window.getSelection && (sel = window.getSelection()).rangeCount) {
+            //     range = sel.getRangeAt(0);
+            //     range.collapse(true);
+                
+            //     var span = document.createElement("div");
+            //     span.style.cssText = "border : 1px solid #AAA; border-left : 3px solid #AAA; padding : 6px 8px;";
+            //     span.id = "myId";
+            //     span.appendChild( document.createTextNode("hi") );
+            //     range.insertNode(span);
+        
+            //     // Move the caret immediately after the inserted span
+            //     range.setStartAfter(span);
+            //     range.collapse(true);
+            //     sel.removeAllRanges();
+            //     sel.addRange(range);
+            // }
             break;
         default :
             break;
@@ -99,5 +141,12 @@ export class WwComponent{
         else{
             this.editor.nativeElement.innerHTML = this.editor.nativeElement.innerText;
         }
+    }
+    debug(){
+        console.log(document.getSelection());
+        console.log(this.rd);
+        console.log(this.editor);
+        console.log(this.editor.nativeElement);
+        console.log(document.hasFocus());
     }
 }

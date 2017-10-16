@@ -15,6 +15,8 @@ import { ThreadService } from './thread.service';
 import { SafeHtmlPipe } from '../wysiwyg/ww-safehtml.pipe';
 import { GlobalModule } from '../global.module';
 
+import { NgxEditorModule } from '../ngx-editor/ngx-editor.module';
+
 
 @NgModule({
     declarations: [
@@ -30,7 +32,8 @@ import { GlobalModule } from '../global.module';
         FormsModule,
         RouterModule,
         ReactiveFormsModule,
-        GlobalModule
+        GlobalModule,
+        NgxEditorModule
     ],
     providers : [
         ThreadService,

@@ -32,6 +32,23 @@ export class ThreadEditComponent implements OnInit {
     
     writeForm: FormGroup;
 
+    loadComplete = false;
+    
+
+    // editor
+
+    editorConfig = {
+        editable: true,
+        spellcheck: false,
+        height: '16rem',
+        minHeight: '6rem',
+        placeholder: 'Enter text here...',
+        translate: 'no'
+    };
+
+    htmlContent : string;
+    // editor
+
     //////////////
     // contructor
     //////////////
@@ -65,7 +82,11 @@ export class ThreadEditComponent implements OnInit {
                 this.username = thread.username;
                 this.email = thread.email;
                 this.title.setValue(thread.title);
-                this.content.nativeElement.innerHTML = thread.content;
+                //this.content.nativeElement.innerHTML = thread.content;
+                this.htmlContent = thread.content;
+                console.log(this.htmlContent);
+
+                this.loadComplete = true;
             }
         );
                         
@@ -83,7 +104,8 @@ export class ThreadEditComponent implements OnInit {
             _id : this.id,
             title : this.title.value,
             category : this.category.value,
-            content : this.content.nativeElement.innerHTML,
+            //content : this.content.nativeElement.innerHTML,
+            content : this.htmlContent,
             update_date : Date.now()
         };
 
@@ -104,5 +126,10 @@ export class ThreadEditComponent implements OnInit {
     // 뒤로가기
     goBack(): void {
         this.location.back();
+    }
+
+    debug() : void {
+        this.htmlContent += " plus";
+        console.log(this.htmlContent);
     }
 }

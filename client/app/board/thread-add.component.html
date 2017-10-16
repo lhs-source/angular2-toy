@@ -1,7 +1,7 @@
 <div style="width : 80%; margin : 0 auto;">
     <h1>New Post</h1>
     <!-- 글 추가 폼 -->
-    <form [formGroup]="writeForm" (ngSubmit)="write()">
+    <form [formGroup]="writeForm">
         <!-- 카테고리 란 -->
         <input type="text" name="category" formControlName="category" placeholder="category">
         <!-- 유저 이름과 아이디(아이디는 그냥 디버그용) -->
@@ -11,9 +11,12 @@
         <input type="text" name="title" formControlName="title" placeholder="title">
         <br>
         <!-- 내용 -->
-        <div #content class="contentInput" contenteditable="true"></div>
+        <!-- <div #content class="contentInput" contenteditable="true"></div> -->
+        <div class="editor block">
+            <app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true" [(html)]="htmlContent"></app-ngx-editor>
+        </div>
         <!-- 쓰기와 취소 버튼 -->
-        <button type="submit">write</button>
+        <button type="submit" (click)="write();">write</button>
         <button type="button" (click)="goBack();">cancel</button>
     </form>
 </div>

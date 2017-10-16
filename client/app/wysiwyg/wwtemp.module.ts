@@ -4,12 +4,17 @@ import { SafeHtmlPipe } from './ww-safehtml.pipe';
 
 import { GlobalModule } from '../global.module';
 
+import { NgxEditorModule } from '../ngx-editor/ngx-editor.module';
+import { BrowserModule } from '@angular/platform-browser';
+
 @NgModule({
     declarations : [
         WwComponent,
     ],
     imports : [
-        GlobalModule
+        BrowserModule,
+        GlobalModule,
+        NgxEditorModule,
     ],
     exports :[
         

@@ -29,7 +29,19 @@ export class ThreadAddComponent implements OnInit {
     @ViewChild('content') content : ElementRef;
     
     writeForm: FormGroup;
-    
+
+    // editor
+    editorConfig = {
+        editable: true,
+        spellcheck: false,
+        height: '16rem',
+        minHeight: '6rem',
+        placeholder: 'Enter text here...',
+        translate: 'no'
+    };
+
+    htmlContent = '<span>Edit me</span><br><br><br><br><br><br><br><br><br><br>';
+
     //////////////
     // contructor
     //////////////
@@ -67,7 +79,8 @@ export class ThreadAddComponent implements OnInit {
             userid : this.id,
             title : this.title.value,
             category : this.category.value,
-            content : this.content.nativeElement.innerHTML,
+            //content : this.content.nativeElement.innerHTML,
+            content : this.htmlContent,
             create_date : Date.now(),
             update_date : Date.now()
         }

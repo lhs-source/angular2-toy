@@ -13,7 +13,8 @@
     <button (click)="command('style', 'test')">style</button>
 </div>
 <div #editor contenteditable="true" spellcheck="false"  style="border : 1px solid #BBB; margin : 20px; padding : 12px;"
-    (keydown)="event_keydown($event)">
+    (keydown)="event_keydown($event)"
+    (click)="event_click()">
     <h1>hi</h1>
     <b>here will be editor</b>
     thank you.
@@ -23,5 +24,23 @@
     </div>
 </div>
 <button (click)="display()">view content</button>
+<button (click)="debug()">debug</button>
 <div style="width : 100%;  word-wrap: break-word;"><code>{{htmlContent}}</code></div>
 <div  style="border : 1px solid #BBB; margin : 20px; padding : 12px;" [innerHTML]="htmlContent | safeHtml"></div>
+
+<div class="editor block">
+    <app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true" [(html)]="htmlContent"></app-ngx-editor>
+</div>
+
+<div *ngIf="htmlContent" class="htmlblock block">
+    <h6>HTML Output</h6>
+    <div class="html">
+        {{htmlContent}}
+    </div>
+</div>
+
+
+
+
+
+
