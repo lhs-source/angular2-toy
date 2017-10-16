@@ -95,27 +95,27 @@ const routes : Routes = [
     children :[
       { // default
         path : '',
-        redirectTo : 'thread-list',
+        redirectTo : 'list/default/1',
         pathMatch : 'full'
       },
       {
-        path: 'thread-list',
+        path: 'list',
         component : ThreadListComponent,
       },
       {
-        path: 'thread-list/:category/:page',
+        path: 'list/:category/:page',
         component : ThreadListComponent,
       },
       {
-        path: 'thread-detail/:id',
+        path: 'detail/:category/:id/:page',
         component : ThreadDetailComponent,
       },
       {
-        path: 'thread-add',
+        path: 'write',
         component : ThreadAddComponent,
       },
       {
-        path: 'thread-edit/:id',
+        path: 'edit/:id/:page',
         component : ThreadEditComponent,
       },
     ]

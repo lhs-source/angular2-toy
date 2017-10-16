@@ -15,9 +15,8 @@
         <div *ngIf="loadComplete" class="editor block">
             <app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true" [(html)]="htmlContent"></app-ngx-editor>
         </div>
-        <button type="button" (click)="debug();">debug</button>
         <!-- 쓰기와 취소 버튼 -->
-        <button type="submit" (click_="write()">write</button>
+        <button type="submit" (click)="write()">write</button>
         <button type="button" (click)="goBack();">cancel</button>
     </form>
 </div>

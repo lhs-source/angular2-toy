@@ -41,10 +41,10 @@ export class ThreadListComponent implements OnInit{
 
         // 파라미터가 뭔가 부족하면        
         if(!this.category){
-            this.router.navigate(['thread/thread-list', 'default', '1']);
+            this.router.navigate(['thread/list', 'default', '1']);
         }
         if(!this.page){
-            this.router.navigate(['thread/thread-list', this.category, '1']);
+            this.router.navigate(['thread/list', this.category, '1']);
         }
         
         // 카테고리 안의 스레 개수
@@ -53,7 +53,7 @@ export class ThreadListComponent implements OnInit{
                 this.count = res;
                 
                 if(Math.ceil(this.count / 5) < parseInt(this.page)){
-                    this.router.navigate(['thread/thread-list', this.category, '1']);
+                    this.router.navigate(['thread/list', this.category, '1']);
                     return;
                 }
                 const perPage = 5;
@@ -92,20 +92,21 @@ export class ThreadListComponent implements OnInit{
 
     // 새 스레
     newThre() {
-        this.router.navigate(['thread/thread-add']);
+        this.router.navigate(['thread/write']);
     }
     // 스레 확인
     move(_id : string){
-        this.router.navigate(['/thread/thread-detail', _id]);
+        this.router.navigate(['/thread/detail', this.category, _id, this.page]);
     }
     
     pageMove(move : number){
+        console.log("page");
         let pageNum = parseInt(this.page) + move;
         if(pageNum <= 0){
             return;
         }
         this.page = pageNum.toString();
-        this.router.navigate(['thread/thread-list', this.category, this.page]);
+        this.router.navigate(['thread/list', this.category, this.page]);
         // this.threServ.getThreads({category : this.category, page : this.page}).subscribe(
         //     rep => {
         //         this.threads = rep; 
@@ -116,6 +117,7 @@ export class ThreadListComponent implements OnInit{
         // );
     }
     pageMoveAbsolute(move : number){
+        console.log("page");
         let pageNum = move;
         if(move === -1){
             pageNum = Math.ceil(this.count / 5);
@@ -124,7 +126,7 @@ export class ThreadListComponent implements OnInit{
             return;
         }
         this.page = pageNum.toString();
-        this.router.navigate(['thread/thread-list', this.category, this.page]);
+        this.router.navigate(['thread/list', this.category, this.page]);
         // this.threServ.getThreads({category : this.category, page : this.page}).subscribe(
         //     rep => {
         //         this.threads = rep; 

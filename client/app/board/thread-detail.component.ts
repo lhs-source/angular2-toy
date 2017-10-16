@@ -22,7 +22,9 @@ export class ThreadDetailComponent implements OnInit {
     thre = {
         comments : []
     };
+    category : string;
     id : string;
+    page : string;
 
     @ViewChild('comment') commentContent : ElementRef;
 
@@ -54,7 +56,9 @@ export class ThreadDetailComponent implements OnInit {
         this.modComment = "";
 
         // 파라미터 가져오기 
+        this.category = this.route.snapshot.paramMap.get('category');
         this.id = this.route.snapshot.paramMap.get('id');
+        this.page = this.route.snapshot.paramMap.get('page');
 
         // 파라미터로 받은 id 갖고 스레드 가져오기
         const condition = {_id : this.id};
@@ -81,11 +85,11 @@ export class ThreadDetailComponent implements OnInit {
     // 뒤로가기
     goBack(): void {
         //this.location.back();
-        this.router.navigate(['/thread/thread-list']);
+        this.router.navigate(['/thread/list', this.category, this.page]);
     }
     // 스레 수정
     goEdit(): void {
-        this.router.navigate(['/thread/thread-edit', this.id]);
+        this.router.navigate(['/thread/edit', this.id, this.page]);
     }
     // 스레 삭제
     goDelete(): void {
@@ -99,7 +103,7 @@ export class ThreadDetailComponent implements OnInit {
             },
             () => {}
         );
-        this.router.navigate(['/thread/thread-list']);
+        this.router.navigate(['/thread/list']);
     }
 
     ////////// 댓글 //////////

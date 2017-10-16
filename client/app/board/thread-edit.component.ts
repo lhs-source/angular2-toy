@@ -25,6 +25,7 @@ export class ThreadEditComponent implements OnInit {
         Validators.maxLength(64)]);
     category = new FormControl('', [Validators.required,
         Validators.minLength(1)]);
+    page : string;
     
     thre = {};
 
@@ -40,8 +41,8 @@ export class ThreadEditComponent implements OnInit {
     editorConfig = {
         editable: true,
         spellcheck: false,
-        height: '16rem',
-        minHeight: '6rem',
+        height: '32rem',
+        minHeight: '1rem',
         placeholder: 'Enter text here...',
         translate: 'no'
     };
@@ -74,6 +75,7 @@ export class ThreadEditComponent implements OnInit {
         });
         // 파라미터 겟
         this.id = this.route.snapshot.paramMap.get('id');
+        this.page = this.route.snapshot.paramMap.get('page');
         let condition = {_id : this.id};
         this.threServ.getThread(condition).subscribe(
             thread => {
@@ -117,7 +119,7 @@ export class ThreadEditComponent implements OnInit {
                 console.log(error)
             },
             () => { 
-                this.router.navigate(['thread/thread-detail', this.id]); 
+                this.router.navigate(['thread/detail', editthread.category, editthread._id, "1"]); 
             }
         )
 

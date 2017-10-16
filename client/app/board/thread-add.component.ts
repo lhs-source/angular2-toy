@@ -40,7 +40,7 @@ export class ThreadAddComponent implements OnInit {
         translate: 'no'
     };
 
-    htmlContent = '<span>Edit me</span><br><br><br><br><br><br><br><br><br><br>';
+    htmlContent = '<span>Edit me</span><br><br><br><br><br>';
 
     //////////////
     // contructor
