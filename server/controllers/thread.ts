@@ -7,7 +7,7 @@ export default class ThreadCtrl extends BaseCtrl {
 
     getAllSortd = (req, res) => {
         /* sort({'key' : 1 - inc / -1 - dec }) */
-        let perPage = 5;
+        let perPage = 8;
         this.model.find({category : req.params.category}).sort({'seq_id' : -1}).limit(perPage).skip((req.params.page - 1) * perPage).exec((err, docs) => {
         if (err) { return console.error(err); }
         res.json(docs);

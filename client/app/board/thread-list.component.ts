@@ -52,15 +52,15 @@ export class ThreadListComponent implements OnInit{
             res => { 
                 this.count = res;
                 
-                if(Math.ceil(this.count / 5) < parseInt(this.page)){
+                const perPage = 8;
+                const perPagi = 10;
+                if(Math.ceil(this.count / perPage) < parseInt(this.page)){
                     this.router.navigate(['thread/list', this.category, '1']);
                     return;
                 }
-                const perPage = 5;
-                const perPagi = 3;
-                let pagiStart = parseInt(this.page) - Math.floor(perPage / 2);
+                let pagiStart = parseInt(this.page) - Math.floor(perPagi / 2);
                 let pagiEnd = Math.ceil(this.count / perPage);
-                let pagiLast = parseInt(this.page) + Math.floor(perPage / 2);
+                let pagiLast = parseInt(this.page) + Math.floor(perPagi / 2);
                 if(pagiStart <= 0){
                     pagiStart = 1;
                 }
