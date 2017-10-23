@@ -1,0 +1,13 @@
+<div>
+    <div style="padding : 8px;">
+        <span class="dropbtn" (click)="fontdrop()" style="border : 1px solid #AAA; padding : 4px;">font</span>
+        <div class="dropcont" [ngClass]="{'dropshow' : isFontdrop}" >
+            <div (click)="selSize(10)" style="margin : 0px; padding : 4px; border-left : 1px solid #AAA; border-right : 1px solid #BBB; display : block; width : 80px;">10px</div>
+            <div (click)="selSize(12)" style="margin : 0px; padding : 4px; border-left : 1px solid #AAA; border-right : 1px solid #BBB; display : block; width : 80px;">12px</div>
+            <div (click)="selSize(14)" style="margin : 0px; padding : 4px; border-left : 1px solid #AAA; border-right : 1px solid #BBB; display : block; width : 80px;">14px</div>
+            <div (click)="selSize(16)" style="margin : 0px; padding : 4px; border-left : 1px solid #AAA; border-right : 1px solid #BBB; display : block; width : 80px;">16px</div>
+        </div>
+        <span>{{selsize}}</span>
+        <div contenteditable="true"> test </div>
+    </div>
+</div>
