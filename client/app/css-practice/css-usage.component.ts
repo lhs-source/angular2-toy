@@ -24,5 +24,6 @@ export class CSSUsageComponent{
         console.log(sel);
 
         this.selsize = arg1;
+        document.execCommand("fontSize", false, arg1);
     }
 }

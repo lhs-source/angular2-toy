@@ -17,6 +17,8 @@ export class NgxEditorComponent implements OnInit {
   _config: any;
   _html: any;
   _resizer: string;
+  ngxMessage: string;
+  enableToolbar = false;
 
   @Input() editable: boolean;
   @Input() spellcheck: boolean;
@@ -34,9 +36,8 @@ export class NgxEditorComponent implements OnInit {
     console.log(value);
     if (value === 'basic') {
       this._resizer = value;
-    }
-    else {
-      this._resizer = 'stack'
+    } else {
+      this._resizer = 'stack';
     }
   }
   get resizer(): string {
@@ -83,21 +84,83 @@ export class NgxEditorComponent implements OnInit {
     }
   }
 
-  constructor() { }
-
-  executeCommand(commandName) {
-    const isExecuted = document.execCommand(commandName, false, null);
-  }
+  constructor(private _element: ElementRef) { }
 
   /*
-   * blockquote
+   * editor actions
    */
+  executeCommand(commandName) {
+    document.execCommand(commandName, false, null);
+  }
+
+  // blockquote
   blockQuote() {
     document.execCommand('formatBlock', false, '<blockquote>');
   }
 
   removeQuote() {
     document.execCommand('formatBlock', false, 'div');
+  }
+
+  // insert link
+  createLink() {
+    const selection = document.getSelection();
+
+    if (selection.anchorNode.parentElement.tagName === 'A') {
+      const linkURL = prompt('Enter URL', selection.anchorNode.parentElement.getAttribute('href'));
+      if (linkURL) {
+        document.execCommand('createLink', false, linkURL);
+      }
+    } else {
+      if (selection['type'] === 'None') {
+        this.createMessage('No selection made');
+      } else {
+        const linkURL = prompt('Enter URL', 'http://');
+        if (linkURL) {
+          document.execCommand('createLink', false, linkURL);
+        }
+      }
+    }
+  }
+
+  // insert image
+  insertImage() {
+    const imageURI = prompt('Enter URL', 'http://');
+    if (imageURI) {
+      const inserted = document.execCommand('insertImage', false, imageURI);
+      if (!inserted) {
+        this.createMessage('Invalid URL');
+      }
+    }
+  }
+
+  /*
+   * message box
+   */
+  createMessage(message) {
+    this.ngxMessage = message;
+    setTimeout(() => {
+      this.clearMessage();
+    }, 5000);
+  }
+
+  clearMessage() {
+    this.ngxMessage = undefined;
+  }
+
+  /*
+   * focus event
+   */
+  onFocus() {
+    this.enableToolbar = true;
+  }
+
+  @HostListener('document:click', ['$event']) onDocumentClick(event) {
+    if (this._element.nativeElement.contains(event.target)) {
+      this.enableToolbar = true;
+    } else {
+      this.enableToolbar = false;
+    }
   }
 
   /*
@@ -111,7 +174,7 @@ export class NgxEditorComponent implements OnInit {
    * resizing text area
    */
   resizeTextArea(offsetY) {
-    let newHeight = parseInt(this.height);
+    let newHeight = parseInt(this.height, 10);
     newHeight += offsetY;
     this.height = newHeight + 'px';
     this.textArea.nativeElement.style.height = this.height;
@@ -132,6 +195,8 @@ export class NgxEditorComponent implements OnInit {
     this.textArea.nativeElement.innerHTML = this.html || '';
 
     this.height = this.height || this.textArea.nativeElement.offsetHeight;
+
+    document.execCommand('enableObjectResizing', true, true);
   }
 
 }

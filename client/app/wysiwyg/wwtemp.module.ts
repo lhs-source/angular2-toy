@@ -7,7 +7,8 @@ import { GlobalModule } from '../global.module';
 import { NgxEditorModule } from '../ngx-editor/ngx-editor.module';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { FroalaEditorModule } from './froala/editor.module';
+import { FroalaViewModule } from './froala/view.module';
 
 @NgModule({
     declarations : [

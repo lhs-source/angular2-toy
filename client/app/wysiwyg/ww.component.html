@@ -40,6 +40,8 @@
 </div>
 
 <div [froalaEditor] [(froalaModel)]="editorContent">Hello, Froala!</div>
+<div>{{editorContent}}</div>
+<div [innerHTML]="editorContent"></div>
 <div [froalaView]="editorContent"></div>
 
 
