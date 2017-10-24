@@ -3,13 +3,17 @@ import { Component, ViewChild, ElementRef, Pipe, Renderer2 } from '@angular/core
 @Component({
     selector : "ww",
     templateUrl : "./ww.component.html",
-    styleUrls : ["./ww.component.css"],
+    styleUrls : [
+        "./ww.component.css",
+    ],
+    
 })
 export class WwComponent{
     @ViewChild('editor') editor : ElementRef;
 
     htmlContent : string;
     isHtml : boolean;
+    editorContent : string;
 
     // ngx-editor
     editorConfig = {

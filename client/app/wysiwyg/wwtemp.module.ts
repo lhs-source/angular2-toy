@@ -7,6 +7,8 @@ import { GlobalModule } from '../global.module';
 import { NgxEditorModule } from '../ngx-editor/ngx-editor.module';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+
 @NgModule({
     declarations : [
         WwComponent,
@@ -15,6 +17,8 @@ import { BrowserModule } from '@angular/platform-browser';
         BrowserModule,
         GlobalModule,
         NgxEditorModule,
+        FroalaEditorModule, 
+        FroalaViewModule,
     ],
     exports :[
         
