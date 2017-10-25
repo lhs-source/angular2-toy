@@ -53,7 +53,7 @@
                             <!-- 코멘트의 코멘트 - if 삭제되지 않았다면 -->
                             <button *ngIf="!comment.deleted" (click)="convertMode(3, comment)"><i class="fa fa-plus" aria-hidden="true"></i> Comment</button>
                             <!-- 댓글의 시퀀스 넘버 -->
-                            <span style="border-bottom : 1px solid #AAA; border-radius : 2px; padding : 2px; "><a name="{{comment.seq_id}}"></a>#{{comment.seq_id}}</span>
+                            <span style="border-bottom : 1px solid #AAA; border-radius : 2px; padding : 2px; "><span id="{{comment.seq_id}}"></span>#{{comment.seq_id}}</span>
                         </span>               
                     </div>
                     <div style="margin : 32px 0;"></div>

@@ -3,9 +3,9 @@
         <div class="dropbtn" (click)="fontdrop()" style="border : 1px solid #AAA; padding : 2px; width : 50px;">font</div>
         <div class="dropcont" [ngClass]="{'dropshow' : isFontdrop}" >
             <ul style="list-style-position: inside; list-style-type: none; margin : 0px; padding: 0;">
-                <li (click)="selSize(10)">10px</li>
-                <li (click)="selSize(12)">12px</li>
-                <li (click)="selSize(14)">14px</li>
+                <li style="font-size : 10px;" (click)="selSize(10)">10px</li>
+                <li style="font-size : 12px;" (click)="selSize(12)">12px</li>
+                <li style="font-size : 14px;" (click)="selSize(14)">14px</li>
             </ul>
         </div>
         <span>{{selsize}}</span>

@@ -1,5 +1,5 @@
 import { Component, ViewChild, ViewChildren, ElementRef, OnInit } from '@angular/core'
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, NavigationEnd } from '@angular/router';
 import { Location }                 from '@angular/common';
 
 import { AuthService } from '../user/auth.service';
@@ -46,7 +46,23 @@ export class ThreadDetailComponent implements OnInit {
         private location: Location,
         private router : Router,
         private auth: AuthService,
-      ) {}
+      ) {
+        router.events.subscribe(event =>{
+            if(event instanceof NavigationEnd){
+                const tree = router.parseUrl(router.url);
+                console.log(tree.fragment);
+                if(tree.fragment){
+                    const element = document.getElementById(tree.fragment);
+                    console.log(element);
+                    if(element) {
+                        element.scrollIntoView(element);
+                    }
+                }
+            }
+        });
+
+
+      }
 
     /////////////
     // lifecycle

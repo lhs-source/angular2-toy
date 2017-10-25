@@ -21,10 +21,12 @@ li:hover{
 
 .dropcont{
     display : block;
-    position : relative;
+    position : absolute;
+    z-index: 1;
     
     border-top : 1px solid #999;
     border-bottom : 1px solid #999;
+    background-color: #DDD;
 
     width : 90px;
 

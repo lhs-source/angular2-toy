@@ -115,8 +115,51 @@
         </button>
       </div>
       <div class="ngx-toolbar-set">
-        <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="insertImage()" title="Insert Image" [disabled]="!enableToolbar">
-          <i class="fa fa-picture-o" aria-hidden="true"></i>
+        <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="fontSize(1)" title="Insert Image" [disabled]="!enableToolbar" style="height : 50px;">
+          <!-- <i class="fa fa-picture-o" aria-hidden="true"></i> -->
+          <span style="font-size : 8px;">1</span>
+        </button>
+        <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="fontSize(2)" title="Insert Image" [disabled]="!enableToolbar" style="height : 50px;">
+          <!-- <i class="fa fa-picture-o" aria-hidden="true"></i> -->
+          <span style="font-size : 12px;">2</span>
+        </button>
+        <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="fontSize(3)" title="Insert Image" [disabled]="!enableToolbar" style="height : 50px;">
+          <!-- <i class="fa fa-picture-o" aria-hidden="true"></i> -->
+          <span style="font-size : 16px;">3</span>
+        </button>
+        <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="fontSize(4)" title="Insert Image" [disabled]="!enableToolbar" style="height : 50px;">
+          <!-- <i class="fa fa-picture-o" aria-hidden="true"></i> -->
+          <span style="font-size : 20px;">4</span>
+        </button>
+        <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="fontSize(5)" title="Insert Image" [disabled]="!enableToolbar" style="height : 50px;">
+          <!-- <i class="fa fa-picture-o" aria-hidden="true"></i> -->
+          <span style="font-size : 24px;">5</span>
+        </button>
+        <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="fontSize(6)" title="Insert Image" [disabled]="!enableToolbar" style="height : 50px;">
+          <!-- <i class="fa fa-picture-o" aria-hidden="true"></i> -->
+          <span style="font-size : 28px;">6</span>
+        </button>
+        <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="fontSize(7)" title="Insert Image" [disabled]="!enableToolbar" style="height : 50px;">
+          <!-- <i class="fa fa-picture-o" aria-hidden="true"></i> -->
+          <span style="font-size : 32px;">7</span>
+        </button>
+      </div>
+      <div class="ngx-toolbar-set">
+        <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="fontColor()" title="Insert Image" [disabled]="!enableToolbar">
+          <!-- <i class="fa fa-picture-o" aria-hidden="true"></i> -->
+          <span style="">bg</span>
+        </button>
+        <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="bgColor()" title="Insert Image" [disabled]="!enableToolbar">
+          <!-- <i class="fa fa-picture-o" aria-hidden="true"></i> -->
+          <span style="">color</span>
+        </button>
+        <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="colorSet('#A52A2A')" title="Insert Image" [disabled]="!enableToolbar">
+          <!-- <i class="fa fa-picture-o" aria-hidden="true"></i> -->
+          <span style="background-color : #A52A2A;"> c </span>
+        </button>
+        <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="colorSet('#556B2F')" title="Insert Image" [disabled]="!enableToolbar">
+          <!-- <i class="fa fa-picture-o" aria-hidden="true"></i> -->
+          <span style="background-color : #556B2F;"> c </span>
         </button>
       </div>
     </div>

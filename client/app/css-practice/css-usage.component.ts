@@ -25,5 +25,6 @@ export class CSSUsageComponent{
 
         this.selsize = arg1;
         document.execCommand("fontSize", false, arg1);
+        this.isFontdrop = !this.isFontdrop;
     }
 }

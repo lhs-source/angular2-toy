@@ -20,6 +20,8 @@ export class NgxEditorComponent implements OnInit {
   ngxMessage: string;
   enableToolbar = false;
 
+  color : string = "#AAA";
+
   @Input() editable: boolean;
   @Input() spellcheck: boolean;
   @Input() placeholder: string;
@@ -146,6 +148,47 @@ export class NgxEditorComponent implements OnInit {
 
   clearMessage() {
     this.ngxMessage = undefined;
+  }
+
+  fontSize(arg1 : number){
+      //document.execCommand('styleWithCss');
+      //document.execCommand('fontSize', false, arg1 / 2);
+      // let fontElements = document.getElementsByTagName("font");
+      // for (let i = 0, len = fontElements.length; i < len; ++i) {
+      //     if (fontElements[i].size == 7) {
+      //         fontElements[i].removeAttribute("size");
+      //         fontElements[i].style.fontSize = "30px";
+      //     }
+      // }
+
+      let sel = document.getSelection();
+      console.log(sel);
+
+      let anchorNode = sel.anchorNode;
+      let focusNode = sel.focusNode;
+      
+      let anchorOffset = sel.anchorOffset;
+      let focusOffset = sel.focusOffset;
+
+      let rangeAt  = sel.getRangeAt(0);
+      console.log(rangeAt);
+
+      // let newText = document.createElement("br");
+      // anchorNode.appendChild(newText);
+
+      
+
+      //document.execCommand("fontSize", false, arg1);
+  }
+
+  fontColor(){
+    document.execCommand('backColor', false, this.color);
+  }
+  bgColor(){
+    document.execCommand('foreColor', false, this.color);
+  }
+  colorSet(color : string){
+    this.color = color;
   }
 
   /*
