@@ -153,14 +153,11 @@
           <!-- <i class="fa fa-picture-o" aria-hidden="true"></i> -->
           <span style="">color</span>
         </button>
-        <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="colorSet('#A52A2A')" title="Insert Image" [disabled]="!enableToolbar">
-          <!-- <i class="fa fa-picture-o" aria-hidden="true"></i> -->
-          <span style="background-color : #A52A2A;"> c </span>
-        </button>
-        <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="colorSet('#556B2F')" title="Insert Image" [disabled]="!enableToolbar">
-          <!-- <i class="fa fa-picture-o" aria-hidden="true"></i> -->
-          <span style="background-color : #556B2F;"> c </span>
-        </button>
+        <span *ngFor="let for_color of colorList">
+          <button class="ngx-editor-button" [ngClass]="{'ngx-editor-button-selected' : for_color === color}" *ngIf="canEnableToolbarOptions('image')" (click)="colorSet(for_color)" title="" [disabled]="!enableToolbar">
+            <span [style.background-color]="for_color" [style.color]="for_color"> oo </span>
+          </button>
+        </span>
       </div>
     </div>
   

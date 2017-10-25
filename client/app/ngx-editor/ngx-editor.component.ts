@@ -22,6 +22,34 @@ export class NgxEditorComponent implements OnInit {
 
   color : string = "#AAA";
 
+  colorList = [
+    '#A52A2A',
+    '#ff8080',
+    '#800000',
+
+    '#0000ff',
+    '#8080ff',
+    '#000080',
+
+    '#ffbf00',
+    '#ffdf80',
+    '#806000',
+
+    '#009933',
+
+    '#ffffff',
+    '#e6e6e6',
+    '#cccccc',
+    '#b3b3b3',
+    '#999999',
+    '#808080',
+    '#666666',
+    '#4d4d4d',
+    '#333333',
+    '#1a1a1a',
+    '#000000'
+  ]
+
   @Input() editable: boolean;
   @Input() spellcheck: boolean;
   @Input() placeholder: string;
@@ -178,7 +206,7 @@ export class NgxEditorComponent implements OnInit {
 
       
 
-      //document.execCommand("fontSize", false, arg1);
+      document.execCommand("fontSize", false, arg1);
   }
 
   fontColor(){

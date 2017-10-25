@@ -53,6 +53,10 @@
                     cursor: not-allowed;
                 }
             }
+            .ngx-editor-button-selected {
+                background-color: #CFCFCF;
+                transition: 0.2s ease;
+            }
         }
     }
     .ngx-editor-textarea {
