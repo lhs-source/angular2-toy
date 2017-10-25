@@ -1,5 +1,6 @@
 import { Component, EventEmitter } from '@angular/core';
-import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions, UploadStatus } from 'ngx-uploader';
+import { UploadOutput, UploadInput, UploadFile, UploaderOptions, UploadStatus } from './ngx-uploader/classes/interfaces';
+import { humanizeBytes } from './ngx-uploader/classes/ngx-uploader.class';
 
 @Component({
   selector: 'file-upload',
@@ -15,6 +16,8 @@ export class FileUploadComponent {
   uploadInput: EventEmitter<UploadInput>;
   humanizeBytes: Function;
   dragOver: boolean;
+
+  filename : string;
 
   constructor() {
     this.options = { concurrency: 1 };
@@ -47,6 +50,11 @@ export class FileUploadComponent {
       this.dragOver = false;
     } else if (output.type === 'drop') {
       this.dragOver = false;
+    } 
+    else if (output.type === 'done'){
+      console.log("done!");
+      this.filename = "http://localhost:3000/uploads/" + output.file.name;
+      console.log(this.filename);
     }
 
     this.files = this.files.filter(file => file.progress.status !== UploadStatus.Done);

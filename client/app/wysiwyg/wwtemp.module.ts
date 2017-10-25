@@ -10,13 +10,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FroalaEditorModule } from './froala/editor.module';
 import { FroalaViewModule } from './froala/view.module';
 
-import { NgUploaderModule } from 'ngx-uploader';
-import { FileUploadComponent } from './file/file-upload.component';
+import { FileUploadModule } from './file/file-upload.module';
 
 @NgModule({
     declarations : [
         WwComponent,
-        FileUploadComponent,
     ],
     imports : [
         BrowserModule,
@@ -24,7 +22,7 @@ import { FileUploadComponent } from './file/file-upload.component';
         NgxEditorModule,
         FroalaEditorModule, 
         FroalaViewModule,
-        NgUploaderModule,
+        FileUploadModule,
     ],
     exports :[
         
