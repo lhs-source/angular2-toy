@@ -1,12 +1,24 @@
+// request body parse
 import * as bodyParser from 'body-parser';
+// .env file
 import * as dotenv from 'dotenv';
+// server
 import * as express from 'express';
 import * as morgan from 'morgan';
+// db
 import * as mongoose from 'mongoose';
 import * as path from 'path';
 
+// http
 import * as http from "http";
+// socket
 import * as socketio from "socket.io";
+
+//file
+import * as multer from 'multer';
+import * as cors from 'cors';
+import * as fs from 'fs';
+import * as Loki from 'lokijs';
 
 import setRoutes from './routes/routes';
 import runsocket from './socket';
@@ -23,6 +35,22 @@ class Server{
   private port : number;
   // mongodb
   private db : any;
+
+  private DB_NAME = 'db.json';
+  private COLLECTION_NAME = 'images';
+  private UPLOAD_PATH = 'uploads';
+  //private upload = multer({dest : `${this.UPLOAD_PATH}/`});
+  private upload = multer({
+    storage: multer.diskStorage({
+      destination: function (req, file, cb) {
+        cb(null, 'uploads/');
+      },
+      filename: function (req, file, cb) {
+        cb(null, file.originalname);
+      }
+    }),
+  });
+  
 
   public static bootstrap(): Server {
       return new Server();
@@ -51,6 +79,15 @@ class Server{
     this.app.use(bodyParser.urlencoded({limit: '16mb', extended: false }));
     //this.app.use(express.bodyParser({limit: '16mb'}));
     this.app.use(morgan('dev'));
+
+    // file
+    this.app.use(cors());
+    this.app.post('/upload', this.upload.single('file'), async(req, res) =>{
+      console.log(req.file);
+      //res.json({error_code:0,err_desc:null});
+      res.send(req.file);
+    });
+    this.app.use('/uploads', express.static('uploads'));
   }
   private step11(){
     // 서버 만들고

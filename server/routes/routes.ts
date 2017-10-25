@@ -73,6 +73,7 @@ export default function setRoutes(app){
   router.route('/thread/:id').put(threadCtrl.update);
   router.route('/thread/:id').delete(threadCtrl.delete);
 
+  // thread comments
   router.route('/thread/:tid/comments/:cid').get(threadCtrl.getAllComment);
   router.route('/thread/:tid/comments/count').get(threadCtrl.countComment);
   router.route('/thread/:tid/comment').put(threadCtrl.insertComment);
@@ -80,12 +81,16 @@ export default function setRoutes(app){
   router.route('/thread/:tid/comment/:cid').put(threadCtrl.updateComment);
   router.route('/thread/:tid/comment/:cid').delete(threadCtrl.deleteComment);
 
+  // category
   router.route('/categories').get(categoryCtrl.getAll);
   router.route('/categories/count').get(categoryCtrl.count);
   router.route('/category').post(categoryCtrl.insert);
   router.route('/category/:id').get(categoryCtrl.get);
   router.route('/category/:id').put(categoryCtrl.update);
   router.route('/category/:id').delete(categoryCtrl.delete);
+
+  // image
+  router.route('/upload',)
 
   app.use('/api', router);
 }
