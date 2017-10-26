@@ -18,6 +18,7 @@ export class FileUploadComponent {
   dragOver: boolean;
 
   filename : string;
+  desturl : string = 'http://localhost:3000/upload';
 
   constructor() {
     this.options = { concurrency: 1 };
@@ -31,7 +32,7 @@ export class FileUploadComponent {
     if (output.type === 'allAddedToQueue') {
       const event: UploadInput = {
         type: 'uploadAll',
-        url: 'http://localhost:3000/upload',
+        url: this.desturl,
         method: 'POST',
         data: { foo: 'bar' }
       };
@@ -57,13 +58,13 @@ export class FileUploadComponent {
       console.log(this.filename);
     }
 
-    this.files = this.files.filter(file => file.progress.status !== UploadStatus.Done);
+    //this.files = this.files.filter(file => file.progress.status !== UploadStatus.Done);
   }
 
   startUpload(): void {
     const event: UploadInput = {
       type: 'uploadAll',
-      url: 'http://localhost:3000/upload',
+      url: this.desturl,
       method: 'POST',
       data: { foo: 'bar' }
     };
