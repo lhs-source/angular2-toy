@@ -36,7 +36,8 @@ nav a.active {
 /* navigation bar의 스타일이다. 숨겨져 있을 때를 나타낸다. */
 .app-navbar{
   height : 100%;
-  width : 150px;
+  width : 0px;
+  max-width : 240px;
   position : fixed;
   z-index : 1;
   top : 52px;
@@ -47,20 +48,36 @@ nav a.active {
   padding-top : 5px 60px;
 }
 /* navigation bar의 보여졌을 때 변경될 스타일이다.*/
-.app-navshow{
-  width : 240px;
-  left : 0;
-  background-color: rgba(063d47, .6);
-  transition: ease .7s;
+
+@media (min-width: 601px) {
+  .app-navshow{
+    width : 50%;
+    max-width : 240px;
+    left : 0;
+    background-color: rgba(063d47, .6);
+    transition: ease .7s;
+  }
 }
+@media (max-width: 600px) {
+  .app-navshow{
+    width : 100%;
+    left : 0;
+    background-color: rgba(063d47, .6);
+    transition: ease .7s;
+  }
+}
+
+
 /* navigation을 제외한 부분을 가리킨다. */
 .app-main{
   transition: ease .7s;
   padding: 16px;
+  margin : 0px auto;
+  width : 50%;
 }
 /* navigation이 보여져서 오른쪽으로 밀려났을 때 스타일이다. */
 .app-mainleft{
-  margin-left: 250px;
+  /*margin-left: 250px;*/
   transition: ease .7s;
 }
 /* navigation bar 안의 닫기 버튼이다. */

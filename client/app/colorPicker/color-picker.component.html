@@ -1,18 +1,18 @@
 <div style="margin : 40px 0;"></div>
 <div style="position : relative;">
-        <div style="position : absolute; display : inline-block; width : 320px; height : 320px; border-radius : 2px;" [style.background-color]="baseColor" (click)="color1($event)" >
+        <div style="position : absolute; display : inline-block; width : 256px; height : 256px; border-radius : 2px;" [style.background-color]="baseColor" (click)="color1($event)" >
                 <div style="position : absolute; display : inline-block; z-index : 1; border : 3px solid #333; width : 8px; height : 8px; border-radius : 50%;" [style.left.px]="colorPointerX - 6" [style.top.px]="colorPointerY - 6"></div>
         </div>
-        <div style="position : absolute; display : inline-block; width : 320px; height : 320px; border-radius : 2px; background-image : linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))" (click)="color1($event)" ></div>
-        <div style="position : absolute; display : inline-block; width : 320px; height : 320px; border-radius : 2px; background-image :  linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));" (click)="color1($event)" ></div>
+        <div style="position : absolute; display : inline-block; width : 256px; height : 256px; border-radius : 2px; background-image : linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))" (click)="color1($event)" ></div>
+        <div style="position : absolute; display : inline-block; width : 256px; height : 256px; border-radius : 2px; background-image :  linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));" (click)="color1($event)" ></div>
 </div>
 <div style="margin : 0 180px; display : inline-block;"></div>
-<div style="position : relative; display : inline-block; width : 56px; height : 320px; border-radius : 2px; background : linear-gradient(to bottom, red, yellow, green, rgb(0, 255, 255),blue, rgb(255, 0, 255),red);" (click)="color2($event)">
+<div style="position : relative; display : inline-block; width : 56px; height : 256px; border-radius : 2px; background : linear-gradient(to bottom, red, yellow, green, rgb(0, 255, 255),blue, rgb(255, 0, 255),red);" (click)="color2($event)">
         <div style="position : absolute; display : inline-block; border : 3px solid #777; outline : 2px solid #333; width : 52px; height : 8px;" [style.top.px]="basePointerY - 7"></div>
 </div>
 <div style="margin : 20px 0;"></div>
-<div style="display : inline-block; position : relative; width : 320px; height : 56px; border-radius : 2px;" [style.background-color]="selectedColor" (click)="color3($event)">  
-        <div style="display : inline-block; position : absolute; width : 320px; height : 56px; border-radius : 2px; background : linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 1));"></div>  
+<div style="display : relative; position : relative; width : 256px; height : 56px; border-radius : 2px;" [style.background-color]="selectedColor" (click)="color3($event)">  
+        <div style="display : inline-block; position : absolute; width : 256px; height : 56px; border-radius : 2px; background : linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 1));"></div>  
     <div style="position : absolute; display : inline-block; border : 3px solid #777; outline : 2px solid #333; width : 8px; height : 52px;" [style.left.px]="alphaPointerX - 7"></div>
 </div>
 <div style="margin : 20px 0;"></div>

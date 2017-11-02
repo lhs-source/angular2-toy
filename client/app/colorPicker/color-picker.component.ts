@@ -21,7 +21,7 @@ import { BrowserModule } from '@angular/platform-browser';
 })
 export class ColorPickerComponent implements OnInit, OnChanges{
 
-    size = 320;
+    size = 256;
     baseColor  = "#FF0000";
     selectedColor = "#FF0000";
     plusAlpha = "rgba(255, 0, 0, 1)";

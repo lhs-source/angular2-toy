@@ -63,7 +63,9 @@
                             <div class="parent-comment-info">
                                 <i class="fa fa-anchor" aria-hidden="true"></i>
                                 <span style="color : #1e991e; font-weight:bold; font-size : 1.1em;"> {{comment.parent_comment.username}} </span>said 
-                                <span style="border : 1px solid #AAA; border-radius : 2px; padding : 2px; "><a href="thread/detail/{{category}}/{{id}}/{{page}}#{{comment.parent_comment.seq_id}}">asdf </a> <a routerLink="./" fragment="{{comment.parent_comment.seq_id}}">#{{comment.parent_comment.seq_id}}</a></span></div> 
+                                <span style="border : 1px solid #AAA; border-radius : 2px; padding : 2px; "><a href="thread/detail/{{category}}/{{id}}/{{page}}#{{comment.parent_comment.seq_id}}">#{{comment.parent_comment.seq_id}} </a> 
+                                    <!-- <a routerLink="./" fragment="{{comment.parent_comment.seq_id}}">#{{comment.parent_comment.seq_id}}</a> -->
+                                </span></div> 
                             <div style="padding : 12px 8px;" [innerHTML]="comment.deleted ? '삭제된 댓글입니다.' : comment.parent_comment.content | safeHtml"></div>
                         </div>
                     </div>
