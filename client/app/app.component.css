@@ -21,7 +21,7 @@ h2 {
 @media (max-width: 480px) {
   .app-main{
     transition: ease .7s;
-    padding: 16px;
+    /* padding: 16px; */
     margin : 0px auto;
     width : 100%;
   }
