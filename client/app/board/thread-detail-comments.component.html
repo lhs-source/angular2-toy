@@ -1,0 +1,78 @@
+
+<!-- 댓글 부분 -->
+<div style="margin : 40px 0 0 0;">
+    <hr>
+    <!-- 이 글의 댓글만큼 반복 -->
+    <div *ngFor="let comment of thre.comments; let i = index" class="comment">
+        <!-- comment가 없으면 출력 x -->
+        <div *ngIf="comment != null">
+            <!-- comment 작성 정보 -->
+            <div style="font-size : 14px; margin-bottom : 10px;">
+                <!-- 작성자 -->
+                <i class="fa fa-child" aria-hidden="true"></i><span style="color : #2a8db2; font-weight:bold; font-size : 1.1em;"> {{comment.username}}   </span>
+                <!-- 작성 시각 -->
+                <span style="font-size : 12px;"><i class="fa fa-calendar-o" aria-hidden="true"></i> {{comment.create_date | date : 'medium'}}</span>
+                <!-- 오른쪽 부분 -->
+                <span style="float : right; margin : 0 10px 0 0">
+                    <!-- 이 댓글 작성자가 나라면 -->
+                    <span *ngIf="comment.userid === auth.currentUser._id">
+                        <!-- my comment이다 -->
+                        <i class="fa fa-hand-peace-o" aria-hidden="true"></i> my comment
+                        <!-- 댓글 수정, 삭제 - if 삭제되지 않았다면 -->
+                        <span *ngIf="!comment.deleted">
+                            <button (click)="convertMode(2, comment)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+                            <button (click)="goCommentDelete(comment)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                        </span>
+                    </span>
+                    <!-- 코멘트의 코멘트 - if 삭제되지 않았다면 -->
+                    <button *ngIf="!comment.deleted" (click)="convertMode(3, comment)"><i class="fa fa-plus" aria-hidden="true"></i> Comment</button>
+                    <!-- 댓글의 시퀀스 넘버 -->
+                    <span style="border-bottom : 1px solid #AAA; border-radius : 2px; padding : 2px; "><span id="{{comment.seq_id}}"></span>#{{comment.seq_id}}</span>
+                </span>               
+            </div>
+            <div style="margin : 32px 0;"></div>
+            <!-- 부모 댓글 부분 -->
+            <div *ngIf="comment._parent_id != '-1'" class="parent-comment">
+                <div *ngIf="comment.parent_comment">
+                    <div class="parent-comment-info">
+                        <i class="fa fa-anchor" aria-hidden="true"></i>
+                        <span style="color : #1e991e; font-weight:bold; font-size : 1.1em;"> {{comment.parent_comment.username}} </span>said 
+                        <span style="border : 1px solid #AAA; border-radius : 2px; padding : 2px; "><a href="thread/detail/{{category}}/{{id}}/{{page}}#{{comment.parent_comment.seq_id}}">#{{comment.parent_comment.seq_id}} </a> 
+                            <!-- <a routerLink="./" fragment="{{comment.parent_comment.seq_id}}">#{{comment.parent_comment.seq_id}}</a> -->
+                        </span></div> 
+                    <div style="padding : 12px 8px;" [innerHTML]="comment.deleted ? '삭제된 댓글입니다.' : comment.parent_comment.content | safeHtml"></div>
+                </div>
+            </div>
+            <!-- comment 내용 부분 -->
+            <div style="margin-bottom : 10px;" [innerHTML]="comment.content | safeHtml"></div>
+        </div>
+    </div>
+    <div style="margin : 30px;"></div>
+    <!-- 뒤로가기, 코멘트 달기 버튼 -->
+    <button (click)="goBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i> back</button>
+    <button (click)="convertMode(1)"><i class="fa fa-plus" aria-hidden="true"></i> Comment</button>
+</div>
+
+
+<!-- 댓글용 모달창 -->
+<div class="modal" [ngClass]="{'modal-show' : editPopup}" >
+    <!-- 모달 밖 까만 레이아웃 - 클릭하면 모달 닫음 -->
+    <div class="modal-layout" (click)="closeModal()">
+    </div>
+    <!-- 모달 박스 -->
+    <div class="modal-box" [ngClass]="{'modal-box-show' : editPopup}">
+        <div class="modal-content">
+            <!-- <div #editcomment contenteditable="true" [innerHTML]="selComment.content | safeHtml" style=""></div> -->
+            <!-- 대댓이라면 부모 댓글 표시 -->
+            <div *ngIf="editPopup === 3" [innerHTML]="selComment.content | safeHtml" class="comment-edit-parent"></div>
+            <!-- 댓글 입력창 -->
+            <div #comment contenteditable="" [innerHTML]="modComment | safeHtml" class="comment-edit">
+            </div>
+            <div style="margin : 20px;"></div>
+            <!-- 입력, 수정, 대댓 모드별 버튼 -->
+            <div *ngIf="editPopup === 1"><button (click)="addComment()">New Comment</button></div>
+            <div *ngIf="editPopup === 2"><button (click)="editComment()">Edit Comment</button></div>
+            <div *ngIf="editPopup === 3"><button (click)="commentComment()">Plus Comment</button></div>
+        </div>
+    </div>
+</div>

@@ -1,14 +1,16 @@
-import { Component, ViewChild, ElementRef, Pipe, Renderer2 } from '@angular/core';
+import { Component, ViewChild, ElementRef, Pipe, Renderer2  } from '@angular/core';
+
+
 
 @Component({
     selector : "ww",
     templateUrl : "./ww.component.html",
     styleUrls : [
         "./ww.component.css",
-    ],
+    ]
     
 })
-export class WwComponent{
+export class WwComponent {
     @ViewChild('editor') editor : ElementRef;
 
     htmlContent : string;
@@ -152,5 +154,8 @@ export class WwComponent{
         console.log(this.editor);
         console.log(this.editor.nativeElement);
         console.log(document.hasFocus());
+    }
+    shgo(){
+        //sh.SyntaxHighlighter.all();
     }
 }

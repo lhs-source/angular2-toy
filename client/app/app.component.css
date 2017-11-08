@@ -8,92 +8,28 @@ h2 {
   margin-top: 0;
   padding-top: 0;
 }
-nav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size : 1em;
-  font-weight: 400;
-  display : block;
-  transition: .3s;
-
-  width : 240px;
-  overflow-x: hidden;
-}
-nav a:visited, a:link {
-  color: #90aDbB;
-}
-/* 메뉴에 마우스 */
-nav a:hover {
-  color: #f4ccf6;
-  background-color: #9f879b;
-}
-/* 메뉴 중 눌린 메뉴 */
-nav a.active {
-  color: #f4ccf6;
-  border-left : 4px solid #f4ccf6;
-  text-indent: 4px;
-}
-/* navigation bar의 스타일이다. 숨겨져 있을 때를 나타낸다. */
-.app-navbar{
-  height : 100%;
-  width : 0px;
-  max-width : 240px;
-  position : fixed;
-  z-index : 1;
-  top : 52px;
-  left : -300px;
-  background-color: #354147;
-  overflow-x : hidden;
-  transition: all ease .7s;
-  padding-top : 5px 60px;
-}
-/* navigation bar의 보여졌을 때 변경될 스타일이다.*/
-
-@media (min-width: 601px) {
-  .app-navshow{
-    width : 50%;
-    max-width : 240px;
-    left : 0;
-    background-color: rgba(063d47, .6);
-    transition: ease .7s;
-  }
-}
-@media (max-width: 600px) {
-  .app-navshow{
-    width : 100%;
-    left : 0;
-    background-color: rgba(063d47, .6);
-    transition: ease .7s;
-  }
-}
-
 
 /* navigation을 제외한 부분을 가리킨다. */
-.app-main{
-  transition: ease .7s;
-  padding: 16px;
-  margin : 0px auto;
-  width : 50%;
+@media (min-width: 480px) {
+  .app-main{
+    transition: ease .7s;
+    padding: 16px;
+    margin : 0px auto;
+    width : 70%;
+  }
+}
+@media (max-width: 480px) {
+  .app-main{
+    transition: ease .7s;
+    padding: 16px;
+    margin : 0px auto;
+    width : 100%;
+  }
 }
 /* navigation이 보여져서 오른쪽으로 밀려났을 때 스타일이다. */
 .app-mainleft{
   /*margin-left: 250px;*/
   transition: ease .7s;
-}
-/* navigation bar 안의 닫기 버튼이다. */
-.app-closebutton{
-  border: none;
-  background-color: rgba(0,0, 0, 0);
-  color : rgba(255,255,255, .5);
-  margin: 16px 16px 0px 0px;
-  float : right;
-  font-size:20px;
-  width : 30px;
-  height : 30px;
-}
-/* 닫기 버튼의 hover */
-.app-closebutton:hover{
-  background-color: rgba(255,255,255, .3);
 }
 
 .bgimage {

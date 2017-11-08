@@ -10,17 +10,17 @@
     <div style="margin-bottom : 40px;">
         <!-- 리스트만큼 반복 -->
         <div class="lists" *ngFor="let thread of threads">
+            <div class="list-info">
+                <div style="padding-top : 4px; padding-bottom : 4px;">
+                    <span class="writer">{{thread.username}}</span>
+                    <span style="margin-left: 4px; font-size: 12px;">{{thread.create_date | date : 'yyyy/MM/dd-HH:mm:ss'}}</span>
+                </div>
+            </div>
             <!-- 제목, 클릭하면 글로 이동 -->
             <div class="list-title" (click)="move(thread._id)">
                 <span style="width : 40px; display : inline-block;">{{thread.seq_id}} </span><i class="fa fa-flag" aria-hidden="true"></i>  {{thread.title}}
             </div>
             <!-- 작성자와 쓴 시간 -->
-            <div class="list-info">
-                <div style="margin : 8px 0px 0px 0px;">
-                    <div>{{thread.username}}, </div>
-                    <div>{{thread.create_date | date : 'yyyy/MM/dd-HH:mm:ss'}}</div>
-                </div>
-            </div>
         </div>
     </div>
     <!-- 밑에 버튼들 -->

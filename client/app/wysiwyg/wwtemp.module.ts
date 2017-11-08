@@ -12,6 +12,9 @@ import { FroalaViewModule } from './froala/view.module';
 
 import { FileUploadModule } from './file/file-upload.module';
 
+//import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
+
+
 @NgModule({
     declarations : [
         WwComponent,
@@ -23,6 +26,10 @@ import { FileUploadModule } from './file/file-upload.module';
         FroalaEditorModule, 
         FroalaViewModule,
         FileUploadModule,
+        //HighlightJsModule,
+    ],
+    providers: [
+        //HighlightJsService
     ],
     exports :[
         

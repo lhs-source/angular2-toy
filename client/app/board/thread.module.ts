@@ -10,6 +10,8 @@ import { ThreadCategoryComponent } from './thread-category.component';
 import { ThreadAddComponent } from './thread-add.component';
 import { ThreadEditComponent } from './thread-edit.component';
 
+import { ThreadDetailCommentsComponent } from './thread-detail-comments.component';
+
 import { ThreadService } from './thread.service';
 
 import { SafeHtmlPipe } from '../wysiwyg/ww-safehtml.pipe';
@@ -26,6 +28,7 @@ import { NgxEditorModule } from '../ngx-editor/ngx-editor.module';
         ThreadCategoryComponent,
         ThreadAddComponent,
         ThreadEditComponent,
+        ThreadDetailCommentsComponent,
     ],
     imports :[
         BrowserModule,

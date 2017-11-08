@@ -1,0 +1,123 @@
+
+.comment{
+    padding : 8px 16px;
+
+    border-bottom : 1px solid #777; 
+}
+
+.parent-comment{
+    margin : 16px 8px 16px 8px; 
+
+    border : 1px solid #CCC; 
+    border-radius : 4px;
+}
+.parent-comment-info{
+    padding : 4px 4px; 
+
+    border-bottom : 1px solid #CCC; 
+    
+    background-color : rgba(192, 192, 192, 0.7); 
+    font-size : 0.8em;
+}
+
+.comment-edit{
+    border : 1px solid #AAA; 
+    height : 360px; 
+    padding : 8px; 
+    overflow : auto;  
+
+}
+.comment-edit-parent{
+    border : 1px solid #AAA; 
+    height : 120px; 
+    margin-bottom : 16px; 
+    padding : 8px; 
+    overflow : auto;
+  
+}
+
+
+button{
+  padding : 6px 16px;
+
+  border: 1px solid #BBB;
+  border-radius: 4px;
+}
+button:hover{
+  box-shadow: 0 0 4px rgba(111, 111,111, 0.3);
+  background-color: #DDD;
+}
+
+
+/* modal */
+.modal{
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+  transition: all 0.4s ease;
+
+	opacity: 0;
+	visibility: hidden;
+}
+.modal-show{
+  position : fixed;
+  top : 0;
+  left : 0;
+  width : 100%;
+  height : 100%;
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+
+	opacity: 1;
+	visibility: visible;
+}
+.modal-layout{
+  position : fixed;
+  top : 0;
+  left : 0;
+  user-select: none;
+  cursor: pointer;
+  width : 100%;
+  height : 100%;
+  background-color : rgba(0, 0, 0, 0.5);
+  background-attachment: fixed;
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+
+  z-index: 1;
+}
+.modal-box{
+  position : fixed;
+  top : 0;
+  left : 0;
+  right : 0;
+  margin : 80px auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  color: black;
+  font-size: 15px;
+
+  max-width : 400px;
+  min-height : 480px;
+  
+  background : rgba(217, 217, 217, 0.9);
+  z-index: 2;
+  
+	transform: scale(0.7);
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.modal-box-show{
+	transform: scale(1);
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+
+}
+.modal-content {
+  padding : 20px;
+  transition: 0.4s;
+  z-index: 2;
+}
+

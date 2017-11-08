@@ -28,6 +28,7 @@ import { ThreadModule } from './board/thread.module';
 
 import { AppHeaderComponent } from './headerfooter/appheader.component';
 import { AppFooterComponent } from './headerfooter/appfooter.component';
+import { NavigationComponent } from './headerfooter/navigation.component'
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AppFooterComponent } from './headerfooter/appfooter.component';
     CatsComponent,
     AppHeaderComponent,
     AppFooterComponent,
+    NavigationComponent,
     HomeComponent,
   ],
   imports: [

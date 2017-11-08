@@ -1,0 +1,57 @@
+
+nav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size : 1em;
+    font-weight: 400;
+    display : block;
+    transition: .3s;
+  
+    width : 100%;
+    overflow-x: hidden;
+  }
+  nav a:visited, a:link {
+    color: #90aDbB;
+  }
+  /* 메뉴에 마우스 */
+  nav a:hover {
+    color: #f4ccf6;
+    background-color: #9f879b;
+  }
+  /* 메뉴 중 눌린 메뉴 */
+  nav a.active {
+    color: #f4ccf6;
+    border-left : 4px solid #f4ccf6;
+    text-indent: 4px;
+  }
+  /* navigation bar의 스타일이다. 숨겨져 있을 때를 나타낸다. */
+  .app-navbar{
+    height : 100%;
+    width : 0px;
+    position : fixed;
+    z-index : 1;
+    top : 52px;
+    left : -300px;
+    background-color: #354147;
+    overflow-x : hidden;
+    transition: all ease .7s;
+    padding-top : 5px 60px;
+  }
+  /* navigation bar의 보여졌을 때 변경될 스타일이다.*/
+  @media (min-width: 480px) {
+    .app-navshow{
+      width : 240px;
+      max-width : 240px;
+      left : 0;
+      background-color: rgba(063d47, .6);
+      transition: ease .7s;
+    }
+  }
+  @media (max-width: 480px) {
+    .app-navshow{
+      width : 100%;
+      left : 0;
+      background-color: rgba(063d47, .6);
+      transition: ease .7s;
+    }
+  }
