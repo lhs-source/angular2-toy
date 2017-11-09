@@ -1,5 +1,5 @@
 
-import { Component, Input } from '@angular/core'
+import { Component, Input, Output, EventEmitter } from '@angular/core'
 
 import { AuthGuardAdmin } from '../user/auth-guard-admin.service';
 import { AuthGuardLogin } from '../user/auth-guard-login.service';
@@ -14,6 +14,8 @@ import { AuthService } from '../user/auth.service';
 })
 export class NavigationComponent{
     @Input('toggle') isNavActive : boolean = false;
+    @Output()
+    toggleFromNav : EventEmitter<number> = new EventEmitter<number>();
 
     isLoggedIn : boolean;
     isAdmin : boolean;
@@ -27,5 +29,9 @@ export class NavigationComponent{
     }
     getadmin() : boolean{
         return this.auth.loggedIn;
+    }
+    toggleNav(){
+        this.isNavActive = !this.isNavActive;
+        this.toggleFromNav.emit();
     }
 }

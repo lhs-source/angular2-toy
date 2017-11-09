@@ -1,22 +1,22 @@
 
 <!-- navigation bar 부분 -->
 <div class="app-navbar" [ngClass] = "{'app-navshow' : isNavActive}">
-    <nav>
+    <nav (click)="toggleNav()">
         <br><br>
-        <!-- 480 이하일 때 보여진다 -->
-        <span class="biggerThan480">
+        <!-- 752 이하일 때 보여진다 -->
+        <span class="biggerThan752">
             <!-- <div style="border-radius: 2px; border-bottom : 2px solid #7C96A1; width: 90%; margin: 4px auto;"></div> -->
             <!-- 로그인하면 보여지는 메뉴 -->
             <a routerLink="/home" routerLinkActive="active"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-            <span *ngIf="isLoggedIn">
+            <span *ngIf="getlogin()">
                 <a routerLink="/account" routerLinkActive="active"><i class="fa fa-user-circle" aria-hidden="true"></i> YOU</a>
-                <span *ngIf="isAdmin">
+                <span *ngIf="getadmin()">
                 <a routerLink="/admin" routerLinkActive="active"><i class="fa fa-lock" aria-hidden="true"></i> Admin</a>
                 </span>
                 <a routerLink="/logout" routerLinkActive="active"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
             </span>
             <!-- 로그인되지 않았을 때 보여지는 메뉴 -->
-            <span *ngIf="!isLoggedIn">
+            <span *ngIf="!getlogin()">
                 <a routerLink="/login" routerLinkActive="active"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
                 <!-- <a routerLink="/register" routerLinkActive="active">register</a> -->
             </span>

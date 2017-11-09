@@ -48,8 +48,8 @@ button:hover{
   background-color: #DDD;
 }
 
-@media (max-width: 480px){
-  .biggerThan480{
+@media (max-width: 752px){
+  .biggerThan752{
     display: none;
   }
 }

@@ -11,10 +11,14 @@ export class AppComponent implements OnInit, OnDestroy{
     toggleNav() : void{
         this.isNavActive = !this.isNavActive;
     }
+
     ngOnInit() {
         console.log("Component : app(onInit)");
     }
     ngOnDestroy(){
         console.log("Component : app(onDestroy)");
+    }
+    changeNavActive(){
+        
     }
 }

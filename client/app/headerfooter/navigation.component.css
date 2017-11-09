@@ -10,6 +10,12 @@ nav a {
     width : 100%;
     overflow-x: hidden;
   }
+  @media (max-width : 752px){
+    nav a{
+      
+      font-size : 1.5em;
+    }
+  }
   nav a:visited, a:link {
     color: #90aDbB;
   }
@@ -38,7 +44,7 @@ nav a {
     padding-top : 5px 60px;
   }
   /* navigation bar의 보여졌을 때 변경될 스타일이다.*/
-  @media (min-width: 480px) {
+  @media (min-width: 752px) {
     .app-navshow{
       width : 240px;
       max-width : 240px;
@@ -46,11 +52,11 @@ nav a {
       background-color: rgba(063d47, .6);
       transition: ease .7s;
     }
-    .biggerThan480{
+    .biggerThan752{
       display: none;
     }
   }
-  @media (max-width: 480px) {
+  @media (max-width: 752px) {
     .app-navshow{
       width : 100%;
       left : 0;

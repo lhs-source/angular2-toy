@@ -10,18 +10,19 @@ h2 {
 }
 
 /* navigation을 제외한 부분을 가리킨다. */
-@media (min-width: 480px) {
+@media (min-width: 752px) {
   .app-main{
     transition: ease .7s;
     padding: 16px;
+    padding-top: 64px;
     margin : 0px auto;
     width : 70%;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 752px) {
   .app-main{
     transition: ease .7s;
-    /* padding: 16px; */
+    padding-top: 64px;
     margin : 0px auto;
     width : 100%;
   }

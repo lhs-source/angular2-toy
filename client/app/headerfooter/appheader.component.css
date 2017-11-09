@@ -6,8 +6,8 @@
     font-size: 0;
 
     width : 100%;
-    /* height : 50px; */
-    /* overflow-x: hidden; */
+    height : 50px;
+    overflow-x: hidden;
 
     position : fixed;
     border-bottom: 2px solid rgba(31, 45, 45, 0.7);
@@ -61,8 +61,8 @@ nav a.active {
   box-shadow : inset 0 -4px 0 0 #f4ccf6;
 }
 
-@media (max-width : 480px) {
-  .biggerThan480{
+@media (max-width : 752px) {
+  .biggerThan752{
     display: none;
   }
   .app-navibarbutton{

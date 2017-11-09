@@ -12,13 +12,13 @@
 }
 
 
-@media (min-width: 480px) {
+@media (min-width: 752px) {
     .whole{
-        width: 80%;
+        width: 85%;
         margin: 0 auto;
     }
 }
-@media (max-width: 480px) {
+@media (max-width: 752px) {
     .whole{
         width: 95%;    
         margin: 0 auto;
