@@ -102,8 +102,8 @@ button:hover{
   color: black;
   font-size: 15px;
 
-  max-width : 400px;
-  min-height : 480px;
+  /* max-width : 400px;
+  min-height : 480px; */
   
   background : rgba(217, 217, 217, 0.9);
   z-index: 2;
