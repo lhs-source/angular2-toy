@@ -5,19 +5,22 @@
     <nav>
         <!-- nav bar 여닫는 버튼이다.  -->
         <span class="app-navibarbutton" (click) = "toggleNav()"><i class="fa fa-bars" aria-hidden="true"></i> Navigation Bar </span>
-        <!-- 로그인하면 보여지는 메뉴 -->
-        <a routerLink="/home" routerLinkActive="active"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-        <span *ngIf="getlogin()">
-            <a routerLink="/account" routerLinkActive="active"><i class="fa fa-user-circle" aria-hidden="true"></i> YOU</a>
-            <span *ngIf="getadmin()">
-            <a routerLink="/admin" routerLinkActive="active"><i class="fa fa-lock" aria-hidden="true"></i> Admin</a>
+        <!-- 480 이하일 때 보여진다 -->
+        <span class="biggerThan480">
+            <!-- 로그인하면 보여지는 메뉴 -->
+            <a routerLink="/home" routerLinkActive="active"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+            <span *ngIf="isLoggedIn">
+                <a routerLink="/account" routerLinkActive="active"><i class="fa fa-user-circle" aria-hidden="true"></i> YOU</a>
+                <span *ngIf="isAdmin">
+                <a routerLink="/admin" routerLinkActive="active"><i class="fa fa-lock" aria-hidden="true"></i> Admin</a>
+                </span>
+                <a routerLink="/logout" routerLinkActive="active"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
             </span>
-            <a routerLink="/logout" routerLinkActive="active"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
-        </span>
-        <!-- 로그인되지 않았을 때 보여지는 메뉴 -->
-        <span *ngIf="!getlogin()">
-            <a routerLink="/login" routerLinkActive="active"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
-            <!-- <a routerLink="/register" routerLinkActive="active">register</a> -->
+            <!-- 로그인되지 않았을 때 보여지는 메뉴 -->
+            <span *ngIf="!isLoggedIn">
+                <a routerLink="/login" routerLinkActive="active"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+                <!-- <a routerLink="/register" routerLinkActive="active">register</a> -->
+            </span>
         </span>
     </nav>
 </div>

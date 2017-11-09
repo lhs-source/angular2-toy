@@ -27,19 +27,20 @@ export class ColorPickerComponent implements OnInit, OnChanges{
     plusAlpha = "rgba(255, 0, 0, 1)";
     alphaBack = "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 1))";
 
-    basePointerX = 0;
-    basePointerY = 0;
-    colorPointerX = 0;
-    colorPointerY = 0;
-    alphaPointerX = 0;
-    alphaPointerY = 0;
+    basePointerX : number = 0;
+    basePointerY : number = 0;
+    colorPointerX : number = 0;
+    colorPointerY : number = 0;
+    alphaPointerX : number =0;
+    alphaPointerY : number = 0;
 
     ngOnChanges(changes : any) : void{
 
     }
     ngOnInit() : void {
-
+        this.colorPointerX += 256;
     }
+    // red green blue를 숫자로
     rgb(red, green, blue) : number {
         let result = 0;
         result += red << 16;
@@ -47,6 +48,7 @@ export class ColorPickerComponent implements OnInit, OnChanges{
         result += blue;
         return result;
     }
+    // #XXXXXX 형태로
     rgbstr(rgb : number){
         let result = "#";
         result += ( (rgb & 0xF00000) >> 20 ).toString(16);
@@ -57,17 +59,18 @@ export class ColorPickerComponent implements OnInit, OnChanges{
         result += (rgb & 0xF).toString(16);
         return result;
     }
+    // #xxxxxx를 숫자로
     rgbstr2num(rgbstr : string) {
         rgbstr = rgbstr.substr(1, rgbstr.length);
         return parseInt(rgbstr, 16);
     }
     color1(event : any) {
-        //console.log(event);
+        console.log(event);
         
-        this.colorPointerX = event.clientX - 16;
-        this.colorPointerY = event.clientY - 95;
+        this.colorPointerX = event.offsetX;
+        this.colorPointerY = event.offsetY;
 
-        this.calcColor(this.colorPointerX, this.colorPointerY);
+        this.calcColor(event.offsetX, event.offsetY);
         this.calcAlpha(this.alphaPointerX);
     }
     calcColor(x, y) {
@@ -95,7 +98,7 @@ export class ColorPickerComponent implements OnInit, OnChanges{
         console.log(this.selectedColor);  
     }
     color2(event : any) {
-        this.basePointerY = event.clientY - 95;
+        this.basePointerY = event.offsetY;
 
         this.calcBase(this.basePointerY);
         this.calcColor(this.colorPointerX, this.colorPointerY);
@@ -111,37 +114,44 @@ export class ColorPickerComponent implements OnInit, OnChanges{
         // console.log(kind);
         // console.log(level);
         // console.log(ratio);
+
+        // red - yellow
         if(kind < 1){
             this.baseColor = this.rgbstr(this.rgb(255, 255 * ratio, 0) | 0);
             //console.log(this.baseColor);
         } 
+        // yellow - green
         else if(1 <= kind && kind < 2){
             this.baseColor = this.rgbstr(this.rgb(255*(1 - ratio), 255, 0) | 0);
             //console.log(this.baseColor);            
         } 
+        // green - sky
         else if(2 <= kind && kind < 3){
             this.baseColor = this.rgbstr(this.rgb(0, 255, 255 * ratio) | 0);
             //console.log(this.baseColor);      
         } 
+        // sky - blue
         else if(3 <= kind && kind < 4){
             this.baseColor = this.rgbstr(this.rgb(0, 255*(1 - ratio), 255) | 0);
             //console.log(this.baseColor);      
         } 
+        // blue - pink
         else if(4 <= kind && kind < 5){
             this.baseColor = this.rgbstr(this.rgb(255 * ratio, 0, 255) | 0);
             //console.log(this.baseColor);      
         } 
+        // pink - red
         else if(5 <= kind && kind <= 6){
             this.baseColor = this.rgbstr(this.rgb(255, 0, 255*(1 - ratio)) | 0);
             //console.log(this.baseColor);    
         } 
     }
     color3(event : any) {
-        this.alphaPointerX = event.clientX - 16;
-        this.calcAlpha(this.alphaPointerX);
+        this.alphaPointerY = event.offsetY;
+        this.calcAlpha(event.offsetY);
     }
-    calcAlpha(x) {
-        let ratio = 1 - x / this.size;
+    calcAlpha(y) {
+        let ratio = 1 - y / this.size;
         
         let base_r = this.selectedColor.substr(1, 2);
         let base_g = this.selectedColor.substr(3, 2);

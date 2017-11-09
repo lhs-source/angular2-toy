@@ -38,7 +38,7 @@
 
 
 button{
-  padding : 6px 16px;
+  padding : 4px 12px;
 
   border: 1px solid #BBB;
   border-radius: 4px;
@@ -48,6 +48,11 @@ button:hover{
   background-color: #DDD;
 }
 
+@media (max-width: 480px){
+  .biggerThan480{
+    display: none;
+  }
+}
 
 /* modal */
 .modal{

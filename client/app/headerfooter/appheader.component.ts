@@ -14,8 +14,12 @@ import { AuthService } from '../user/auth.service';
 export class AppHeaderComponent {
     @Output() navActive = new EventEmitter();
 
-    constructor(private router : Router, private auth : AuthService, private login : AuthGuardLogin, private admin : AuthGuardAdmin){
+    isLoggedIn : boolean;
+    isAdmin : boolean;
 
+    constructor(private router : Router, private auth : AuthService, private login : AuthGuardLogin, private admin : AuthGuardAdmin){
+        this.isLoggedIn = this.getlogin();
+        this.isAdmin = this.getadmin();
     };
 
     toggleNav():void{

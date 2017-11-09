@@ -4,12 +4,17 @@
 }
 .cat-table{
     width : 70%;
-    min-width: 720px;
+    max-width: 720px;
     background-color: #FCFCFC;
     margin : auto;
     padding : 4px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     border-radius: 2px;
+}
+@media (max-width: 480px){
+    .cat-table{
+        width: 100%;
+    }
 }
 .cat-thead{
     padding : 8px 8px;
@@ -43,7 +48,7 @@
     padding : 4px 4px 4px 8px;
 }
 .button{
-    width : 100px;
+    /* width : 100px; */
     height : 28px;
     margin : 1px;
     border-radius: 2px;

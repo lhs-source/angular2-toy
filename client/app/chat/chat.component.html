@@ -22,6 +22,7 @@
                 <h3 class="chat-from"> <b>{{message.from}} </b> </h3>
                 <p>
                     <span class="chat-msg" [innerHtml]="message.msg"></span>
+                    
                     <span class="chat-date"> {{message.date | date : 'yyyy년 MM월 dd일 hh시 mm분'}} </span>
                 </p>
             </div>

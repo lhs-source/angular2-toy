@@ -16,7 +16,7 @@
     /*height : 720px; */
     padding : 10px 0 0 0;    
     margin : 0 auto;
-    min-width : 480px;
+    /* min-width : 480px; */
     max-width : 720px;
 
     border-radius : 5px; 

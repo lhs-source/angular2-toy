@@ -46,6 +46,9 @@ nav a {
       background-color: rgba(063d47, .6);
       transition: ease .7s;
     }
+    .biggerThan480{
+      display: none;
+    }
   }
   @media (max-width: 480px) {
     .app-navshow{

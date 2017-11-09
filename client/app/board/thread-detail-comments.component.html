@@ -1,6 +1,7 @@
 
 <!-- 댓글 부분 -->
 <div style="margin : 40px 0 0 0;">
+    <h3>댓글</h3>
     <hr>
     <!-- 이 글의 댓글만큼 반복 -->
     <div *ngFor="let comment of thre.comments; let i = index" class="comment">
@@ -12,6 +13,7 @@
                 <i class="fa fa-child" aria-hidden="true"></i><span style="color : #2a8db2; font-weight:bold; font-size : 1.1em;"> {{comment.username}}   </span>
                 <!-- 작성 시각 -->
                 <span style="font-size : 12px;"><i class="fa fa-calendar-o" aria-hidden="true"></i> {{comment.create_date | date : 'medium'}}</span>
+                <span style="font-size : 12px; border-bottom : 1px solid #AAA; border-radius : 2px; padding : 2px; margin-left: 4px;"><span id="{{comment.seq_id}}"></span>#{{comment.seq_id}}</span>
                 <!-- 오른쪽 부분 -->
                 <span style="float : right; margin : 0 10px 0 0">
                     <!-- 이 댓글 작성자가 나라면 -->
@@ -20,17 +22,16 @@
                         <i class="fa fa-hand-peace-o" aria-hidden="true"></i> my comment
                         <!-- 댓글 수정, 삭제 - if 삭제되지 않았다면 -->
                         <span *ngIf="!comment.deleted">
-                            <button (click)="convertMode(2, comment)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
-                            <button (click)="goCommentDelete(comment)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                            <button (click)="convertMode(2, comment)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="biggerThan480"> Edit</span></button>
+                            <button (click)="goCommentDelete(comment)"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="biggerThan480"> Delete</span> </button>
                         </span>
                     </span>
                     <!-- 코멘트의 코멘트 - if 삭제되지 않았다면 -->
-                    <button *ngIf="!comment.deleted" (click)="convertMode(3, comment)"><i class="fa fa-plus" aria-hidden="true"></i> Comment</button>
+                    <button *ngIf="!comment.deleted" (click)="convertMode(3, comment)"><i class="fa fa-plus" aria-hidden="true"></i><span class="biggerThan480"> Comment</span> </button>
                     <!-- 댓글의 시퀀스 넘버 -->
-                    <span style="border-bottom : 1px solid #AAA; border-radius : 2px; padding : 2px; "><span id="{{comment.seq_id}}"></span>#{{comment.seq_id}}</span>
+                    
                 </span>               
             </div>
-            <div style="margin : 32px 0;"></div>
             <!-- 부모 댓글 부분 -->
             <div *ngIf="comment._parent_id != '-1'" class="parent-comment">
                 <div *ngIf="comment.parent_comment">
@@ -43,8 +44,10 @@
                     <div style="padding : 12px 8px;" [innerHTML]="comment.deleted ? '삭제된 댓글입니다.' : comment.parent_comment.content | safeHtml"></div>
                 </div>
             </div>
+            <div style="margin : 48px 0;"></div>
             <!-- comment 내용 부분 -->
-            <div style="margin-bottom : 10px;" [innerHTML]="comment.content | safeHtml"></div>
+            <div [innerHTML]="comment.content | safeHtml"></div>
+            <div style="margin : 10px;"></div>
         </div>
     </div>
     <div style="margin : 30px;"></div>

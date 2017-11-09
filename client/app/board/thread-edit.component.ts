@@ -84,6 +84,7 @@ export class ThreadEditComponent implements OnInit {
                 this.username = thread.username;
                 this.email = thread.email;
                 this.title.setValue(thread.title);
+                this.category.setValue(thread.category);
                 //this.content.nativeElement.innerHTML = thread.content;
                 this.htmlContent = thread.content;
                 console.log(this.htmlContent);

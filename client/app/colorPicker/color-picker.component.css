@@ -1,0 +1,112 @@
+
+.whole{
+    width : 80%;
+    margin : 40px auto;
+}
+
+@media (max-width: 480px){
+    .whole{
+        width: 95%;
+    }
+}
+
+
+.pick-color{
+    position : relative; 
+    display : inline-block; 
+
+    width : 256px; 
+    height : 256px; 
+
+    border-radius : 2px;
+}
+.pick-color .white-layer{
+    position : absolute; 
+    display : inline-block; 
+    
+    width : 256px; 
+    height : 256px; 
+    
+    border-radius : 2px; 
+    background-image : linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))
+}
+
+.pick-color .black-layer{
+    position : absolute; 
+    display : inline-block; 
+    
+    width : 256px; 
+    height : 256px; 
+    
+    border-radius : 2px; 
+    background-image :  linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+.pick-color .selection{
+    position : absolute; 
+    display : inline-block; 
+
+    /* z-index : 1;  */
+
+    border : 3px solid #333; 
+    border-radius : 50%;
+
+    width : 8px; 
+    height : 8px; 
+    
+}
+
+.pick-color-theme{
+    position : relative; 
+    display : inline-block; 
+
+    width : 56px; 
+    height : 256px; 
+    
+    border-radius : 2px; 
+    
+    background : linear-gradient(to bottom, red, yellow, green, rgb(0, 255, 255),blue, rgb(255, 0, 255),red);
+}
+.pick-color-theme .selection{
+    position : absolute; 
+    display : inline-block; 
+
+    border : 3px solid #777; 
+    outline : 2px solid #333; 
+
+    width : 52px; 
+    height : 8px;
+}
+
+.pick-transparency{
+    position : relative; 
+    display : inline-block; 
+
+    width : 56px; 
+    height : 256px; 
+    
+    border-radius : 2px;
+}
+
+.pick-transparency .white-layer{
+    display : inline-block; 
+    position : absolute; 
+    
+    width : 56px; 
+    height : 256px; 
+    
+    border-radius : 2px; 
+    background : linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(255, 255, 255, 1));
+}
+
+.pick-transparency .selection{
+    position : absolute; 
+    display : inline-block; 
+    
+    border : 3px solid #777; 
+    outline : 2px solid #333; 
+    
+    width : 52px; 
+    height : 8px;
+}
+
