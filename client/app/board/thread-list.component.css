@@ -54,20 +54,48 @@
     background-color : #B7C9CE;
 }
 
-/* 현재 선택된 pagi */
-.pagithispage{
-    background-color: #B0B0B0;
-}
-
-button{
+button.button{
     padding : 6px 16px;
 
     border: 1px solid #BBB;
     border-radius: 4px;
 }
-button:hover{
+button.button:hover{
     box-shadow: 0 0 4px rgba(111, 111,111, 0.3);
     background-color: #A0A0A0;
+}
+
+.pagination-group{
+    margin: 0 auto;
+    display: inline-block;
+    
+    border : 1px solid #B7C9CE;
+    border-radius: 3px;
+
+}
+
+
+.pagination-group span.pagination{
+    display: inline-block;
+    text-align: center;
+    
+
+    padding: 4px 12px 6px 12px;
+
+
+    cursor: pointer;
+}
+.pagination-group > :nth-child(n + 2){
+    border-left: 1px solid #B7C9CE;
+    /* border: transparent; */
+}
+.pagination-group span.pagination:hover{
+    background-color: #D8E8EC;
+}
+
+/* 현재 선택된 pagi */
+.pagination-group .pagithispage{
+    background-color: #DBE9E7;
 }
 
 

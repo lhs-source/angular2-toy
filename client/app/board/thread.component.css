@@ -15,6 +15,7 @@
 @media (min-width: 752px) {
     .whole{
         width: 85%;
+        min-width: 576px;
         margin: 0 auto;
     }
 }
