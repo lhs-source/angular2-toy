@@ -1,4 +1,8 @@
 
+.whole{
+    width : 80%; 
+    margin : 0 auto;
+}
 
 
 input[type="text"]{

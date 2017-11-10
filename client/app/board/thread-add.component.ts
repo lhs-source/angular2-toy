@@ -13,21 +13,26 @@ import { ThreadService } from './thread.service';
     styleUrls: ['./thread-add.component.css'],
 })
 
+
+
 export class ThreadAddComponent implements OnInit {
     ///////////
     // objects
     ///////////
 
+    // 작성자 정보
     username : string;
     email : string;
     id : string;
 
+    // 글 정보
     title = new FormControl('', [Validators.required,
         Validators.maxLength(64)]);
     category = new FormControl('', [Validators.required,
         Validators.minLength(1)]);
-    @ViewChild('content') content : ElementRef;
+    htmlContent = '<br><br><br><br><br>';
     
+    // form
     writeForm: FormGroup;
 
     // editor
@@ -39,8 +44,6 @@ export class ThreadAddComponent implements OnInit {
         placeholder: 'Enter text here...',
         translate: 'no'
     };
-
-    htmlContent = '<span>Edit me</span><br><br><br><br><br>';
 
     //////////////
     // contructor
@@ -79,10 +82,9 @@ export class ThreadAddComponent implements OnInit {
             userid : this.id,
             title : this.title.value,
             category : this.category.value,
-            //content : this.content.nativeElement.innerHTML,
             content : this.htmlContent,
             create_date : Date.now(),
-            update_date : Date.now()
+            update_date : Date.now(),
         }
         // 뭔가 이상하면 백
         if(!this.username || !this.id || !this.title.value){

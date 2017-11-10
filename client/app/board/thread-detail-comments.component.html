@@ -1,8 +1,9 @@
 
 <!-- 댓글 부분 -->
-<div style="margin : 40px 0 0 0;">
-    <h3>댓글</h3>
-    <hr>
+<div style="margin : 40px 0 0 0;"></div>
+<h3>댓글</h3>
+<hr>
+<div>
     <!-- 이 글의 댓글만큼 반복 -->
     <div *ngFor="let comment of thre.comments; let i = index" class="comment">
         <!-- comment가 없으면 출력 x -->

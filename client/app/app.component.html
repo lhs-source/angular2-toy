@@ -1,21 +1,18 @@
 <!-- 헤더입니다. -->
 <header>
-    <app-header (navActive)="toggleNav()"></app-header>
+    <app-header></app-header>
 </header>
+
 <!-- 배경 색깔 or 이미지 -->
 <div class="blur bgimage">
 </div>
-<!-- navigation bar 부분 -->
-<app-nav [toggle]="isNavActive" (toggleFromNav)="toggleNav()"></app-nav>
 
-<!-- main 부분 
-    isNavActive가 켜지면 같이 옆으로 밀려난다.
--->
-<div class="app-main" [ngClass] = "{'app-mainleft' : isNavActive}">
-    <!-- <div style="margin : 32px auto;"></div> -->
-    <!-- 라우트 컴포넌트 출력부분 -->
+<!-- main 부분, isNavActive가 켜지면 같이 옆으로 밀려난다.-->
+<div class="app-main">
     <router-outlet></router-outlet>
 </div>
+
+<!-- footer -->
 <footer>
     <app-footer></app-footer>
 </footer>

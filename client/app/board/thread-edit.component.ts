@@ -7,29 +7,30 @@ import { Location }                 from '@angular/common';
 import { AuthService } from '../user/auth.service';
 import { ThreadService } from './thread.service';
 
+
 @Component({
     selector: 'thread-edit',
     templateUrl: './thread-edit.component.html',
     styleUrls: ['./thread-edit.component.css'],
 })
-
 export class ThreadEditComponent implements OnInit {
     ///////////
     // objects
     ///////////
 
+    // 유저 정보
     username : string;
     email : string;
     id : string;
+    
     title = new FormControl('', [Validators.required,
         Validators.maxLength(64)]);
     category = new FormControl('', [Validators.required,
         Validators.minLength(1)]);
     page : string;
+    htmlContent : string;
     
-    thre = {};
-
-    @ViewChild('content') content : ElementRef;
+    thre : {};
     
     writeForm: FormGroup;
 
@@ -37,7 +38,6 @@ export class ThreadEditComponent implements OnInit {
     
 
     // editor
-
     editorConfig = {
         editable: true,
         spellcheck: false,
@@ -46,8 +46,6 @@ export class ThreadEditComponent implements OnInit {
         placeholder: 'Enter text here...',
         translate: 'no'
     };
-
-    htmlContent : string;
     // editor
 
     //////////////
@@ -76,25 +74,23 @@ export class ThreadEditComponent implements OnInit {
         // 파라미터 겟
         this.id = this.route.snapshot.paramMap.get('id');
         this.page = this.route.snapshot.paramMap.get('page');
+
         let condition = {_id : this.id};
+
         this.threServ.getThread(condition).subscribe(
             thread => {
                 this.thre = thread; 
-                console.log(this.thre); 
                 this.username = thread.username;
                 this.email = thread.email;
                 this.title.setValue(thread.title);
                 this.category.setValue(thread.category);
-                //this.content.nativeElement.innerHTML = thread.content;
                 this.htmlContent = thread.content;
-                console.log(this.htmlContent);
 
                 this.loadComplete = true;
+                this.category.setValue(this.threServ.category.name);
             }
         );
                         
-        this.category.setValue(this.threServ.category.name);
-        console.log(this.thre);
     }
 
     ///////////
@@ -107,7 +103,6 @@ export class ThreadEditComponent implements OnInit {
             _id : this.id,
             title : this.title.value,
             category : this.category.value,
-            //content : this.content.nativeElement.innerHTML,
             content : this.htmlContent,
             update_date : Date.now()
         };
@@ -129,10 +124,5 @@ export class ThreadEditComponent implements OnInit {
     // 뒤로가기
     goBack(): void {
         this.location.back();
-    }
-
-    debug() : void {
-        this.htmlContent += " plus";
-        console.log(this.htmlContent);
     }
 }

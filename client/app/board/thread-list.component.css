@@ -1,9 +1,9 @@
 
-
+/* 제목 뒷배경 색깔 */
 .back-image{
     background-color: #DDD;
 
-    height : 120px;
+    height : 144px;
     width : 100%;
 
     position : absolute;
@@ -11,23 +11,21 @@
     top : 50px;
     z-index: -1;
 }
+/* 전체 모양 */
 .whole{
-
-    /*height : 720px; */
     padding : 10px 0 0 0;    
     margin : 0 auto;
-    /* min-width : 480px; */
+    
     max-width : 720px;
 
-    border-radius : 5px; 
-    
+    border-radius : 5px;
 }
 .lists{
     position: relative;
 
     margin : 0px 8px 32px 0px;
-
 }
+/* 글의 제목 */
 .list-title{
     cursor: pointer;
 
@@ -37,17 +35,15 @@
     
     font-size : 1em;
 }
+/* 글의 작성일 */
 .list-info{
-    /* padding : 4px 0px 4px 16px;  */
-    /* right : -0;  */
     margin-left: 48px;
     font-size : 0.8em;
     
     background-color:#DAE3E7; 
 }
-
+/* 작성자 */
 .writer{
-    /* padding : 1px 2px 1px 2px; */
     padding-left : 4px;
     padding-right : 8px;
     padding-top : 4px;
@@ -58,6 +54,7 @@
     background-color : #B7C9CE;
 }
 
+/* 현재 선택된 pagi */
 .pagithispage{
     background-color: #B0B0B0;
 }

@@ -9,29 +9,28 @@ nav a {
   
     width : 100%;
     overflow-x: hidden;
-  }
-  @media (max-width : 752px){
+}
+@media (max-width : 752px){
     nav a{
-      
       font-size : 1.4em;
     }
-  }
-  nav a:visited, a:link {
+}
+nav a:visited, a:link {
     color: #90aDbB;
-  }
-  /* 메뉴에 마우스 */
-  nav a:hover {
+}
+/* 메뉴에 마우스 */
+nav a:hover {
     color: #f4ccf6;
     background-color: #9f879b;
-  }
-  /* 메뉴 중 눌린 메뉴 */
-  nav a.active {
+}
+/* 메뉴 중 눌린 메뉴 */
+nav a.active {
     color: #f4ccf6;
     border-left : 4px solid #f4ccf6;
     text-indent: 4px;
-  }
-  /* navigation bar의 스타일이다. 숨겨져 있을 때를 나타낸다. */
-  .app-navbar{
+}
+/* navigation bar의 스타일이다. 숨겨져 있을 때를 나타낸다. */
+.app-navbar{
     height : 100%;
     width : 0px;
     position : fixed;
@@ -42,25 +41,30 @@ nav a {
     overflow-x : hidden;
     transition: all ease .7s;
     padding-top : 5px 60px;
-  }
-  /* navigation bar의 보여졌을 때 변경될 스타일이다.*/
-  @media (min-width: 752px) {
+}
+
+/* navigation bar의 보여졌을 때 변경될 스타일이다.*/
+.app-navshow{
+    left : 0;
+    background-color: rgba(#063d47, .6);
+    transition: ease .7s;
+}
+@media (min-width: 752px) {
     .app-navshow{
-      width : 240px;
-      max-width : 240px;
-      left : 0;
-      background-color: rgba(063d47, .6);
-      transition: ease .7s;
+        width : 240px;
+        max-width : 240px;
     }
-    .biggerThan752{
+}
+@media (max-width: 752px) {
+    .app-navshow{
+        width : 100%;
+    }
+}
+
+/* 크기에 따라 숨길 녀석들 */
+@media (min-width: 752px) {
+  .biggerThan752{
       display: none;
-    }
   }
-  @media (max-width: 752px) {
-    .app-navshow{
-      width : 100%;
-      left : 0;
-      background-color: rgba(063d47, .6);
-      transition: ease .7s;
-    }
-  }
+}
+

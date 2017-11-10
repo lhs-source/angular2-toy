@@ -12,18 +12,15 @@ import { AuthService } from '../user/auth.service';
 
 })
 export class AppHeaderComponent {
-    @Output() navActive = new EventEmitter();
-
-    isLoggedIn : boolean;
-    isAdmin : boolean;
+    // nav가 켜졌는지, 꺼졌는지, appheader와 동일하게 유지할 것
+    isNavActive : boolean = false;
 
     constructor(private router : Router, private auth : AuthService, private login : AuthGuardLogin, private admin : AuthGuardAdmin){
-        this.isLoggedIn = this.getlogin();
-        this.isAdmin = this.getadmin();
+        
     };
 
     toggleNav():void{
-        this.navActive.emit();
+        this.isNavActive = !this.isNavActive;
     }
     getlogin() : boolean{
         return this.auth.loggedIn;

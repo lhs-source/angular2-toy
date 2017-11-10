@@ -54,12 +54,18 @@ export class ThreadListComponent implements OnInit{
                 
                 const perPage = 8;
                 const perPagi = 10;
+
+                // this.page가 실제 페이지 개수보다 높으면
                 if(Math.ceil(this.count / perPage) < parseInt(this.page)){
                     this.router.navigate(['thread/list', this.category, '1']);
                     return;
                 }
+
+                // 시작
                 let pagiStart = parseInt(this.page) - Math.floor(perPagi / 2);
+                // 실제 페이지 개수의 끝
                 let pagiEnd = Math.ceil(this.count / perPage);
+                // 끝
                 let pagiLast = parseInt(this.page) + Math.floor(perPagi / 2);
                 if(pagiStart <= 0){
                     pagiStart = 1;
@@ -67,8 +73,6 @@ export class ThreadListComponent implements OnInit{
                 if(pagiEnd < pagiLast){
                     pagiLast = pagiEnd;
                 }
-                console.log(pagiStart);
-                console.log(pagiLast);
                 let i = 0;
                 this.countArray = new Array(pagiLast - pagiStart + 1).fill(pagiStart).map(value => value + i++);
             },
@@ -79,7 +83,6 @@ export class ThreadListComponent implements OnInit{
         this.threServ.getThreads({category : this.category, page : this.page}).subscribe(
             rep => {
                 this.threads = rep; 
-                console.log(this.threads)
             },
             error => {console.log(error);},
             () => {} ,
@@ -100,24 +103,14 @@ export class ThreadListComponent implements OnInit{
     }
     
     pageMove(move : number){
-        console.log("page");
         let pageNum = parseInt(this.page) + move;
         if(pageNum <= 0){
             return;
         }
         this.page = pageNum.toString();
         this.router.navigate(['thread/list', this.category, this.page]);
-        // this.threServ.getThreads({category : this.category, page : this.page}).subscribe(
-        //     rep => {
-        //         this.threads = rep; 
-        //         console.log(this.threads)
-        //     },
-        //     error => {console.log(error);},
-        //     () => {} ,
-        // );
     }
     pageMoveAbsolute(move : number){
-        console.log("page");
         let pageNum = move;
         if(move === -1){
             pageNum = Math.ceil(this.count / 5);
@@ -127,13 +120,5 @@ export class ThreadListComponent implements OnInit{
         }
         this.page = pageNum.toString();
         this.router.navigate(['thread/list', this.category, this.page]);
-        // this.threServ.getThreads({category : this.category, page : this.page}).subscribe(
-        //     rep => {
-        //         this.threads = rep; 
-        //         console.log(this.threads)
-        //     },
-        //     error => {console.log(error);},
-        //     () => {} ,
-        // );
     }
 }

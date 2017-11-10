@@ -9,7 +9,7 @@ h2 {
   padding-top: 0;
 }
 
-/* navigation을 제외한 부분을 가리킨다. */
+/* 메인이다. */
 @media (min-width: 752px) {
   .app-main{
     transition: ease .7s;
@@ -26,11 +26,6 @@ h2 {
     margin : 0px auto;
     width : 100%;
   }
-}
-/* navigation이 보여져서 오른쪽으로 밀려났을 때 스타일이다. */
-.app-mainleft{
-  /*margin-left: 250px;*/
-  transition: ease .7s;
 }
 
 .bgimage {

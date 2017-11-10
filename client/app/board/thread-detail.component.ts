@@ -37,20 +37,6 @@ export class ThreadDetailComponent implements OnInit {
         private router : Router,
         private auth: AuthService,
       ) {
-        router.events.subscribe(event =>{
-            if(event instanceof NavigationEnd){
-                const tree = router.parseUrl(router.url);
-                console.log(tree.fragment);
-                if(tree.fragment){
-                    const element = document.getElementById(tree.fragment);
-                    console.log(element);
-                    if(element) {
-                        element.scrollIntoView(element);
-                    }
-                }
-            }
-        });
-
 
       }
 

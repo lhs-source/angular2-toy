@@ -104,9 +104,9 @@ export class ThreadDetailCommentsComponent {
     }
     editComment(): void {
         let condition = {
-            _id : this.selComment._discussion_id, 
+            _id : this.selComment._discussion_id, // 이 thre의 id를 가진 thre에다가
             comments : {
-                _id : this.selComment._id, 
+                _id : this.selComment._id, // 이 id의 comments를 수정하겠다.
                 content : this.commentContent.nativeElement.innerHTML, 
                 update_date : Date.now()
             }
@@ -126,13 +126,14 @@ export class ThreadDetailCommentsComponent {
     commentComment() : void {
         let comment = {
             _discussion_id : this.id,
-            _parent_id : this.selComment._id,
+            _parent_id : this.selComment._id,   // parent_id가 있다.
             userid : this.auth.currentUser._id, 
             username : this.auth.currentUser.username, 
             content : this.commentContent.nativeElement.innerHTML,
             create_date : Date.now(),
             update_date : Date.now(),
-            parent_comment : {},
+
+            parent_comment : {}, // push 용도
         };
         console.log(comment);
         const condition = {
@@ -155,21 +156,6 @@ export class ThreadDetailCommentsComponent {
         );
     }
     goCommentDelete(comment): void {
-        //  pull로 아예 삭제
-        /*
-        this.ThreadService.deleteComment({_id : comment._discussion_id, comments : {_id : comment._id}}).subscribe(
-            res => {
-                console.log(res);
-                const pos = this.thre.comments.map(elem => elem._id).indexOf(comment._id);
-                console.log(pos);
-                this.thre.comments.splice(pos, 1);
-            },
-            error => {console.log(error)},
-            () => {}
-        );
-        */
-        // mongoose에서는 pull 해도 null로 바뀌어서 
-        // 삭제되었습니다. 로 바꾸는 방안...
         let condition = {
             _id : comment._discussion_id, 
             comments : {
@@ -184,6 +170,8 @@ export class ThreadDetailCommentsComponent {
                 console.log(comment._id);
                 const pos = this.thre.comments.map(elem => elem._id).indexOf(comment._id);
                 this.thre.comments[pos].content = "<span style='text-decoration:line-through;'>삭제된 댓글입니다.</span>";
+
+                // 삭제된 댓글은 delete가 true다.
                 this.thre.comments[pos]['deleted'] = true;
             },
             error => {console.log(error)},

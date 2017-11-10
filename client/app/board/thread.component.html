@@ -1,14 +1,10 @@
-<div>
-    <!-- <a routerLink="thread-list" routerLinkActive="active"><i class="fa fa-calendar" aria-hidden="true"></i> list</a> -->
-    <!-- <a routerLink="thread-detail" routerLinkActive="active"><i class="fa fa-table" aria-hidden="true"></i> detail</a>-->
+
+<div class="whole">
+    <router-outlet></router-outlet>
 </div>
-<div>
-    <div class="whole">
-        <router-outlet></router-outlet>
-    </div>
-    <div style="display : inline-block; width : 17%; position : absolute; top : 80px; right : 60px;">
-        <button (click)="toggle()">Category <i class="fa fa-chevron-down" aria-hidden="true"></i></button>
-        <thread-category class="category" [ngClass]="{categoryShow : toggleCategory}"></thread-category>
-    </div>
+<!-- category -->
+<div style="display : inline-block; width : 17%; position : absolute; top : 80px; right : 60px;">
+    <button (click)="toggle()">Category <i class="fa fa-chevron-down" aria-hidden="true"></i></button>
+    <thread-category class="category" [ngClass]="{categoryShow : toggleCategory}"></thread-category>
 </div>
 
