@@ -43,9 +43,15 @@
 <br><br><br>
 
 <button (click)="shgo">change!</button>
-<pre>
-<code class="cpp">int a = 1;</code>
-</pre>
-
+<button id="btnHighlight" md-raised-button color="primary" (click)="shgo(snippet)">highlight</button>
+<div>
+    <pre>
+        <code #snippet class="cpp highlight-this" contenteditable="true">
+            {{syntax}}
+        </code>
+    </pre>
+</div>
+<div>{{syntax}}</div>
+<section [(innerHTML)]="syntax" highlight-js-content=".highlight"></section>
 
 

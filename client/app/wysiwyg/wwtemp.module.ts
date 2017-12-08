@@ -9,7 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { FileUploadModule } from './file/file-upload.module';
 
-//import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
+import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
 
 
 @NgModule({
@@ -21,10 +21,10 @@ import { FileUploadModule } from './file/file-upload.module';
         GlobalModule,
         NgxEditorModule,
         FileUploadModule,
-        //HighlightJsModule,
+        HighlightJsModule,
     ],
     providers: [
-        //HighlightJsService
+        HighlightJsService
     ],
     exports :[
         

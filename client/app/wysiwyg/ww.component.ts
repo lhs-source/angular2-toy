@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, Pipe, Renderer2  } from '@angular/core';
-
+import { HighlightJsService } from 'angular2-highlight-js';
 
 
 @Component({
@@ -12,10 +12,13 @@ import { Component, ViewChild, ElementRef, Pipe, Renderer2  } from '@angular/cor
 })
 export class WwComponent {
     @ViewChild('editor') editor : ElementRef;
+    @ViewChild('snippet') syntax_input : ElementRef;
 
     htmlContent : string;
     isHtml : boolean;
     editorContent : string;
+
+    syntax : string = "int a = 1;";
 
     // ngx-editor
     editorConfig = {
@@ -30,7 +33,7 @@ export class WwComponent {
 
     // ngx-editor
 
-    constructor(private rd: Renderer2){
+    constructor(private rd: Renderer2, private hlservice : HighlightJsService){
 
     }
 
@@ -155,7 +158,8 @@ export class WwComponent {
         console.log(this.editor.nativeElement);
         console.log(document.hasFocus());
     }
-    shgo(){
-        //sh.SyntaxHighlighter.all();
+    shgo(target: ElementRef){
+        this.hlservice.highlight(target);
+        this.syntax = this.syntax_input.nativeElement.innerText;
     }
 }
