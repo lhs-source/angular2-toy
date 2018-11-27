@@ -36,7 +36,7 @@ threadSchema.pre('save', function(next) {
     const thread = this;
     console.log("threadSchema save pre");
 
-    SeqSchema.findOneAndUpdate({name : "thread_seq"}, { $inc: { seq: 1 } }, function (err, getsequence) {
+    SeqSchema.findOneAndUpdate({name : "thread_seq"}, { $inc: { seq: 1 } },{"upsert": true,"new": true  }, function (err, getsequence) {
         console.log(getsequence);
         if (err) next(err);
         thread.seq_id = getsequence.seq - 1; // substract 1 because I need the 'current' sequence number, not the next
