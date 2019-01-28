@@ -21,7 +21,8 @@ export class MerchantsService {
   }
 
   addMerchant(merchant): Observable<any> {
-    return this.http.post('/api/merchant', JSON.stringify(merchant), this.options);
+    console.log(JSON.stringify(merchant));
+    return this.http.post('/api/merchant', merchant, this.options);
   }
 
   getMerchant(merchant): Observable<any> {

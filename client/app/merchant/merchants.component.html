@@ -6,10 +6,18 @@
     <table class="merchant-table">
       <thead class="merchant-thead" *ngIf="!isEditing">
         <tr>
-          <th class="merchant-th">Name</th>
-          <th class="merchant-th">Age</th>
-          <th class="merchant-th">Weight</th>
-          <th class="merchant-th">Actions</th>
+          <th class="merchant-th">Cmid</th>
+          <th class="merchant-th">Bin</th>
+          <th class="merchant-th">Corp_no</th>
+          <th class="merchant-th">Corp_name</th>
+          <th class="merchant-th">Corp_cls</th>
+          <th class="merchant-th">Biz_kind</th>
+          <th class="merchant-th">Email</th>
+          <th class="merchant-th">Post_no</th>
+          <th class="merchant-th">Reg_dt</th>
+          <th class="merchant-th">Bank</th>
+          <th class="merchant-th">Acnt_name</th>
+          <th class="merchant-th">Acnt_no</th>
         </tr>
       </thead>
       <tbody class="merchant-tbody" *ngIf="merchants.length === 0">
@@ -19,11 +27,20 @@
       </tbody>
       <tbody class="merchant-tbody" *ngIf="!isEditing">
         <tr *ngFor="let merchant of merchants">
-          <td class="merchant-td">{{merchant.name}}</td>
-          <td class="merchant-td">{{merchant.age}}</td>
-          <td class="merchant-td">{{merchant.weight}}</td>
+          <td class="merchant-td">{{merchant.cmid}}</td>
+          <td class="merchant-td">{{merchant.bin}}</td>
+          <td class="merchant-td">{{merchant.corp_no}}</td>
+          <td class="merchant-td">{{merchant.corp_name}}</td>
+          <td class="merchant-td">{{merchant.corp_cls}}</td>
+          <td class="merchant-td">{{merchant.biz_kind}}</td>
+          <td class="merchant-td">{{merchant.email}}</td>
+          <td class="merchant-td">{{merchant.post_no}}</td>
+          <td class="merchant-td">{{merchant.reg_dt}}</td>
+          <td class="merchant-td">{{merchant.bank}}</td>
+          <td class="merchant-td">{{merchant.acnt_name}}</td>
+          <td class="merchant-td">{{merchant.acnt_no}}</td>
           <td class="merchant-td">
-            <button class="button" (click)="enableEditing(merchant)"><i class="fa fa-pencil"></i> Edit</button> <button class="button" (click)="deleteCat(merchant)"><i class="fa fa-trash"></i> Delete</button>
+            <button class="button" (click)="enableEditing(merchant)"><i class="fa fa-pencil"></i> Edit</button> <button class="button" (click)="deleteMerchant(merchant)"><i class="fa fa-trash"></i> Delete</button>
           </td>
         </tr>  
       </tbody>
@@ -31,15 +48,42 @@
         <tr>
           <td class="merchant-td" colspan="4">
             <div class="form">
-              <form #form="ngForm" (ngSubmit)="editCat(merchant)" style="display:inline">
+              <form #form="ngForm" (ngSubmit)="editMerchant(merchant)" style="display:inline">
                 <div>
-                    <input class="merchant-input" type="text" name="name" [(ngModel)]="merchant.name" placeholder="Name" required>
+                    <input class="merchant-input" type="text" name="cmid" [(ngModel)]="merchant.cmid" placeholder="cmid" required>
                 </div>
                 <div>
-                  <input class="merchant-input" type="number" name="age" [(ngModel)]="merchant.age" placeholder="Age" min="0" required>
+                  <input class="merchant-input" type="text" name="bin" [(ngModel)]="merchant.bin" placeholder="bin" required>
                 </div>
                 <div>
-                  <input class="merchant-input" type="number" name="weight" [(ngModel)]="merchant.weight" placeholder="Weight" step="any" min="0" required>
+                  <input class="merchant-input" type="text" name="corp_no" [(ngModel)]="merchant.corp_no" placeholder="corp_no" step="any" required>
+                </div>
+                <div>
+                  <input class="merchant-input" type="text" name="corp_name" [(ngModel)]="merchant.corp_name" placeholder="corp_name" step="any" required>
+                </div>
+                <div>
+                  <input class="merchant-input" type="text" name="corp_cls" [(ngModel)]="merchant.corp_cls" placeholder="corp_cls" step="any" required>
+                </div>
+                <div>
+                  <input class="merchant-input" type="text" name="biz_kind" [(ngModel)]="merchant.biz_kind" placeholder="biz_kind" step="any" required>
+                </div>
+                <div>
+                  <input class="merchant-input" type="text" name="email" [(ngModel)]="merchant.email" placeholder="email" step="any" required>
+                </div>
+                <div>
+                  <input class="merchant-input" type="text" name="post_no" [(ngModel)]="merchant.post_no" placeholder="post_no" step="any" required>
+                </div>
+                <div>
+                  <input class="merchant-input" type="text" name="reg_dt" [(ngModel)]="merchant.reg_dt" placeholder="reg_dt" step="any" required>
+                </div>
+                <div>
+                  <input class="merchant-input" type="text" name="bank" [(ngModel)]="merchant.bank" placeholder="bank" step="any" required>
+                </div>
+                <div>
+                  <input class="merchant-input" type="text" name="acnt_name" [(ngModel)]="merchant.acnt_name" placeholder="acnt_name" step="any" required>
+                </div>
+                <div>
+                  <input class="merchant-input" type="text" name="acnt_no" [(ngModel)]="merchant.acnt_no" placeholder="acnt_no" step="any" required>
                 </div>
                 <button class="button" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
               </form>
@@ -57,13 +101,40 @@
   <div>
     <form [formGroup]="addMerchantForm" (ngSubmit)="addMerchant()" style="text-align:center">
       <div>
-          <input class="merchant-input" type="text" name="name" formControlName="name" placeholder="Name">
+          <input class="merchant-input" type="text" name="cmid" formControlName="cmid" placeholder="cmid" required>
       </div>
       <div>
-        <input class="merchant-input" type="number" name="age" formControlName="age" placeholder="Age" min="0">
+        <input class="merchant-input" type="text" name="bin" formControlName="bin" placeholder="bin" required>
       </div>
       <div>
-        <input class="merchant-input" type="number" name="weight" formControlName="weight" placeholder="Weight" step="any" min="0">
+        <input class="merchant-input" type="text" name="corp_no" formControlName="corp_no" placeholder="corp_no" step="any" required>
+      </div>
+      <div>
+        <input class="merchant-input" type="text" name="corp_name" formControlName="corp_name" placeholder="corp_name" step="any" required>
+      </div>
+      <div>
+        <input class="merchant-input" type="text" name="corp_cls" formControlName="corp_cls" placeholder="corp_cls" step="any" required>
+      </div>
+      <div>
+        <input class="merchant-input" type="text" name="biz_kind" formControlName="biz_kind" placeholder="biz_kind" step="any" required>
+      </div>
+      <div>
+        <input class="merchant-input" type="text" name="email" formControlName="email" placeholder="email" step="any" required>
+      </div>
+      <div>
+        <input class="merchant-input" type="text" name="post_no" formControlName="post_no" placeholder="post_no" step="any" required>
+      </div>
+      <div>
+        <input class="merchant-input" type="text" name="reg_dt" formControlName="reg_dt" placeholder="reg_dt" step="any" required>
+      </div>
+      <div>
+        <input class="merchant-input" type="text" name="bank" formControlName="bank" placeholder="bank" step="any">
+      </div>
+      <div>
+        <input class="merchant-input" type="text" name="acnt_name" formControlName="acnt_name" placeholder="acnt_name" step="any">
+      </div>
+      <div>
+        <input class="merchant-input" type="text" name="acnt_no" formControlName="acnt_no" placeholder="acnt_no" step="any">
       </div>
       <button class="button" type="submit" [disabled]="!addMerchantForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
     </form>

@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, Pipe, Renderer2  } from '@angular/core';
-import { HighlightJsService } from 'angular2-highlight-js';
+// import { HighlightJsService } from 'angular-highlight-js';
 
 
 @Component({
@@ -33,7 +33,7 @@ export class WwComponent {
 
     // ngx-editor
 
-    constructor(private rd: Renderer2, private hlservice : HighlightJsService){
+    constructor(private rd: Renderer2/*, private hlservice : HighlightJsService*/){
 
     }
 
@@ -159,7 +159,7 @@ export class WwComponent {
         console.log(document.hasFocus());
     }
     shgo(target: ElementRef){
-        this.hlservice.highlight(target);
-        this.syntax = this.syntax_input.nativeElement.innerText;
+        // this.hlservice.highlight(target);
+        // this.syntax = this.syntax_input.nativeElement.innerText;
     }
 }

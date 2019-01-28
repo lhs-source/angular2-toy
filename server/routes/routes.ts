@@ -24,6 +24,8 @@ import Category from '../models/Category';
 import LhsAccountsCtrl from '../controllers/lhsaccount';
 import lhsaccount from '../models/lhsaccount';
 
+import MerchantCtrl from '../controllers/merchant';
+
 export default function setRoutes(app){
     const router = express.Router();
 
@@ -35,6 +37,7 @@ export default function setRoutes(app){
   const commentCtrl = new CommentCtrl();
   const categoryCtrl = new CategoryCtrl();
   const lacntCtrl = new LhsAccountsCtrl();
+  const merchantCtrl = new MerchantCtrl();
 
   // Events
   router.route('/events').get(eventCtrl.getAll);
@@ -102,6 +105,10 @@ export default function setRoutes(app){
   router.route('/account').put(lacntCtrl.insert);
   router.route('/account/:uid').put(lacntCtrl.update);
   router.route('/account/:uid').delete(lacntCtrl.delete);
+
+  // merchant
+  router.route('/merchants').get(merchantCtrl.getAll);
+  router.route('/merchant').post(merchantCtrl.insert);
 
   app.use('/api', router);
 }
