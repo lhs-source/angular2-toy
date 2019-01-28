@@ -26,13 +26,14 @@ export default class MerchantCtrl {
   insert = (req, res) => {
     console.log("insert");
     console.log(req.body);
-    // this.connection.query('insert into tbcd_merchant (cmid, bin, corp_no, corp_name, corp_cls, biz_kind, email, post_no, reg_dt, bank, acnt_name, acnt_no) values ?', 
-    // req.body,
-    // function(err, result){
-    //   if(err) throw err;
-    //   console.log('The solution is : ' + result);
-    //   res.send(result);
-    // });
+    //'insert into tbcd_merchant (cmid, bin, corp_no, corp_name, corp_cls, biz_kind, email, post_no, reg_dt, bank, acnt_name, acnt_no) values ?'
+    this.connection.query('insert into tbcd_merchant set ?', 
+    req.body,
+    function(err, result){
+      if(err) throw err;
+      console.log('The solution is : ' + result);
+      res.send(result);
+    });
   };
 }
 

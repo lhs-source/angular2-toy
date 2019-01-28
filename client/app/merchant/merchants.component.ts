@@ -67,8 +67,9 @@ export class MerchantsComponent implements OnInit {
   addMerchant() {
     this.merchantService.addMerchant(this.addMerchantForm.value).subscribe(
       res => {
-        const newMerchant = res.json();
-        this.merchants.push(newMerchant);
+        console.log(res.json());
+        this.merchants.push(this.addMerchantForm.value);
+        console.log(this.merchants);
         this.addMerchantForm.reset();
         //this.toast.setMessage('item added successfully.', 'success');
       },

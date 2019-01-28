@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class MerchantsService {
 
-  private headers = new Headers({ 'Content-Type': 'applimerchantion/json', 'charset': 'UTF-8' });
+  private headers = new Headers({ 'Content-Type': 'application/json', 'charset': 'UTF-8' });
   private options = new RequestOptions({ headers: this.headers });
 
   constructor(private http: Http) { }
