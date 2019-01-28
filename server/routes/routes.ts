@@ -21,6 +21,9 @@ import Comment from '../models/Comment';
 import CategoryCtrl from '../controllers/Category';
 import Category from '../models/Category';
 
+import LhsAccountsCtrl from '../controllers/lhsaccount';
+import lhsaccount from '../models/lhsaccount';
+
 export default function setRoutes(app){
     const router = express.Router();
 
@@ -31,6 +34,7 @@ export default function setRoutes(app){
   const threadCtrl = new ThreadCtrl();
   const commentCtrl = new CommentCtrl();
   const categoryCtrl = new CategoryCtrl();
+  const lacntCtrl = new LhsAccountsCtrl();
 
   // Events
   router.route('/events').get(eventCtrl.getAll);
@@ -91,6 +95,13 @@ export default function setRoutes(app){
 
   // image
   router.route('/upload',)
+
+  // accounts
+  router.route('/accounts').get(lacntCtrl.getAll);
+  router.route('/accounts/:key').get(lacntCtrl.getByWhere);
+  router.route('/account').put(lacntCtrl.insert);
+  router.route('/account/:uid').put(lacntCtrl.update);
+  router.route('/account/:uid').delete(lacntCtrl.delete);
 
   app.use('/api', router);
 }

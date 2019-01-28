@@ -6,7 +6,6 @@ import { CssComponent } from './css.component';
 import { CssBasicComponent } from './css-basic.component';
 import { Css3Component } from './css-3.component';
 import { CSSUsageComponent } from './css-usage.component';
-import { SCSSComponent } from './scss.component';
 
 @NgModule({
     declarations: [
@@ -14,7 +13,6 @@ import { SCSSComponent } from './scss.component';
       CssBasicComponent,
       Css3Component,
       CSSUsageComponent,
-      SCSSComponent,
     ],
     imports : [ BrowserModule,
                 FormsModule ],

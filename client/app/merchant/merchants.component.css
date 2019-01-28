@@ -1,0 +1,63 @@
+.table td, .table th {
+   text-align: center;
+   width: 25%;  
+}
+.merchant-table{
+    width : 70%;
+    max-width: 720px;
+    background-color: #FCFCFC;
+    margin : auto;
+    padding : 4px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 2px;
+}
+@media (max-width: 480px){
+    .merchant-table{
+        width: 100%;
+    }
+}
+.merchant-thead{
+    padding : 8px 8px;
+}
+.merchant-tbody{
+    padding : 8px 8px;
+}
+.merchant-tbodyEdit{
+    background-color: #AAA;
+    padding : 8px 8px;
+}
+.merchant-tr{
+    padding : 8px 0px;
+}
+.merchant-td{
+    padding : 8px 0px;
+    height : 25px;
+    border-bottom: 1px solid #FCFCFC;
+    text-align: center;
+}
+.merchant-th{
+    padding : 16px 0px;
+    border-bottom: 1px solid #FCFCFC;
+}
+.merchant-input{
+    width : 360px;
+    height : 30px;
+    margin : 4px;
+    border-radius: 2px;
+    border : 1px solid #999;
+    padding : 4px 4px 4px 8px;
+}
+.button{
+    /* width : 100px; */
+    height : 28px;
+    margin : 1px;
+    border-radius: 2px;
+    border : 1px solid #999;
+}
+h1, h2, h3, h4{
+    text-align: center;
+}
+.form{
+    margin : auto;
+    width : 70%;
+}

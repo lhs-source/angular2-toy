@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { CatsComponent } from './cat/cats.component';
 import { CatService } from './cat/cats.service';
+import { MerchantsComponent } from './merchant/merchants.component';
+import { MerchantsService } from './merchant/merchants.service';
 
 import { CalendarModule } from './calendar/calendar.module';
 
@@ -26,6 +28,8 @@ import { ColorPickerModule } from './colorPicker/color-picker.module';
 
 import { ThreadModule } from './board/thread.module';
 
+import { UsersModule } from './users/users.module';
+
 import { AppHeaderComponent } from './headerfooter/appheader.component';
 import { AppFooterComponent } from './headerfooter/appfooter.component';
 import { NavigationComponent } from './headerfooter/navigation.component'
@@ -38,6 +42,7 @@ import { NavigationComponent } from './headerfooter/navigation.component'
     AppFooterComponent,
     NavigationComponent,
     HomeComponent,
+    MerchantsComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,9 +57,11 @@ import { NavigationComponent } from './headerfooter/navigation.component'
     CssModule,
     ColorPickerModule,
     ThreadModule,
+    UsersModule,
   ],
   providers: [ //HeroService,
-              CatService, ],
+              CatService,
+              MerchantsService ],
   bootstrap: [ AppComponent ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

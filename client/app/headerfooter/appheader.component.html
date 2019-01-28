@@ -12,7 +12,8 @@
             <span *ngIf="getlogin()">
                 <a routerLink="/account" routerLinkActive="active"><i class="fa fa-user-circle" aria-hidden="true"></i> YOU</a>
                 <span *ngIf="getadmin()">
-                <a routerLink="/admin" routerLinkActive="active"><i class="fa fa-lock" aria-hidden="true"></i> Admin</a>
+                    <a routerLink="/admin" routerLinkActive="active"><i class="fa fa-lock" aria-hidden="true"></i> Admin</a>
+                    <a routerLink="/users" routerLinkActive="active"><i class="fa fa-lock" aria-hidden="true"></i> Users</a>
                 </span>
                 <a routerLink="/logout" routerLinkActive="active"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
             </span>

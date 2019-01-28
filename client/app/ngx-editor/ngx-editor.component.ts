@@ -164,6 +164,17 @@ export class NgxEditorComponent implements OnInit {
     }
   }
 
+  // insert image
+  insertVideo() {
+    const imageURI = prompt('Enter URL', 'http://');
+    if (imageURI) {
+      let html = "<video width='320' height='240' controls>  <source src='" + imageURI + "' type='video/mp4'>    Your browser does not support the video tag.    </video>";
+      const inserted = document.execCommand('insertHTML', false, html);
+      if (!inserted) {
+        this.createMessage('Invalid URL');
+      }
+    }
+  }
   /*
    * message box
    */

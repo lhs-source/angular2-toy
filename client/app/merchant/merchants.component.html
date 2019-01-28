@@ -1,0 +1,71 @@
+<app-loading [condition]="isLoading"></app-loading>
+
+<div *ngIf="!isLoading">
+  <h2>Current merchants ({{merchants.length}})</h2>
+  <div>
+    <table class="merchant-table">
+      <thead class="merchant-thead" *ngIf="!isEditing">
+        <tr>
+          <th class="merchant-th">Name</th>
+          <th class="merchant-th">Age</th>
+          <th class="merchant-th">Weight</th>
+          <th class="merchant-th">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="merchant-tbody" *ngIf="merchants.length === 0">
+        <tr>
+          <td colspan="4">There are no merchants in the DB. Add a new merchant below.</td>
+        </tr>  
+      </tbody>
+      <tbody class="merchant-tbody" *ngIf="!isEditing">
+        <tr *ngFor="let merchant of merchants">
+          <td class="merchant-td">{{merchant.name}}</td>
+          <td class="merchant-td">{{merchant.age}}</td>
+          <td class="merchant-td">{{merchant.weight}}</td>
+          <td class="merchant-td">
+            <button class="button" (click)="enableEditing(merchant)"><i class="fa fa-pencil"></i> Edit</button> <button class="button" (click)="deleteCat(merchant)"><i class="fa fa-trash"></i> Delete</button>
+          </td>
+        </tr>  
+      </tbody>
+      <tbody class="merchant-tbodyEdit" *ngIf="isEditing">
+        <tr>
+          <td class="merchant-td" colspan="4">
+            <div class="form">
+              <form #form="ngForm" (ngSubmit)="editCat(merchant)" style="display:inline">
+                <div>
+                    <input class="merchant-input" type="text" name="name" [(ngModel)]="merchant.name" placeholder="Name" required>
+                </div>
+                <div>
+                  <input class="merchant-input" type="number" name="age" [(ngModel)]="merchant.age" placeholder="Age" min="0" required>
+                </div>
+                <div>
+                  <input class="merchant-input" type="number" name="weight" [(ngModel)]="merchant.weight" placeholder="Weight" step="any" min="0" required>
+                </div>
+                <button class="button" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
+              </form>
+            </div>
+            <button class="button" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="!isEditing">
+  <h3>Add new merchant</h3>
+  <div>
+    <form [formGroup]="addMerchantForm" (ngSubmit)="addMerchant()" style="text-align:center">
+      <div>
+          <input class="merchant-input" type="text" name="name" formControlName="name" placeholder="Name">
+      </div>
+      <div>
+        <input class="merchant-input" type="number" name="age" formControlName="age" placeholder="Age" min="0">
+      </div>
+      <div>
+        <input class="merchant-input" type="number" name="weight" formControlName="weight" placeholder="Weight" step="any" min="0">
+      </div>
+      <button class="button" type="submit" [disabled]="!addMerchantForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+    </form>
+  </div>
+</div>

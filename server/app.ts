@@ -20,6 +20,9 @@ import * as cors from 'cors';
 import * as fs from 'fs';
 import * as Loki from 'lokijs';
 
+// mysql
+import * as mysql from 'mysql';
+
 import setRoutes from './routes/routes';
 import runsocket from './socket';
 
@@ -35,6 +38,8 @@ class Server{
   private port : number;
   // mongodb
   private db : any;
+  // mysql
+  private connection : any;
 
   private DB_NAME = 'db.json';
   private COLLECTION_NAME = 'images';
@@ -113,6 +118,20 @@ class Server{
       }
     );
     this.db = mongoose.connection;
+
+    // mysql
+    this.connection = mysql.createConnection({
+      host : 'tmxkorea.iptime.org',
+      user : 'payment',
+      password : 'rjfoqkftod',
+      database : 'pg',
+      port : '23066'
+    });
+    this.connection.connect(); 
+    this.connection.query('select 1 + 1 AS solution', function(err, rows, fields){
+      console.log('The solution is: ', rows[0].solution);
+    });
+    this.connection.end();
   }
   private step3(){
     (<any>mongoose).Promise = global.Promise;

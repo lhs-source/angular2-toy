@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CalendarComponent } from './calendar/calendar.component';
 
 import { CatsComponent } from './cat/cats.component';
+import { MerchantsComponent } from './merchant/merchants.component';
 
 import { ChatComponent } from './chat/chat.component';
 
@@ -24,6 +25,8 @@ import { ThreadListComponent } from './board/thread-list.component';
 import { ThreadAddComponent } from './board/thread-add.component';
 import { ThreadEditComponent } from './board/thread-edit.component';
 
+import { UsersComponent } from './users/users.component';
+
 import { AuthGuardLogin } from './user/auth-guard-login.service';
 import { AuthGuardAdmin } from './user/auth-guard-admin.service';
 
@@ -42,6 +45,11 @@ const routes : Routes = [
     path: 'cats', 
     component: CatsComponent ,
     canActivate: [AuthGuardLogin] 
+  },
+  { 
+    path: 'merchants', 
+    component: MerchantsComponent ,
+    // canActivate: [AuthGuardLogin] 
   },
   { 
     path: 'chats', 
@@ -68,6 +76,11 @@ const routes : Routes = [
   { 
     path: 'admin', 
     component: AdminComponent, 
+    canActivate: [AuthGuardAdmin] 
+  },
+  { 
+    path: 'users', 
+    component: UsersComponent, 
     canActivate: [AuthGuardAdmin] 
   },
   {
