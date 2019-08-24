@@ -41,6 +41,7 @@ export default function setRoutes(app){
 
   // Events
   router.route('/events').get(eventCtrl.getAll);
+  router.route('/events').post(eventCtrl.getAllSortd);
   router.route('/events/count').get(eventCtrl.count);
   router.route('/event').post(eventCtrl.insert);
   router.route('/event/:id').get(eventCtrl.get);

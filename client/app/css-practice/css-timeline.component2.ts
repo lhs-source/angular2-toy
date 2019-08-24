@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CalendarService } from '../calendar/calendar.service';
+import { CalendarEvent } from '../calendar/calendar-event.class';
 
 @Component({
     selector: 'css-timeline2',
@@ -8,6 +10,23 @@ import { Component } from '@angular/core';
     ],
 })
 export class CSSTimeline2Component{
+    events : CalendarEvent[];
 
+
+    constructor(private calServ : CalendarService){
+
+    }
+
+    ngOnInit(){
+        this.calServ.getEventsByConditions({year : 2019, month : 8}).subscribe(
+            data =>{ 
+                console.log('returned data --');
+                this.events = data;
+                console.log(this.events);
+            },
+            error => {},
+            () => {/*complete*/}
+        )
+    }
 	
 }

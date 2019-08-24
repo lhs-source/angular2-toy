@@ -31,6 +31,14 @@ export class CalendarService{
     getEvents(): Observable<any> {
         return this.http.get('/api/events').map(res => res.json());
     }
+    
+    getEventsByConditions(condition): Observable<any> {
+        //  condition {
+        //    year,
+        //    month
+        //  }
+        return this.http.post('/api/events', JSON.stringify(condition)).map(res => res.json());
+    }
 
     countEvents(): Observable<any> {
         return this.http.get('/api/events/count').map(res => res.json());
