@@ -51,7 +51,7 @@ export class CalendarComponent implements OnInit{
     // 선택된 셀
     selectedCell : CalendarCell;
     // 모든 이벤트
-    calendarEvents : CalendarEvent[];
+    calendarEvents : CalendarEvent[] = [];
 
     // 이벤트 추가용 변수
     addEventDate : string;
@@ -216,11 +216,11 @@ export class CalendarComponent implements OnInit{
         for(var i = 0; i < 42; i++){
             this.cells[i] = new CalendarCell(0, false);
         }
-        this.calendarEvents = [
-            new CalendarEvent(Date.now(), "Today!!"),
-            new CalendarEvent(Date.now(), "Tomorrow"),
-        ];
-        this.calendarEvents[1].date.setDate(this.calendarEvents[1].date.getDate() + 1);
+        // this.calendarEvents = [
+        //     new CalendarEvent(Date.now(), "Today!!"),
+        //     new CalendarEvent(Date.now(), "Tomorrow"),
+        // ];
+        // this.calendarEvents[1].date.setDate(this.calendarEvents[1].date.getDate() + 1);
         this.addEventDate = this.thisDate.getFullYear() + "-" + (this.thisDate.getMonth() + 1) + "-" + this.thisDate.getDate();
 
         this.timer();
@@ -278,7 +278,14 @@ export class CalendarComponent implements OnInit{
                 var len = this.eventsFromDB.length;
                 var len2 = this.calendarEvents.length;
                 for(var i = 0; i < len; i++){
-                    this.calendarEvents[len2 + i] = new CalendarEvent(this.eventsFromDB[i].date, this.eventsFromDB[i].note, this.eventsFromDB[i]._id);
+                    this.calendarEvents[len2 + i] 
+                    = new CalendarEvent(
+                        this.eventsFromDB[i].date, 
+                        this.eventsFromDB[i].note, 
+                        this.eventsFromDB[i].title,
+                        this.eventsFromDB[i].loc,
+                        this.eventsFromDB[i].pic,
+                        this.eventsFromDB[i]._id);
                 }
                 this.isLoaded = true;
                 //console.log("Get Events from mongoDB " + this.calendarEvents.length);

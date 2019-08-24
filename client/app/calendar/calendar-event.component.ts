@@ -22,7 +22,10 @@ export class CalendarEventComponent{
 
     // 이벤트 추가용 변수다.
     @Input() addEventDate : string;
+    addEventTitle : string;
     addEventNote : string;
+    addEventLoc : string;
+    addEventPic : string;
 
     // 서비스
     constructor(private calServ : CalendarService){ }
@@ -46,11 +49,25 @@ export class CalendarEventComponent{
     // db에 이벤트를 add한다.
     // 다 끝내고 addCallback을 호출한다.
     db_addEvents(){
-        console.log(this.addEventDate + " " + this.addEventNote);
-        this.calServ.addEvent({date : this.addEventDate, note : this.addEventNote}).subscribe(
+        let event = {
+            date : this.addEventDate, 
+            title : this.addEventTitle,
+            note : this.addEventNote,
+            loc : [this.addEventLoc,],
+            pic : [this.addEventPic,]
+        };
+        console.log(event);
+        this.calServ.addEvent(event).subscribe(
             res => {
                 const calendarEvent = res.json();
-                this.addCallback(new CalendarEvent(new Date(calendarEvent.date).getTime(), calendarEvent.note, calendarEvent._id));
+                this.addCallback(
+                    new CalendarEvent(
+                        new Date(calendarEvent.date).getTime(), 
+                        calendarEvent.note,
+                        calendarEvent.title,
+                        calendarEvent.loc,
+                        calendarEvent.pic,
+                        calendarEvent._id));
                 console.log("Add Success");
             },
             error => console.log(error)

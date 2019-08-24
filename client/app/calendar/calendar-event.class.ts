@@ -4,12 +4,18 @@ export class CalendarEvent {
     // db에서 가져와 식별하기위한 값이다.
     _id : number;
     date : Date;
+    title : String;
     note : String;
+    Loc : String[];
+    Pic : String[];
     //static textaraeRows : number = 0;
 
-    constructor(dateNum : number, note : string, id : number = 0){
+    constructor(dateNum : number, note : string, title : string, loc : string[], pic : string[], id : number = 0){
         this.date = new Date(dateNum);
         this.note = note;
+        this.title = title;
+        this.Loc = loc;
+        this.Pic = pic;
         this._id = id;
     }
     getNoteRows() : number{

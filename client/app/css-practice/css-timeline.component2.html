@@ -48,8 +48,10 @@
                     </div>
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <h3 class="timeline-title">Event Title</h3>
-                        <p>{{event.note}}</p>
+                        <h3 class="timeline-title">{{event.title}}</h3>
+                        <p *ngFor="let pic of event.pic;let i = index;"><img src="http://localhost:3000/uploads/{{pic}}"/></p>
+                        <p >{{event.note}}</p>
+                        <p *ngFor="let loc of event.loc;let i = index;">{{loc}}</p>
                     </div>
                 </li>
             </ul>

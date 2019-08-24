@@ -19,9 +19,12 @@
     </div>
 </div>
 <div class="eventForm">
-    <input class="eventAddTextForm" type="text" [(ngModel)]="addEventDate" placeholder="YYYY-MM-DD"/>
-    <input class="eventAddTextForm" type="text" [(ngModel)]="addEventNote" placeholder="Note"/>
-    <button class="eventAddButton" (click)="click_AddEvent()">ADD</button>
-    <button class="eventAddButton" (click)="click_Debug()">DEBUG</button>
+    <p><input class="eventAddTextForm" type="text" [(ngModel)]="addEventDate" placeholder="YYYY-MM-DD"/></p>
+    <p><input class="eventAddTextForm" type="text" [(ngModel)]="addEventTitle" placeholder="Title"/></p>
+    <p><input class="eventAddTextForm" type="text" [(ngModel)]="addEventNote" placeholder="Note"/></p>
+    <p><input class="eventAddTextForm" type="text" [(ngModel)]="addEventLoc" placeholder="Locations"/></p>
+    <p><input class="eventAddTextForm" type="text" [(ngModel)]="addEventPic" placeholder="Pictures"/></p>
+    <p><button class="eventAddButton" (click)="click_AddEvent()">ADD</button>
+    <button class="eventAddButton" (click)="click_Debug()">DEBUG</button></p>
 </div>
 <br><br><hr><br>
