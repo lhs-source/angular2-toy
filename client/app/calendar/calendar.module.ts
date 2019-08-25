@@ -7,11 +7,14 @@ import { CalendarComponent } from './calendar.component';
 import { CalendarEventComponent } from './calendar-event.component';
 import { CalendarService } from './calendar.service';
 
+import { FileUploadModule } from '../wysiwyg/file/file-upload.module';
+
 @NgModule({
     declarations : [ CalendarComponent,
                     CalendarEventComponent ],
     imports : [ BrowserModule,
-                FormsModule ],
+                FormsModule,
+                FileUploadModule ],
     providers : [ CalendarService ],
 })
 export class CalendarModule{

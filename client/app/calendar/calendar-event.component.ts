@@ -22,25 +22,47 @@ export class CalendarEventComponent{
 
     // 이벤트 추가용 변수다.
     @Input() addEventDate : string;
+    selEvent : CalendarEvent;
     addEventTitle : string;
     addEventNote : string;
     addEventLoc : string;
     addEventPic : string;
 
+    files : string[];
+    srcurl : string = 'http://localhost:3000/uploads';
+
     // 서비스
-    constructor(private calServ : CalendarService){ }
+    constructor(private calServ : CalendarService){
+        this.files = [];
+
+     }
 
     // debug용 버튼이다.
     click_Debug(){
         console.log(this.selectedCell);
+        console.log(this.files);
     }
     // addEventDate, addEventNote로 이벤트를 db에 add한다.
     click_AddEvent() : void{
         this.db_addEvents();
     }
+    click_EditEvent() : void {
+        this.selEvent.title = this.addEventTitle;
+        this.selEvent.note = this.addEventNote;
+        this.selEvent.loc = [this.addEventLoc];
+        this.selEvent.pic = this.files;
+
+        console.log(this.selEvent);
+        this.db_updateEvents(this.selEvent);
+    }
     // textarea에 있는 내용으로 이벤트를 db에 update한다.
     click_Edit(event : CalendarEvent){
-        this.db_updateEvents(event);
+        this.selEvent = event;
+        
+        this.addEventNote = event.note;
+        this.addEventTitle = event.title;
+        this.addEventLoc = event.loc[0];
+        this.files = event.pic;
     }
     // 이벤트를 삭제한다.
     click_Del(event : CalendarEvent){
@@ -54,7 +76,7 @@ export class CalendarEventComponent{
             title : this.addEventTitle,
             note : this.addEventNote,
             loc : [this.addEventLoc,],
-            pic : [this.addEventPic,]
+            pic : [this.files,]
         };
         console.log(event);
         this.calServ.addEvent(event).subscribe(
@@ -96,4 +118,11 @@ export class CalendarEventComponent{
             error => console.log(error)
         )
     }
+
+    fileuploaded(event){
+        console.log(event);
+        this.files.push(event.filename);
+        console.log(this.files);
+    }
+
 }

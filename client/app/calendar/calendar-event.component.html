@@ -11,20 +11,40 @@
                 [(ngModel)]="event.note">
         </textarea>
             -->
+        <p><label>ID(debug)</label></p>
+        <p><input class="eventAddTextForm" type="text" disabled value="{{event._id}}"/></p>
+        <p><label>Title</label></p>
+        <p><input class="eventAddTextForm" type="text" disabled value="{{event.title}}"/></p>
+        <p><label>Content</label></p>
         <div>
             <div contenteditable="true" spellcheck="false" class="eventNote">{{event.note}}</div>
         </div>
+        <p><label>Locations</label></p>
+        <p *ngFor="let loc of event.loc">{{loc}}</p>
+        
+        <p><label>Pictures</label></p>
+        <p *ngFor="let file of event.pic"><img width="128px" src="{{srcurl}}/{{file}}"> {{file}}</p>
+
         <button class="eventEditDeleteButton" (click)="click_Edit(event)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
         <button class="eventEditDeleteButton" (click)="click_Del(event)"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
     </div>
 </div>
 <div class="eventForm">
+    <p><label>Date</label></p>
     <p><input class="eventAddTextForm" type="text" [(ngModel)]="addEventDate" placeholder="YYYY-MM-DD"/></p>
+    <p><label>Title</label></p>
     <p><input class="eventAddTextForm" type="text" [(ngModel)]="addEventTitle" placeholder="Title"/></p>
+    <p><label>Content</label></p>
     <p><input class="eventAddTextForm" type="text" [(ngModel)]="addEventNote" placeholder="Note"/></p>
+    <p><label>Locations</label></p>
     <p><input class="eventAddTextForm" type="text" [(ngModel)]="addEventLoc" placeholder="Locations"/></p>
-    <p><input class="eventAddTextForm" type="text" [(ngModel)]="addEventPic" placeholder="Pictures"/></p>
+    <p><label>Images</label></p>
+    <!-- <p><input class="eventAddTextForm" type="text" [(ngModel)]="addEventPic" placeholder="Pictures"/></p> -->
+    <p *ngFor="let file of files"><img width="128px" src="{{srcurl}}/{{file}}"> {{file}}</p>
+    <!-- <file-upload [filedirs]="files"></file-upload> -->
+    <file-upload [send2parent]="fileuploaded.bind(this)"></file-upload>
     <p><button class="eventAddButton" (click)="click_AddEvent()">ADD</button>
+        <button class="eventAddButton" (click)="click_EditEvent()">EDIT</button>
     <button class="eventAddButton" (click)="click_Debug()">DEBUG</button></p>
 </div>
 <br><br><hr><br>
