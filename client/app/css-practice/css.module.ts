@@ -9,6 +9,8 @@ import { CSSUsageComponent } from './css-usage.component';
 import { CSSTimelineComponent } from './css-timeline.component';
 import { CSSTimeline2Component } from './css-timeline.component2';
 
+import { GalComponent } from './gal.component';
+
 @NgModule({
     declarations: [
       CssComponent,
@@ -17,6 +19,7 @@ import { CSSTimeline2Component } from './css-timeline.component2';
       CSSUsageComponent,
       CSSTimelineComponent,
       CSSTimeline2Component,
+      GalComponent,
     ],
     imports : [ BrowserModule,
                 FormsModule ],

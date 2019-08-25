@@ -27,6 +27,8 @@ import { ThreadEditComponent } from './board/thread-edit.component';
 
 import { UsersComponent } from './users/users.component';
 
+import { GalComponent } from './css-practice/gal.component';
+
 import { AuthGuardLogin } from './user/auth-guard-login.service';
 import { AuthGuardAdmin } from './user/auth-guard-admin.service';
 
@@ -92,6 +94,11 @@ const routes : Routes = [
     path: 'css', 
     component: CssComponent,
     canActivate: [AuthGuardLogin] 
+  },
+  {
+    path: 'gal', 
+    component: GalComponent,
+    // canActivate: [AuthGuardLogin] 
   },
   {
     path : 'colorpicker',
