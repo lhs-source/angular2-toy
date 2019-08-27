@@ -1,5 +1,18 @@
-
+<!-- 
 <div class="grid-wrapper">
 	<div *ngFor="let img of images" class="square"><img src="{{img}}"/></div>
 
-</div>
+</div> -->
+
+<button (click)="openGallery(0)">open gallery</button>
+
+<ngx-image-gallery 
+[images]="images" 
+[conf]="conf"
+(onOpen)="galleryOpened($event)"
+(onClose)="galleryClosed()"
+(onImageClicked)="galleryImageClicked($event)"
+(onImageChange)="galleryImageChanged($event)"
+(onDelete)="deleteImage($event)"
+></ngx-image-gallery>
+asdfasdf
