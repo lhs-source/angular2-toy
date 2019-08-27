@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
-import { NgxImageGalleryComponent, GALLERY_IMAGE, GALLERY_CONF } from "ngx-image-gallery";
+import { NgxImageGalleryComponent, GALLERY_IMAGE, GALLERY_CONF } from "../ngx-image-gallery/nig.module";
  
 
 @Component({

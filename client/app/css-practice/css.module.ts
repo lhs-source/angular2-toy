@@ -10,7 +10,7 @@ import { CSSTimelineComponent } from './css-timeline.component';
 import { CSSTimeline2Component } from './css-timeline.component2';
 
 import { GalComponent } from './gal.component';
-import { NgxImageGalleryModule } from 'ngx-image-gallery';
+import { NgxImageGalleryModule } from "../ngx-image-gallery/nig.module";
 
 @NgModule({
     declarations: [
