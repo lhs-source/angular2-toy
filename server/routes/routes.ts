@@ -13,10 +13,10 @@ import ChatCtrl from '../controllers/chat';
 import Chat from '../models/chat';
 
 import ThreadCtrl from '../controllers/Thread';
-import Thread from '../models/Thread';
+import Thread from '../models/thread';
 
 import CommentCtrl from '../controllers/Comment';
-import Comment from '../models/Comment';
+import Comment from '../models/comment';
 
 import CategoryCtrl from '../controllers/Category';
 import Category from '../models/Category';

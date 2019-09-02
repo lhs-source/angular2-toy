@@ -34,10 +34,13 @@ export class CalendarService{
     
     getEventsByConditions(condition): Observable<any> {
         //  condition {
-        //    year,
-        //    month
+        //      year,
+        //      toyear,
+        //      month
+        //      tomonth,
         //  }
-        return this.http.post('/api/events', JSON.stringify(condition)).map(res => res.json());
+        console.log(condition);
+        return this.http.post('/api/events', condition).map(res => res.json());
     }
 
     countEvents(): Observable<any> {

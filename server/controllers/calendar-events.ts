@@ -7,11 +7,16 @@ export default class CalendarEventCtrl extends BaseCtrl {
     getAllSortd = (req, res) => {
         /* sort({'key' : 1 - inc / -1 - dec }) */
         // let perPage = 8;
-        const obj = new this.model(req.body);
+        // const obj = new this.model(req.body);
+        let body = req.body;
+        let fromDate = new Date(body.year, body.month -1);
+        let toDate = new Date(body.toyear, body.tomonth);
+        console.log(fromDate);
+        console.log(toDate);
         let condition = {
             "date": {
-                "$gte": new Date(2019, 5), 
-                "$lt": new Date(2019, 8)
+                "$gte": fromDate, 
+                "$lt": toDate
             }
         }
         this.model.find(condition)

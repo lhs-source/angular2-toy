@@ -21,6 +21,7 @@ import { UserModule } from './user/user.module';
 import { WwModule } from './wysiwyg/wwtemp.module';
 
 import { CssModule } from './css-practice/css.module';
+import { TimelineModule } from './timeline/timeline.module';
 
 import { HomeComponent } from './home/home.component';
 
@@ -58,6 +59,7 @@ import { NavigationComponent } from './headerfooter/navigation.component'
     ColorPickerModule,
     ThreadModule,
     UsersModule,
+    TimelineModule,
   ],
   providers: [ //HeroService,
               CatService,

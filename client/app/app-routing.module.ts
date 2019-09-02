@@ -28,6 +28,7 @@ import { ThreadEditComponent } from './board/thread-edit.component';
 import { UsersComponent } from './users/users.component';
 
 import { GalComponent } from './css-practice/gal.component';
+import { TimelineComponent } from './timeline/timeline.component';
 
 import { AuthGuardLogin } from './user/auth-guard-login.service';
 import { AuthGuardAdmin } from './user/auth-guard-admin.service';
@@ -98,6 +99,11 @@ const routes : Routes = [
   {
     path: 'gal', 
     component: GalComponent,
+    // canActivate: [AuthGuardLogin] 
+  },
+  {
+    path: 'timeline', 
+    component: TimelineComponent,
     // canActivate: [AuthGuardLogin] 
   },
   {
